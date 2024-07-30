@@ -6,7 +6,6 @@ import Introduction from "@/app/ui/introduction/Introduction";
 export default function Home() {
   return (
       <>
-        <Header/>
         <Article/>
         <Introduction/>
       </>

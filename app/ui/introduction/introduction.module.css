@@ -25,7 +25,7 @@
 .detailsTitleContainer:lang(en) {
     display: flex;
     align-items: center;
-    margin-left: 382px;
+    margin-left: 302px;
 }
 
 .detailsSvgContainer {
@@ -300,6 +300,7 @@
         font-size: 0.85rem;
     }
 
+
 }
 
 @media (min-width: 1440px ) and (max-width: 1890px) {
@@ -313,6 +314,20 @@
 
     :lang(ar).introductionText {
         margin-right: 325px;
+        max-width: 90ch;
+
+    }
+
+    :lang(en).introTitleContainer {
+        margin-left: 325px;
+    }
+
+    :lang(en) .outerfooter {
+        font-size: 0.85rem;
+    }
+
+    :lang(en).introductionText {
+        margin-left: 345px;
         max-width: 90ch;
 
     }

@@ -1,0 +1,317 @@
+.formSuperContainer {
+    width: 100%;
+    height: 100%;
+    background: var(--white);
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.formContainer {
+    background: var(--white);
+    box-shadow: 0 4px 16px rgba(121, 125, 129, 0.25);
+    width: 30%;
+    padding: 30px;
+    margin-inline: auto;
+    border-radius: 1rem;
+}
+
+.formGroupOne {
+    display: flex;
+    gap: 20px;
+    margin: 15px 0;
+}
+
+.emailConatiner {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.ageConatiner {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+
+.formGroups {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+.formSubElements {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+
+.buttonContainer {
+    display: flex;
+    justify-content: end;
+}
+
+.formButton {
+    padding: .675rem 1.5rem;
+    background-color: var(--th-secondary);
+    border-radius: .8571428571rem;
+    color: var(--white);
+    font-size: 1em;
+    font-family: "Font-Regular";
+    cursor: pointer;
+    border: none;
+}
+
+.formButton:hover {
+    background: linear-gradient(240deg, var(--th-secondary), var(--th-Primary));
+}
+
+.formTitleText {
+    color: var(--font-black);
+    font-size: 1.5em;
+    line-height: 1.875rem;
+    margin-bottom: 1.5rem;
+    font-family: "Font-Bold";
+
+}
+
+.formLabel {
+    display: flex;
+    gap: 5px;
+    height: 1.5714285714rem;
+    color: var(--dark-grey-2);
+    font-family: "Font-Light";
+    font-size: 1em;
+}
+
+.formSubLabel {
+    display: flex;
+    gap: 5px;
+    height: 1.5714285714rem;
+    color: var(--dark-grey-3);
+    font-family: "Font-Light";
+    font-size: 0.8em;
+}
+
+.redTag {
+    color: var(--error);
+}
+
+.formInput {
+    border-radius: .75rem;
+    font-size: 1rem;
+    padding: .6875rem 2.5rem;
+    border: 1px solid var(--dark-grey-5);
+    background-color: #fff;
+    font-family: "Font-Light";
+    color: var(--dark-grey-1);
+    font-size: 0.85em;
+    resize: vertical;
+    outline: none;
+}
+
+.formInput:focus {
+    border: 1px solid var(--secondary-6);
+    box-shadow: none;
+    filter: drop-shadow(0 0 4px var(--secondary-6))
+}
+
+.formUpload {
+    text-align: center;
+    font-family: Font-Light;
+    padding: .6875rem 2.5rem;
+    border: 1px solid var(--dark-grey-5);
+    color: white;
+    background-color: var(--th-Primary-3);
+    border-radius: .75rem;
+}
+
+.formUpload::file-selector-button {
+    border-radius: .35rem;
+    font-family: Font-Light;
+    background-color: #fff;;
+
+}
+
+.formTermsAgreement {
+    display: flex;
+    gap: 10px;
+    font-size: 0.92em;
+    margin: 20px 0;
+    color: var(--black);
+    font-family: "Font-Light";
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.outerfooter {
+    display: flex;
+    background-color: var(--dark-grey-8);
+    height: 70px;
+    width: 100%;
+    color: var(--white);
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1428571429rem;
+    font-family: "Font-Light";
+    text-align: center;
+
+}
+
+.innerfooter {
+    display: flex;
+    background: var(--th-Primary);
+    width: 100%;
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.formInlineErrorText {
+    color: var(--error);
+    font-size: 14px;
+    font-weight: 300;
+    font-family: "Font-Light";
+}
+
+.inputWhileError {
+    border-radius: .75rem;
+    font-size: 1rem;
+    padding: .6875rem 2.5rem;
+    border: 1px solid var(--error);
+    background-color: #fff;
+    font-family: "Font-Light";
+    color: var(--dark-grey-1);
+    font-size: 0.85em;
+    resize: vertical;
+    outline: none;
+}
+
+.popUpDevContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: var(--th-Primary);
+    background: var(--white);
+    border-radius: 4px;
+    font-family: "Font-Bold";
+    position: absolute;
+    top: 80%;
+    z-index: 999;
+    right: 560px;
+}
+
+.closePopUpContainer {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+}
+
+.closePopUp{
+    background: #ffffff;
+    border-radius: 100%;
+    padding: 2% 5%;
+    text-align: center;
+}
+
+.closePopUp:hover {
+    background-color: red;
+    color: #ffffff;
+    transition: 600ms ease;
+}
+
+@font-face {
+    font-family: "Font-Light";
+    font-style: normal;
+    font-weight: 300;
+    src: url("/fonts/PingAR_LT_Light.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Font-Regular";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/PingAR_LT_Medium.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Font-Bold";
+    font-style: normal;
+    font-weight: 500;
+    src: url("/fonts/PingAR+LT-Bold.otf") format("opentype");
+}
+
+
+@media (min-width: 320px ) and (max-width: 374px) {
+    .formContainer {
+        width: 70%;
+    }
+
+    .formGroupOne {
+        flex-direction: column;
+    }
+
+    .formTermsAgreement {
+        margin: 20px 0 130px 0;
+    }
+
+    .outerfooter {
+        height: 100%;
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 375px ) and (max-width: 424px) {
+    .formContainer {
+        width: 70%;
+    }
+
+    .formGroupOne {
+        flex-direction: column;
+    }
+
+    .formTermsAgreement {
+        margin: 20px 0 110px 0;
+    }
+}
+
+@media (min-width: 425px ) and (max-width: 767px) {
+    .formContainer {
+        width: 80%;
+    }
+
+    .formGroupOne {
+        flex-direction: column;
+    }
+
+    .formTermsAgreement {
+        margin: 20px 0 80px 0;
+    }
+}
+
+@media (min-width: 768px ) and (max-width: 1023px) {
+    .formContainer {
+        width: 80%;
+    }
+}
+
+@media (min-width: 1024px ) and (max-width: 1438px) {
+    .formContainer {
+        width: 50%;
+    }
+}
+
+@media (min-width: 1440px ) and (max-width: 1900px) {
+    .formContainer {
+        width: 40%;
+    }
+}

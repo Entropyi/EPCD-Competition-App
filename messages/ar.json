@@ -1,14 +1,15 @@
 {
   "HomePage": {
+    "pageTitle": "مسابقة التصوير البيئي",
     "title": "مسابقة التصوير البيئي لعام 2024",
     "day": "11",
-    "month": "محرم",
+    "month": "صفر",
     "from": "من",
-    "starting": " 11 محرم 1446",
+    "starting": " 11 صفر 1446",
     "to": "الى",
-    "ending": " 11 محرم 1446",
+    "ending": " 11 ربيع الثاني 1446",
     "citiesCoveredTitle": "في المدن التالية",
-    "city": "ينبُع",
+    "city": "ينبُع الصناعية",
     "CompDetailsTitle": "تفاصيل المسابقة",
     "introductionTitle": "مقدمة",
     "introductionText": " تهدف المسابقة إلى رفع درجة الوعي لدى جميع شرائح المجتمع تجاه البيئة التي نعيش فيها بغرض المحافظة عليها والاهتمام بها وتنشئة جيل قادم يؤمن بهاذا المفهوم ويكون جزء من تصرفاته اليومية.",
@@ -33,5 +34,41 @@
     "HowToParticipateText": "للمشاركة يرجى الضغط",
     "HowToParticipateTextLink": " هنا",
     "rights": "جميع الحقوق محفوظة للهيئة الملكية للجبيل وينبع 2024"
+  },
+  "FormPage": {
+    "title": "مسابقة التصوير البيئي لعام 2024",
+    "FullName": "الاسم الرباعي*",
+    "Email": "البريد الالكتروني*",
+    "Age": "العمر",
+    "PhoneNumber": "رقم الجوال*",
+    "Image": "الصورة*",
+    "ImageRequirements": "الصيغ المقبولة [jpg,jpeg,png]",
+    "PhotoTitle": "عنوان الصورة",
+    "Comments": "تعليق",
+    "PhotoLocation": "موقع التقاط الصورة",
+    "PhotoLocationRequirements": "المكان الذي تم التصوير فيه",
+    "Photo Purpose": "هدف الصورة",
+    "TermsAgreement": "الضغط على المربع اقرار بقراءة وقبول شروط المسابقة*",
+    "Submit": "إرسال",
+    "popUpMessage": "نأسف التطبيق قيد التطوير لايمكن ارسال البيانات الان"
+
+  },
+  "formErrorMessages": {
+    "fullNameRequired": "الاسم الرباعي مطلوب",
+    "emailRequired": "الايميل مطلوب",
+    "emailInvalid": "الايميل غير صحيح",
+    "ageRequired": "العمر مطلوب",
+    "ageLessThanMin": "عمرك يجب ان يكون 5 سنوات او اكبر",
+    "ageLargerThanMax": "عمرك يجب ان يكون 99 سنوات او اصغر",
+    "phoneNumberRequired": "رقم الجوال مطلوب",
+    "phoneNumberLessThanMin": "رقم الجوال اقل من 9 ارقام",
+    "phoneNumberLargerThanMax": "رقم الجوال اكثر من 10 ارقام",
+    "imageRequired": "الصورة مطلوبه",
+    "locationRequired": "موقع التفاط الصورة مطلوب",
+    "termsAgreementRequired": "قبول الشروط والاحكام مطلوب"
+  },
+  "SuccessPage": {
+    "title": "شكرا لك على المشاركة",
+    "subText": "سيتم التواصل معك قريبا"
   }
 }

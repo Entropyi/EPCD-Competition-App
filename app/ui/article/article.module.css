@@ -1,4 +1,4 @@
-.headerArticleSuperConatiner:lang(ar) {
+.headerArticleSuperContainer:lang(ar) {
     background-color: var(--white);
     height: 300px;
     width: 100%;
@@ -17,7 +17,7 @@
     margin: 20px auto;
 }
 
-.headerArticleSuperConatiner:lang(en) {
+.headerArticleSuperContainer:lang(en) {
     background-color: var(--white);
     height: 300px;
     width: 100%;
@@ -62,19 +62,20 @@
     color: var(--secondary-7);
     font-size: 2.75rem;
     font-family: "Font-Regular";
-    line-height: 0.6;
+    line-height: 0.5;
+    margin-top: 15px;
 }
 
 .month {
     color: var(--secondary-7);
     font-family: "Font-Light";
-    line-height: 1.2;
+    line-height: 1.5;
     font-weight: 500;
     font-size: 1.125rem;
 }
 
 .title {
-    font-family: "Font-Regular";
+    font-family: "Font-Bold";
     color: var(--font-black);
     margin: 0 1.1428571429rem;
     font-size: 1.5rem;
@@ -169,19 +170,22 @@
 
 .cityNameText {
     color: var(--font-black);
+    display: flex;
     font-family: "Font-Light";
     margin-right: 4em;
     margin-bottom: .5714285714rem;
     border-radius: .5714285714rem;
-    width: 30px;
+    width: fit-content;
     text-align: center;
-    height: 25px;
+    height: fit-content;
     background-color: var(--dark-grey-5);
 }
 
 .cityNameText:lang(en) {
     margin-left: 4em;
     width: 50px;
+    width: fit-content;
+
 }
 
 .headerArticleImage:lang(ar) {
@@ -213,8 +217,15 @@
     src: url("/fonts/PingAR_LT_Medium.otf") format("opentype");
 }
 
+@font-face {
+    font-family: "Font-Bold";
+    font-style: normal;
+    font-weight: 500;
+    src: url("/fonts/PingAR+LT-Bold.otf") format("opentype");
+}
+
 @media (min-width: 320px ) and (max-width: 374px) {
-    :lang(ar) .headerArticleSuperConatiner {
+    :lang(ar) .headerArticleSuperContainer {
         width: 100%;
         height: 100%;
         overflow: hidden;
@@ -242,7 +253,7 @@
         margin-bottom: 20px;
     }
 
-    :lang(en) .headerArticleSuperConatiner {
+    :lang(en) .headerArticleSuperContainer {
         width: 100%;
         height: 100%;
         position: relative;
@@ -282,7 +293,7 @@
 }
 
 @media (min-width: 375px ) and (max-width: 424px) {
-    :lang(ar) .headerArticleSuperConatiner {
+    :lang(ar) .headerArticleSuperContainer {
         width: 100%;
         height: 100%;
         overflow: hidden;
@@ -312,7 +323,7 @@
         margin-bottom: 20px;
     }
 
-    :lang(en) .headerArticleSuperConatiner {
+    :lang(en) .headerArticleSuperContainer {
         width: 100%;
         height: 540px;
         justify-content: start;
@@ -349,7 +360,7 @@
 }
 
 @media (min-width: 425px ) and (max-width: 767px) {
-    :lang(ar) .headerArticleSuperConatiner {
+    :lang(ar) .headerArticleSuperContainer {
         width: 100%;
         height: 100%;
         overflow: hidden;
@@ -378,7 +389,7 @@
         margin-bottom: 20px;
     }
 
-    :lang(en) .headerArticleSuperConatiner {
+    :lang(en) .headerArticleSuperContainer {
         width: 100%;
         height: 570px;
         justify-content: start;
@@ -410,7 +421,7 @@
 }
 
 @media (min-width: 768px ) and (max-width: 1023px) {
-    :lang(ar) .headerArticleSuperConatiner {
+    :lang(ar) .headerArticleSuperContainer {
         width: 100%;
         height: 100%;
         overflow: hidden;
@@ -441,7 +452,7 @@
         margin-bottom: 20px;
     }
 
-    :lang(en) .headerArticleSuperConatiner {
+    :lang(en) .headerArticleSuperContainer {
         width: 100%;
         height: 750px;
         justify-content: start;
@@ -475,7 +486,7 @@
 @media (min-width: 1024px ) and (max-width: 1438px) {
     :lang(ar).headerArticle {
         width: 960px;
-        height: 800px;
+        height: 700px;
         margin-bottom: 5px;
     }
 
@@ -497,7 +508,7 @@
         margin-bottom: 20px;
     }
 
-    :lang(en) .headerArticleSuperConatiner {
+    :lang(en) .headerArticleSuperContainer {
         width: 100%;
         height: 900px;
         justify-content: start;
@@ -529,9 +540,9 @@
 }
 
 @media (min-width: 1440px ) and (max-width: 1890px) {
-    :lang(ar) .headerArticleSuperConatiner {
+    :lang(ar) .headerArticleSuperContainer {
         width: 100%;
-        height: 340px;
+        height: fit-content;
         margin-bottom: 5px;
     }
 
@@ -547,14 +558,14 @@
     .headerArticleImage {
         position: relative;
         right: 800px;
-        width: 560px;
-        height: 300px;
+        width: 470px;
+        height: 280px;
         margin-bottom: 20px;
     }
 }
 
 @media (min-width: 1891px ) {
-    :lang(ar) .headerArticleSuperConatiner {
+    :lang(ar) .headerArticleSuperContainer {
         width: 100%;
         height: 300px;
         margin-bottom: 5px;

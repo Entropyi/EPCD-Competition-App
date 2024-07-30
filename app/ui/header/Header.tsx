@@ -2,13 +2,14 @@
 
 import styles from "./header.module.css";
 import Image from "next/image";
-import {useRouter} from "@/navigation";
+import {usePathname, useRouter} from "@/navigation";
 import {useEffect, useState} from 'react';
 import {useLocale} from 'next-intl';
 
 export default function Header() {
     const router = useRouter();
     const locale = useLocale();
+    const pathName = usePathname();
     const [lang, setLang] = useState<string>("en");
 
     useEffect(() => {
@@ -20,10 +21,10 @@ export default function Header() {
     }, [locale]);
     const langSwitch = () => {
         if (locale === "ar") {
-            router.replace('/', {locale: 'en'});
+            router.replace(pathName, {locale: 'en'});
 
         } else {
-            router.replace('/', {locale: 'ar'});
+            router.replace(pathName, {locale: 'ar'});
         }
     }
     return (

@@ -8,7 +8,7 @@ export default function Article() {
     return (
         <>
             <div
-                className={styles.headerArticleSuperConatiner}>
+                className={styles.headerArticleSuperContainer}>
                 <div className={styles.headerArticle}>
                     <div className={styles.headerArticleContainer}>
                         <div className={styles.card}>
