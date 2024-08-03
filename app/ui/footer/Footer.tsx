@@ -1,7 +1,10 @@
 import styles from "./footer.module.css";
 import Image from "next/image";
+import {useTranslations} from "next-intl";
 
 export default function Footer() {
+    const translations = useTranslations("HomePage");
+
     return (
         <>
             <div className={styles.footer}>
@@ -20,11 +23,9 @@ export default function Footer() {
                     ></Image>
                 </div>
                 <div className={styles.outerfooter}>
-                    <p>جميع الحقوق محفوظة للهيئة الملكية للجبيل وينبع 2024</p>
+                    <p>{translations('rights')}</p>
                 </div>
             </div>
-
-
         </>
     )
 }

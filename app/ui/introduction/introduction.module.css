@@ -1,31 +1,22 @@
-
-.introductionRootContainer {
-    height: 300px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-}
-
 .introductionRootContainer:lang(en) {
-    height: 300px;
-    width: 100%;
+    height: fit-content;
+    width: 79%;
     display: flex;
     flex-direction: column;
     margin: 0 auto;
 }
 
-
-.detailsTitleContainer:lang(ar) {
+.introductionRootContainer:lang(ar) {
+    height: fit-content;
+    width: 65%;
     display: flex;
-    align-items: center;
-    margin-right: 382px;
+    flex-direction: column;
+    margin: 0 auto;
 }
 
-.detailsTitleContainer:lang(en) {
+.detailsTitleContainer {
     display: flex;
     align-items: center;
-    margin-left: 302px;
 }
 
 .detailsSvgContainer {
@@ -50,13 +41,13 @@
 .introTitleContainer:lang(ar) {
     display: flex;
     align-items: center;
-    margin: 10px 430px 10px 10px;
+    margin: 10px 20px
 }
 
 .introTitleContainer:lang(en) {
     display: flex;
     align-items: center;
-    margin: 10px 10px 10px 430px;
+    margin: 10px 20px
 }
 
 .introductionText:lang(ar) {
@@ -66,8 +57,8 @@
     direction: rtl;
     color: #212529;
     line-height: 1.5;
-    margin-right: 450px;
     max-width: 100ch;
+    margin-right: 50px;
 
 }
 
@@ -77,54 +68,8 @@
     word-wrap: break-word;
     color: #212529;
     line-height: 1.5;
-    margin-left: 450px;
     max-width: 100ch;
-
-}
-
-@font-face {
-    font-family: "Font-Light";
-    font-style: normal;
-    font-weight: 300;
-    src: url("/fonts/PingAR_LT_Light.otf") format("opentype");
-}
-
-@font-face {
-    font-family: "Font-Regular";
-    font-style: normal;
-    font-weight: 400;
-    src: url("/fonts/PingAR_LT_Medium.otf") format("opentype");
-}
-
-.footer {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    z-index: -1;
-    margin-top: 50px;
-}
-
-.outerfooter {
-    display: flex;
-    background-color: var(--dark-grey-8);
-    height: 70px;
-    width: 100%;
-    color: var(--white);
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1428571429rem;
-    font-family: "Font-Light";
-
-}
-
-.innerfooter {
-    display: flex;
-    background: var(--th-Primary);
-    width: 100%;
-    height: 100px;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
+    margin-left: 50px;
 }
 
 @media (min-width: 320px ) and (max-width: 374px) {
@@ -141,10 +86,6 @@
         max-width: 28ch;
     }
 
-    :lang(ar) .outerfooter {
-        font-size: 0.85rem;
-    }
-
     :lang(en).detailsTitleContainer {
         margin-left: 0;
     }
@@ -158,9 +99,15 @@
         max-width: 28ch;
     }
 
-    :lang(en) .outerfooter {
-        font-size: 0.85rem;
+    .introductionRootContainer:lang(en) {
+        width: 95%;
     }
+
+    .introductionRootContainer:lang(ar) {
+        width: 85%;
+    }
+
+
 }
 
 @media (min-width: 375px ) and (max-width: 424px) {
@@ -177,10 +124,6 @@
         max-width: 33ch;
     }
 
-    :lang(ar).outerfooter {
-        font-size: 0.98rem;
-    }
-
     :lang(en).detailsTitleContainer {
         margin-left: 0;
     }
@@ -194,22 +137,24 @@
         max-width: 33ch;
     }
 
-    :lang(en) .outerfooter {
-        font-size: 0.85rem;
+    .introductionRootContainer:lang(en) {
+        width: 95%;
     }
+
+    .introductionRootContainer:lang(ar) {
+        width: 85%;
+    }
+
 }
 
 @media (min-width: 425px ) and (max-width: 767px) {
     :lang(ar).detailsTitleContainer {
-        margin-right: 17px;
     }
 
     :lang(ar).introTitleContainer {
-        margin-right: 27px;
     }
 
     :lang(ar).introductionText {
-        margin-right: 37px;
         max-width: 33ch;
     }
 
@@ -218,81 +163,78 @@
     }
 
     :lang(en).detailsTitleContainer {
-        margin-left: 17px;
     }
 
     :lang(en).introTitleContainer {
-        margin-left: 27px;
     }
 
     :lang(en).introductionText {
-        margin-left: 47px;
         max-width: 37ch;
     }
 
     :lang(en) .outerfooter {
         font-size: 0.85rem;
     }
+
+    .introductionRootContainer:lang(en) {
+        width: 95%;
+    }
+
+    .introductionRootContainer:lang(ar) {
+        width: 85%;
+    }
 }
 
 @media (min-width: 768px ) and (max-width: 1023px) {
     :lang(ar).detailsTitleContainer {
-        margin-right: 35px;
     }
 
     :lang(ar).introTitleContainer {
-        margin-right: 45px;
     }
 
     :lang(ar).introductionText {
-        margin-right: 55px;
         max-width: 75ch;
 
     }
 
     :lang(en).detailsTitleContainer {
-        margin-left: 35px;
     }
 
     :lang(en).introTitleContainer {
-        margin-left: 45px
     }
 
     :lang(en).introductionText {
-        margin-left: 55px;
         max-width: 75ch;
     }
 
-    :lang(en) .outerfooter {
-        font-size: 0.85rem;
+    .introductionRootContainer:lang(en) {
+        width: 85%;
+    }
+
+    .introductionRootContainer:lang(ar) {
+        width: 85%;
     }
 }
 
 @media (min-width: 1024px ) and (max-width: 1438px) {
     :lang(ar).detailsTitleContainer {
-        margin-right: 32px;
     }
 
     :lang(ar).introTitleContainer {
-        margin-right: 60px;
     }
 
     :lang(ar).introductionText {
-        margin-right: 80px;
-        max-width: 90ch;
+
 
     }
 
     :lang(en).detailsTitleContainer {
-        margin-left: 32px;
     }
 
     :lang(en).introTitleContainer {
-        margin-left: 60px;
     }
 
     :lang(en).introductionText {
-        margin-left: 80px;
         max-width: 90ch;
     }
 
@@ -300,35 +242,21 @@
         font-size: 0.85rem;
     }
 
+    .introductionRootContainer:lang(en) {
+        width: 82%;
+    }
 
+    .introductionRootContainer:lang(ar) {
+        width: 82%;
+    }
 }
 
-@media (min-width: 1440px ) and (max-width: 1890px) {
-    :lang(ar).detailsTitleContainer {
-        margin-right: 290px;
+@media (min-width: 2560px ) {
+    .introductionRootContainer:lang(en) {
+        width: 55%;
     }
 
-    :lang(ar).introTitleContainer {
-        margin-right: 305px;
-    }
-
-    :lang(ar).introductionText {
-        margin-right: 325px;
-        max-width: 90ch;
-
-    }
-
-    :lang(en).introTitleContainer {
-        margin-left: 325px;
-    }
-
-    :lang(en) .outerfooter {
-        font-size: 0.85rem;
-    }
-
-    :lang(en).introductionText {
-        margin-left: 345px;
-        max-width: 90ch;
-
+    .introductionRootContainer:lang(ar) {
+        width: 55%;
     }
 }

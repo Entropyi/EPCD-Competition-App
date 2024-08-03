@@ -1,14 +1,12 @@
-.footer{
+.footer {
     display: flex;
     flex-direction: column;
     width: 100%;
-    position: fixed;
-    bottom: 0;
     z-index: -1;
-
+    margin-top: 50px;
 }
 
-.outerfooter{
+.outerfooter {
     display: flex;
     background-color: var(--dark-grey-8);
     height: 70px;
@@ -18,10 +16,12 @@
     justify-content: center;
     font-size: 1.1428571429rem;
     font-family: "Font-Light";
+    text-align: center;
+
 
 }
 
-.innerfooter{
+.innerfooter {
     display: flex;
     background: var(--th-Primary);
     width: 100%;
@@ -31,16 +31,51 @@
     gap: 20px;
 }
 
-@font-face {
-    font-family: "Font-Light";
-    font-style: normal;
-    font-weight: 300;
-    src: url("/fonts/PingAR_LT_Light.otf") format("opentype");
+@media (min-width: 320px ) and (max-width: 374px) {
+
+    :lang(ar) .outerfooter {
+        font-size: 0.85rem;
+    }
+
+    :lang(en) .outerfooter {
+        font-size: 0.85rem;
+    }
 }
 
-@font-face {
-    font-family: "Font-Regular";
-    font-style: normal;
-    font-weight: 400;
-    src: url("/fonts/PingAR_LT_Medium.otf") format("opentype");
+@media (min-width: 375px ) and (max-width: 424px) {
+    :lang(ar).outerfooter {
+        font-size: 0.98rem;
+    }
+
+    :lang(en) .outerfooter {
+        font-size: 0.85rem;
+    }
+}
+
+@media (min-width: 425px ) and (max-width: 767px) {
+    :lang(ar).outerfooter {
+        font-size: 0.98rem;
+    }
+
+    :lang(en) .outerfooter {
+        font-size: 0.85rem;
+    }
+}
+
+@media (min-width: 768px ) and (max-width: 1023px) {
+    :lang(en) .outerfooter {
+        font-size: 0.85rem;
+    }
+}
+
+@media (min-width: 1024px ) and (max-width: 1438px) {
+    :lang(en) .outerfooter {
+        font-size: 0.85rem;
+    }
+}
+
+@media (min-width: 1440px ) and (max-width: 1890px) {
+    :lang(en) .outerfooter {
+        font-size: 0.85rem;
+    }
 }

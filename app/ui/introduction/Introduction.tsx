@@ -1,8 +1,6 @@
-"use client"
 import styles from "@/app/ui/introduction/introduction.module.css";
 import Image from "next/image";
 import {useLocale, useTranslations} from "next-intl";
-import {useEffect, useState} from "react";
 import Link from "next/link";
 
 
@@ -10,15 +8,7 @@ export default function Introduction() {
     const translations = useTranslations("HomePage");
 
     const locale = useLocale();
-    const [formLink, setFormLink] = useState<string>("en");
 
-    useEffect(() => {
-        if (locale === 'ar') {
-            setFormLink("https://tally.so/r/w2r1aD");
-        } else {
-            setFormLink("https://tally.so/r/mDevpX");
-        }
-    }, [locale]);
     return (
         <div className={styles.introductionRoot}>
             <div className={styles.introductionRootContainer}>
@@ -36,6 +26,7 @@ export default function Introduction() {
                     </div>
                     <p className={styles.detailsTitleText}>{translations('CompDetailsTitle')}</p>
                 </div>
+
                 <div className={styles.introTitleContainer}>
                     <div className={styles.detailsSvgContainer}>
                         <Image
@@ -111,27 +102,6 @@ export default function Introduction() {
                 <p className={styles.introductionText}>
                     {translations('HowToParticipateText')}<Link href={`/${locale}/form`}>{translations('HowToParticipateTextLink')}</Link>
                 </p>
-
-                <div className={styles.footer}>
-                    <div className={styles.innerfooter}>
-                        <Image
-                            src={"/footer_RCJY_logo.png"}
-                            alt={"footer_RCJY_logo"}
-                            width={160.14}
-                            height={89.7}
-                        ></Image>
-                        <Image
-                            src={"/footer_vision_logo.png"}
-                            alt={"footer_vision_logo"}
-                            width={65}
-                            height={43.33}
-                        ></Image>
-                    </div>
-                    <div className={styles.outerfooter}>
-                        <p>{translations('rights')}</p>
-                    </div>
-                </div>
-
             </div>
         </div>
     )

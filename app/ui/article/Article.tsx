@@ -21,14 +21,6 @@ export default function Article() {
                         </div>
                     </div>
 
-                    <Image
-                        src={"/20220109-025.jpg"}
-                        alt={"location"}
-                        width={500}
-                        height={275}
-                        className={styles.headerArticleImage}
-                    />
-
 
                     <div className={styles.dateContainer}>
 
@@ -58,7 +50,7 @@ export default function Article() {
 
                     <div className={styles.location}>
                         <div className={styles.cityInfoContainer}>
-                            <div className={styles.citySvgConatiner}>
+                            <div className={styles.citySvgContainer}>
                                 <Image
                                     src={"/city-svgrepo-com.svg"}
                                     alt={"location"}
@@ -77,10 +69,33 @@ export default function Article() {
                         </div>
 
                     </div>
+
+
+                </div>
+                <div className={styles.headerArticleImageContainer}>
+
+                    <Image
+                        src={"/20220109-025.jpg"}
+                        alt={"location"}
+                        fill={true}
+                        className={styles.headerArticleImage}
+                    />
+
+                    <div className={styles.imageEffectConatiner}>
+                        <div className={styles.squareOne}></div>
+                        <div className={styles.squareTwo}></div>
+                    </div>
+
+                    <div className={styles.eventsLogo}>
+                        <Image
+                            src={"./events_bg.svg"} alt={"events"}
+                            fill={true}
+                        ></Image>
+                    </div>
                 </div>
 
-
             </div>
+
         </>
     )
 }

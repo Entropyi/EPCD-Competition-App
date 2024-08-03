@@ -229,28 +229,6 @@
     transition: 600ms ease;
 }
 
-@font-face {
-    font-family: "Font-Light";
-    font-style: normal;
-    font-weight: 300;
-    src: url("/fonts/PingAR_LT_Light.otf") format("opentype");
-}
-
-@font-face {
-    font-family: "Font-Regular";
-    font-style: normal;
-    font-weight: 400;
-    src: url("/fonts/PingAR_LT_Medium.otf") format("opentype");
-}
-
-@font-face {
-    font-family: "Font-Bold";
-    font-style: normal;
-    font-weight: 500;
-    src: url("/fonts/PingAR+LT-Bold.otf") format("opentype");
-}
-
-
 @media (min-width: 320px ) and (max-width: 374px) {
     .formContainer {
         width: 70%;

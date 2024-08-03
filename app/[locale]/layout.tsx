@@ -1,17 +1,22 @@
 import type {Metadata} from "next";
 import {Inter} from "next/font/google";
-import {getMessages} from 'next-intl/server';
+import {getMessages, getTranslations} from 'next-intl/server';
 import {NextIntlClientProvider} from 'next-intl';
 import "../globals.css";
 import Header from "@/app/ui/header/Header";
 
 const inter = Inter({subsets: ["latin"]});
 
-export const metadata: Metadata = {
-    title: "مسابقة التصوير البيئي",
-    description: "",
-};
+const t = getTranslations("HomePage");
 
+
+// @ts-ignore
+export async function generateMetadata({params: {locale}}) {
+    const t = await getTranslations({locale, namespace: 'HomePage'});
+    return {
+        title: t('pageTitle')
+    };
+}
 export default async function LocaleLayout({
                                                children,
                                                params: {locale}
