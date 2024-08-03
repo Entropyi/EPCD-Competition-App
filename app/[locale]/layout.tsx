@@ -7,16 +7,6 @@ import Header from "@/app/ui/header/Header";
 
 const inter = Inter({subsets: ["latin"]});
 
-const t = getTranslations("HomePage");
-
-
-// @ts-ignore
-export async function generateMetadata({params: {locale}}) {
-    const t = await getTranslations({locale, namespace: 'HomePage'});
-    return {
-        title: t('pageTitle')
-    };
-}
 export default async function LocaleLayout({
                                                children,
                                                params: {locale}
