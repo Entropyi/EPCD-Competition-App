@@ -56,9 +56,12 @@ export default function Introduction() {
                 </div>
                 <p className={styles.introductionText}>{translations('CompCategoriesTextMain')}</p>
                 <br/>
-                <p className={styles.introductionText}>{translations('CompCategoriesTextSub1')}</p>
-                <p className={styles.introductionText}>{translations('CompCategoriesTextSub2')}</p>
-                <p className={styles.introductionText}>{translations('CompCategoriesTextSub3')}</p>
+
+                <ul>
+                 <li className={styles.introductionText}>{translations('CompCategoriesTextSub1')}</li>
+                 <li className={styles.introductionText}>{translations('CompCategoriesTextSub2')}</li>
+                 <li className={styles.introductionText}>{translations('CompCategoriesTextSub3')}</li>
+                </ul>
 
                 <div className={styles.spacing}>
                     <div className={styles.introTitleContainer}>
@@ -74,16 +77,17 @@ export default function Introduction() {
                         </div>
                         <p className={styles.detailsTitleText}>{translations('TermsAndConditionsTitle')}</p>
                     </div>
-                    <p className={styles.introductionText}>{translations('TermsAndConditionsText1')}</p>
-                    <p className={styles.introductionText}>{translations('TermsAndConditionsText2')}</p>
-                    <p className={styles.introductionText}>{translations('TermsAndConditionsText3')}</p>
-                    <p className={styles.introductionText}>{translations('TermsAndConditionsText4')}</p>
-                    <p className={styles.introductionText}>{translations('TermsAndConditionsText5')}</p>
-                    <p className={styles.introductionText}>{translations('TermsAndConditionsText6')}</p>
-                    <p className={styles.introductionText}>{translations('TermsAndConditionsText7')}</p>
-                    <p className={styles.introductionText}>{translations('TermsAndConditionsText8')}</p>
-                    <p className={styles.introductionText}>{translations('TermsAndConditionsText9')}</p>
-                    <p className={styles.introductionText}>{translations('TermsAndConditionsText10')}</p>
+                    <ol>
+                        <li className={styles.introductionText}>{translations('TermsAndConditionsText1')}</li>
+                        <li className={styles.introductionText}>{translations('TermsAndConditionsText3')}</li>
+                        <li className={styles.introductionText}>{translations('TermsAndConditionsText4')}</li>
+                        <li className={styles.introductionText}>{translations('TermsAndConditionsText5')}</li>
+                        <li className={styles.introductionText}>{translations('TermsAndConditionsText6')}</li>
+                        <li className={styles.introductionText}>{translations('TermsAndConditionsText7')}</li>
+                        <li className={styles.introductionText}>{translations('TermsAndConditionsText8')}</li>
+                        <li className={styles.introductionText}>{translations('TermsAndConditionsText9')}</li>
+                        <li className={styles.introductionText}>{translations('TermsAndConditionsText10')}</li>
+                    </ol>
                 </div>
 
                 <div className={styles.introTitleContainer}>
@@ -103,6 +107,8 @@ export default function Introduction() {
                     {translations('HowToParticipateText')}<Link href={`/${locale}/form`}>{translations('HowToParticipateTextLink')}</Link>
                 </p>
             </div>
+
+
         </div>
     )
 }

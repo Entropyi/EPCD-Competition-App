@@ -121,7 +121,7 @@
     }
 }
 
-@media (min-width: 994px ) and (max-width: 1439px) {
+@media (min-width: 994px ) and (max-width: 1404px) {
     :lang(ar).sponsorContainer {
         margin-right: 150px;
     }
