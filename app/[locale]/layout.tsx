@@ -4,6 +4,7 @@ import {getMessages, getTranslations, unstable_setRequestLocale} from 'next-intl
 import {NextIntlClientProvider} from 'next-intl';
 import "../globals.css";
 import Header from "@/app/ui/header/Header";
+import Footer from "@/app/ui/footer/Footer";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -38,6 +39,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
             {children}
         </NextIntlClientProvider>
+        <Footer/>
         </body>
         </html>
     );

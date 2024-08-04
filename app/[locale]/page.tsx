@@ -11,7 +11,6 @@ export default function Home() {
             <Article/>
             <Sponsor/>
             <Introduction/>
-            <Footer/>
         </>
 
     );

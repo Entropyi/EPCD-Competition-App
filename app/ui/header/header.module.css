@@ -7,26 +7,58 @@
     height: 90px;
 }
 
-.headerLanguagesSwitchContainer:lang(ar) {
+.headerSubContainer {
+    overflow: hidden;
+    width: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    gap: 5px;
-    right: 690px;
-    padding: 5px;
-    transition: 300ms ease-in-out;
 }
 
-.headerLanguagesSwitchContainer:lang(en) {
+.headerLogoContainer {
     display: flex;
+    justify-content: center;
+    flex: 1;
+}
+
+.headerSloganContainer:lang(en) {
+    display: flex;
+    margin-left: 20px;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.headerSloganContainer:lang(ar) {
+    display: flex;
+    margin-right: 20px;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.slogan {
+    text-wrap: auto;
+    color: var(--white);
+    font-family: "Font-Regular";
+}
+
+.headerLanguagesSwitchSuperContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.headerLanguagesSwitchContainer {
+    display: flex;
+    width: fit-content;
+    height: fit-content;
     align-items: center;
     justify-content: center;
     position: relative;
     gap: 5px;
-    left: 690px;
     padding: 5px;
     transition: 300ms ease-in-out;
+
 }
 
 .englishLangText {
@@ -41,167 +73,56 @@
     border-radius: .625rem;
 }
 
-.logo {
 
-}
-
-@font-face {
-    font-family: "Font-Light";
-    font-style: normal;
-    font-weight: 300;
-    src: url("/fonts/PingAR_LT_Light.otf") format("opentype");
-}
-
-@font-face {
-    font-family: "Font-Regular";
-    font-style: normal;
-    font-weight: 400;
-    src: url("/fonts/PingAR_LT_Medium.otf") format("opentype");
-}
-
-@media (min-width: 320px ) and (max-width: 374px) {
-    :lang(ar) .headerContainer {
-        justify-content: start;
+@media (min-width: 320px ) and (max-width: 375px) {
+    .headerSloganContainer {
+        display: none;
     }
 
-    :lang(ar) .headerLanguagesSwitchContainer {
-        right: 255px;
+    .slogan {
+        display: none;
     }
 
-    :lang(ar) .logo {
-        position: relative;
-        right: 20px;
+    .headerLogoContainer:lang(ar) {
+        flex: 2;
+        margin-left: 30px;
+        justify-content: end;
     }
 
-    :lang(en) .headerContainer {
-        justify-content: center;
+    .headerLanguagesSwitchContainer {
+        margin-left: 10px;
+
     }
 
-    :lang(en) .headerLanguagesSwitchContainer {
-        left: 205px;
-    }
-
-    :lang(en) .logo {
-        position: relative;
-        right: 25px;
+    .headerLogoContainer:lang(en) {
+        flex: 2;
+        margin-right: 10px;
+        justify-content: end;
     }
 }
 
-@media (min-width: 375px ) and (max-width: 424px) {
-    :lang(ar) .headerContainer {
-        justify-content: start;
+@media (min-width: 375px ) and (max-width: 425px) {
+    .headerLanguagesSwitchSuperContainer:lang(en) {
+        justify-content: end;
+        margin-right: 10px;
     }
 
-    :lang(ar) .headerLanguagesSwitchContainer {
-        right: 305px;
-    }
-
-    :lang(ar) .logo {
-        position: relative;
-        right: 50px;
-    }
-
-    :lang(en) .headerContainer {
-        justify-content: center;
-    }
-
-    :lang(en) .headerLanguagesSwitchContainer {
-        left: 230px;
-    }
-
-    :lang(en) .logo {
-        position: relative;
-        right: 25px;
+    .headerLanguagesSwitchSuperContainer:lang(ar) {
+        justify-content: end;
+        margin-left: 10px;
     }
 }
 
 @media (min-width: 425px ) and (max-width: 767px) {
-    :lang(ar) .headerContainer {
-        justify-content: start;
+    .headerSloganContainer {
+        flex: 0.5;
     }
 
-    :lang(ar) .headerLanguagesSwitchContainer {
-        right: 355px;
-    }
-
-    :lang(ar) .logo {
-        position: relative;
-        right: 80px;
-    }
-
-    :lang(en) .headerContainer {
+    .headerLanguagesSwitchSuperContainer {
         justify-content: center;
     }
 
-    :lang(en) .headerLanguagesSwitchContainer {
-        left: 250px;
-    }
-
-    :lang(en) .logo {
-        position: relative;
-        right: 25px;
-    }
-}
-
-@media (min-width: 768px ) and (max-width: 1023px) {
-    :lang(ar) .headerContainer {
-        justify-content: start;
-    }
-
-    :lang(ar) .headerLanguagesSwitchContainer {
-        right: 675px;
-    }
-
-    :lang(ar) .logo {
-        position: relative;
-        right: 260px;
-    }
-
-    :lang(en) .headerContainer {
-        justify-content: center;
-    }
-
-    :lang(en) .headerLanguagesSwitchContainer {
-        left: 420px;
-    }
-
-    :lang(en) .logo {
-        position: relative;
-        right: 25px;
-    }
-
-}
-
-@media (min-width: 1024px ) and (max-width: 1438px) {
-    :lang(ar) .headerContainer {
-        justify-content: start;
-    }
-
-    :lang(ar) .headerLanguagesSwitchContainer {
-        right: 875px;
-    }
-
-    :lang(ar) .logo {
-        position: relative;
-        right: 370px;
-    }
-
-    :lang(en) .headerContainer {
-        justify-content: center;
-    }
-
-    :lang(en) .headerLanguagesSwitchContainer {
-        left: 550px;
-    }
-
-    :lang(en) .logo {
-        position: relative;
-        right: 5px;
-    }
-}
-
-@media (min-width: 1440px ) and (max-width: 1932px) {
-    :lang(ar) .headerLanguagesSwitchContainer {
-        right: 700px;
+    .headerLogoContainer {
+        flex: 3;
     }
 }

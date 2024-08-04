@@ -1,3 +1,4 @@
+
 .headerArticleSuperContainer {
     background-color: var(--white);
     height: 300px;
@@ -38,14 +39,14 @@
 .headerArticleImage:lang(ar) {
     border: 7px solid var(--white);
     border-radius: 16px;
-    box-shadow: 0 0 16px 0 rgba(28,114,141,0.102);
+    box-shadow: 0 0 16px 0 rgba(28, 114, 141, 0.102);
 }
 
 .headerArticleImage:lang(en) {
     border-radius: 16px;
     border: 7px solid var(--white);
     border-radius: 16px;
-    box-shadow: 0 0 16px 0 rgba(28,114,141,0.102);
+    box-shadow: 0 0 16px 0 rgba(28, 114, 141, 0.102);
 }
 
 .card {
@@ -63,21 +64,22 @@
 .day {
     color: var(--secondary-7);
     font-size: 2.75rem;
-    font-family: "Font-Regular", serif;
+    font-family: "Font-Medium";
+    font-weight: 500;
     line-height: 0.5;
     margin-top: 20px;
 }
 
 .month {
     color: var(--secondary-7);
-    font-family: "Font-Light", serif;
+    font-family: "Font-Light";
     line-height: 1.5;
     font-weight: 500;
     font-size: 1.125rem;
 }
 
 .title {
-    font-family: "Font-Bold", serif;
+    font-family: "Font-Bold";
     color: var(--font-black);
     margin: 0 1.1428571429rem;
     font-size: 1.5rem;
@@ -228,7 +230,7 @@
     width: fit-content;
 }
 
-:lang(ar).squareOne{
+:lang(ar).squareOne {
     background-color: var(--secondary-6);
     width: 250px;
     height: 250px;
@@ -239,7 +241,7 @@
     top: 70px;
 }
 
-:lang(ar).squareTwo{
+:lang(ar).squareTwo {
     background-color: var(--secondary-6);
     width: 250px;
     height: 250px;
@@ -251,7 +253,7 @@
     opacity: 0.1;
 }
 
-:lang(ar).eventsLogo{
+:lang(ar).eventsLogo {
     position: absolute;
     width: 350px;
     height: 350px;
@@ -260,7 +262,7 @@
     left: -200px;
 }
 
-:lang(en).squareOne{
+:lang(en).squareOne {
     background-color: var(--secondary-6);
     width: 250px;
     height: 250px;
@@ -271,7 +273,7 @@
     top: 70px;
 }
 
-:lang(en).squareTwo{
+:lang(en).squareTwo {
     background-color: var(--secondary-6);
     width: 250px;
     height: 250px;
@@ -283,7 +285,7 @@
     opacity: 0.1;
 }
 
-:lang(en).eventsLogo{
+:lang(en).eventsLogo {
     position: absolute;
     width: 350px;
     height: 350px;
@@ -294,12 +296,12 @@
 }
 
 @media (min-width: 994px ) and (max-width: 1439px) {
-    .card{
+    .card {
         width: 25%;
         max-width: 90px;
     }
 
-    :lang(ar).eventsLogo{
+    :lang(ar).eventsLogo {
         width: 360px;
         height: 360px;
         bottom: -40px;
@@ -307,7 +309,7 @@
         transform: scaleX(-1);
     }
 
-    :lang(en).eventsLogo{
+    :lang(en).eventsLogo {
         width: 360px;
         height: 360px;
         bottom: -40px;
@@ -315,7 +317,7 @@
         right: 400px;
     }
 
-    :lang(en).squareOne{
+    :lang(en).squareOne {
         background-color: var(--secondary-6);
         width: 250px;
         height: 250px;
@@ -326,7 +328,7 @@
         top: 70px;
     }
 
-    :lang(en).squareTwo{
+    :lang(en).squareTwo {
         background-color: var(--secondary-6);
         width: 250px;
         height: 250px;
@@ -341,10 +343,11 @@
 }
 
 @media (min-width: 768px ) and (max-width: 993px) {
-    .card{
+    .card {
         width: 25%;
         max-width: 90px;
     }
+
     :lang(en) .headerArticleSuperContainer {
         display: flex;
         flex-direction: column;
@@ -392,7 +395,7 @@
         height: 370px;
     }
 
-    :lang(ar).squareOne{
+    :lang(ar).squareOne {
         position: relative;
         width: 150px;
         height: 150px;
@@ -400,7 +403,7 @@
         top: 240px;
     }
 
-    :lang(ar).squareTwo{
+    :lang(ar).squareTwo {
         position: relative;
         width: 150px;
         height: 150px;
@@ -408,7 +411,7 @@
         bottom: -100px;
     }
 
-    :lang(ar).eventsLogo{
+    :lang(ar).eventsLogo {
         width: 700px;
         height: 700px;
         bottom: -20px;
@@ -423,14 +426,14 @@
         top: 240px;
     }
 
-    :lang(en).squareTwo{
+    :lang(en).squareTwo {
         width: 150px;
         height: 150px;
         left: -30px;
         bottom: -100px;
     }
 
-    :lang(en).eventsLogo{
+    :lang(en).eventsLogo {
         width: 700px;
         height: 700px;
         bottom: -20px;
@@ -503,7 +506,7 @@
 
     }
 
-    :lang(ar).squareOne{
+    :lang(ar).squareOne {
         position: relative;
         width: 150px;
         height: 150px;
@@ -511,7 +514,7 @@
         top: 90px;
     }
 
-    :lang(ar).squareTwo{
+    :lang(ar).squareTwo {
         position: relative;
         width: 150px;
         height: 150px;
@@ -520,7 +523,7 @@
         opacity: 0.1;
     }
 
-    :lang(ar).eventsLogo{
+    :lang(ar).eventsLogo {
         width: 400px;
         height: 400px;
         bottom: -20px;
@@ -535,14 +538,14 @@
         top: 90px;
     }
 
-    :lang(en).squareTwo{
+    :lang(en).squareTwo {
         width: 150px;
         height: 150px;
         left: -10px;
         bottom: 50px;
     }
 
-    :lang(en).eventsLogo{
+    :lang(en).eventsLogo {
         width: 420px;
         height: 420px;
         bottom: -20px;
@@ -618,7 +621,7 @@
 
     }
 
-    :lang(ar).squareOne{
+    :lang(ar).squareOne {
         position: relative;
         width: 150px;
         height: 150px;
@@ -626,7 +629,7 @@
         top: 60px;
     }
 
-    :lang(ar).squareTwo{
+    :lang(ar).squareTwo {
         position: relative;
         width: 150px;
         height: 150px;
@@ -634,7 +637,7 @@
         bottom: 80px;
     }
 
-    :lang(ar).eventsLogo{
+    :lang(ar).eventsLogo {
         width: 360px;
         height: 360px;
         bottom: -20px;
@@ -649,14 +652,14 @@
         top: 60px;
     }
 
-    :lang(en).squareTwo{
+    :lang(en).squareTwo {
         width: 150px;
         height: 150px;
         left: -10px;
         bottom: 80px;
     }
 
-    :lang(en).eventsLogo{
+    :lang(en).eventsLogo {
         width: 370px;
         height: 370px;
         bottom: -20px;
@@ -730,7 +733,7 @@
         text-align: right;
     }
 
-    :lang(ar).squareOne{
+    :lang(ar).squareOne {
         position: relative;
         width: 150px;
         height: 150px;
@@ -738,7 +741,7 @@
         top: 60px;
     }
 
-    :lang(ar).squareTwo{
+    :lang(ar).squareTwo {
         position: relative;
         width: 150px;
         height: 150px;
@@ -746,7 +749,7 @@
         bottom: 80px;
     }
 
-    :lang(ar).eventsLogo{
+    :lang(ar).eventsLogo {
         width: 330px;
         height: 330px;
         bottom: -20px;
@@ -761,14 +764,14 @@
         top: 60px;
     }
 
-    :lang(en).squareTwo{
+    :lang(en).squareTwo {
         width: 150px;
         height: 150px;
         left: -10px;
         bottom: 80px;
     }
 
-    :lang(en).eventsLogo{
+    :lang(en).eventsLogo {
         width: 350px;
         height: 350px;
         bottom: -20px;
