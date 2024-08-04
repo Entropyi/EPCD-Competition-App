@@ -74,6 +74,14 @@
     margin-left: 50px;
 }
 
+.listStyle:lang(ar) {
+    margin-right: 15px;
+}
+
+.listStyle:lang(en) {
+    margin-left: 15px;
+}
+
 @media (min-width: 320px ) and (max-width: 374px) {
     :lang(ar).detailsTitleContainer {
         margin-right: 5px;

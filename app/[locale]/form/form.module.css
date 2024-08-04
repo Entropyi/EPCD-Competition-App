@@ -47,7 +47,6 @@
     gap: 5px;
 }
 
-
 .buttonContainer {
     display: flex;
     justify-content: end;
@@ -80,7 +79,7 @@
 .formLabel {
     display: flex;
     gap: 5px;
-    height: 1.5714285714rem;
+    height: fit-content;
     color: var(--dark-grey-2);
     font-family: "Font-Light";
     font-size: 1em;
@@ -89,10 +88,11 @@
 .formSubLabel {
     display: flex;
     gap: 5px;
-    height: 1.5714285714rem;
     color: var(--dark-grey-3);
     font-family: "Font-Light";
     font-size: 0.8em;
+    width: fit-content;
+    height: fit-content;
 }
 
 .redTag {
@@ -139,39 +139,19 @@
     display: flex;
     gap: 10px;
     font-size: 0.92em;
-    margin: 20px 0;
+    margin: 0;
     color: var(--black);
     font-family: "Font-Light";
 }
 
-.footer {
+:lang(en).formTermsAgreement {
     display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-.outerfooter {
-    display: flex;
-    background-color: var(--dark-grey-8);
-    height: 70px;
-    width: 100%;
-    color: var(--white);
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1428571429rem;
+    gap: 10px;
+    font-size: 0.92em;
+    color: var(--black);
     font-family: "Font-Light";
-    text-align: center;
-
-}
-
-.innerfooter {
-    display: flex;
-    background: var(--th-Primary);
-    width: 100%;
-    height: 100px;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
+    width: fit-content;
+    height: fit-content;
 }
 
 .formInlineErrorText {
@@ -192,6 +172,16 @@
     font-size: 0.85em;
     resize: vertical;
     outline: none;
+}
+
+.UploadWhileError{
+    text-align: center;
+    font-family: Font-Light;
+    padding: .6875rem 2.5rem;
+    border: 1px solid var(--error);
+    color: white;
+    background-color: var(--th-Primary-3);
+    border-radius: .75rem;
 }
 
 .popUpDevContainer {
@@ -216,7 +206,7 @@
     width: 100%;
 }
 
-.closePopUp{
+.closePopUp {
     background: #ffffff;
     border-radius: 100%;
     padding: 2% 5%;
@@ -239,7 +229,7 @@
     }
 
     .formTermsAgreement {
-        margin: 20px 0 130px 0;
+
     }
 
     .outerfooter {
@@ -258,7 +248,6 @@
     }
 
     .formTermsAgreement {
-        margin: 20px 0 110px 0;
     }
 }
 
@@ -272,7 +261,6 @@
     }
 
     .formTermsAgreement {
-        margin: 20px 0 80px 0;
     }
 }
 

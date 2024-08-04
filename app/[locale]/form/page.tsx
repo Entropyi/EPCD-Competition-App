@@ -69,21 +69,21 @@ export default function Form() {
         setPopUpDisplay("none");
     }
 
-    let input = styles.formInput;
-
-    if (errors.fullName) {
-        input = styles.inputWhileError;
-    }
-
     const changeInputStyleWhenError = (inputName: string) => {
         if (inputName === "fullName") {
             return errors.fullName ? styles.inputWhileError : styles.formInput;
-
-        } else if (inputName === "email") {
+        }
+        else if (inputName === "email") {
             return errors.email ? styles.inputWhileError : styles.formInput;
-
-        } else if (inputName === "phoneNumber") {
+        }
+        else if (inputName === "phoneNumber") {
             return errors.phoneNumber ? styles.inputWhileError : styles.formInput;
+        }
+        else if (inputName === "image") {
+            return errors.image ? styles.UploadWhileError : styles.formUpload;
+        }
+        else if (inputName === "photoLocation") {
+            return errors.image ? styles.inputWhileError : styles.formUpload;
         }
     }
     return (
@@ -161,7 +161,7 @@ export default function Form() {
                                     <label className={styles.formSubLabel}
                                            htmlFor="">{formTranslations("ImageRequirements")}</label>
 
-                                    <input className={styles.formUpload} type="file" id="image"
+                                    <input className={changeInputStyleWhenError("image")} type="file" id="image"
                                            accept={".jpg, .jpeg, .png"}
                                            {...register("image", {
                                                required: `${errorTranslation("imageRequired")}`,
@@ -200,8 +200,11 @@ export default function Form() {
                                     <label className={styles.formSubLabel}
                                            htmlFor="">{formTranslations("PhotoLocationRequirements")}</label>
 
-                                    <input className={styles.formInput} type="text"
-                                           id="photo-location" {...register("photoLocation")} />
+                                    <input className={changeInputStyleWhenError("photoLocation")} type="text"
+                                           id="photo-location" {...register("photoLocation", {required: `${errorTranslation("locationRequired")}`})} />
+                                    {errors.photoLocation && <p role="alert"
+                                                                className={styles.formInlineErrorText}>{errors.photoLocation.message}</p>}
+
                                 </div>
 
                                 <div className={styles.formGroups}>
@@ -219,6 +222,7 @@ export default function Form() {
                                            })}/>
                                     <label className={styles.formLabel}>{formTranslations("TermsAgreement")} </label>
                                 </div>
+
                                 {errors.termsAgreement && <p role="alert"
                                                              className={styles.formInlineErrorText}>{errors.termsAgreement.message}</p>}
 

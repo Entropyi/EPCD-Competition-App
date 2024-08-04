@@ -57,7 +57,7 @@ export default function Introduction() {
                 <p className={styles.introductionText}>{translations('CompCategoriesTextMain')}</p>
                 <br/>
 
-                <ul>
+                <ul className={styles.listStyle}>
                  <li className={styles.introductionText}>{translations('CompCategoriesTextSub1')}</li>
                  <li className={styles.introductionText}>{translations('CompCategoriesTextSub2')}</li>
                  <li className={styles.introductionText}>{translations('CompCategoriesTextSub3')}</li>
@@ -77,7 +77,7 @@ export default function Introduction() {
                         </div>
                         <p className={styles.detailsTitleText}>{translations('TermsAndConditionsTitle')}</p>
                     </div>
-                    <ol>
+                    <ol className={styles.listStyle}>
                         <li className={styles.introductionText}>{translations('TermsAndConditionsText1')}</li>
                         <li className={styles.introductionText}>{translations('TermsAndConditionsText3')}</li>
                         <li className={styles.introductionText}>{translations('TermsAndConditionsText4')}</li>
