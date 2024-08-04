@@ -31,6 +31,11 @@ export default function Header() {
             router.replace(pathName, {locale: 'ar'});
         }
     }
+
+    const routeHome = () => {
+        router.push("/");
+    }
+
     return (
         <div className={styles.headerContainer}>
             <div className={styles.headerSubContainer}>
@@ -39,7 +44,7 @@ export default function Header() {
                 </div>
 
                 <div
-                    className={styles.headerLogoContainer}>
+                    className={styles.headerLogoContainer} onClick={routeHome}>
                     <Image
                         src={"/navbar_logo.png"}
                         alt={"RCYCI Logo"}
@@ -48,6 +53,7 @@ export default function Header() {
                         className={styles.logo}
                     />
                 </div>
+
 
                 <div
                     className={styles.headerLanguagesSwitchSuperContainer}>
