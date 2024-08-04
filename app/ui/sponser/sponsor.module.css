@@ -74,12 +74,12 @@
 .detailsTitleText {
     font-size: 1.125rem;
     color: var(--font-black);
-    font-family: "Font-Regular";
-    font-weight: 400;
+    font-family: "Font-Medium";
+    font-weight: 500;
     line-height: 1.5;
 }
 
-.introTitleRootContainer{
+.introTitleRootContainer {
     width: 100%;
 }
 
@@ -113,26 +113,23 @@
     }
 
     :lang(ar).sponsorContainer {
-        margin: 20px 0 0 0;
-        align-self: center;
+        margin-right: 25%;
     }
 
     :lang(en).sponsorContainer {
-        margin: 20px 0 0 0;
-        align-self: center;
+        margin-left: 25%;
     }
 }
 
 @media (min-width: 994px ) and (max-width: 1439px) {
     :lang(ar).sponsorContainer {
-        margin: 20px 0 0 0;
-        align-self: center;
+        margin-right: 150px;
     }
 
     :lang(en).sponsorContainer {
-        margin: 20px 0 0 0;
-        align-self: center;
+        margin-left: 150px;
     }
+
 
     .introTitleContainer:lang(en) {
         padding-left: 108px;
@@ -145,7 +142,8 @@
     .introTitleContainer:lang(en) {
         width: 83%;
         margin: 0 auto;
-        padding: 0;    }
+        padding: 0;
+    }
 
     .introTitleContainer:lang(ar) {
         width: 83%;
@@ -157,19 +155,19 @@
 
 @media (min-width: 768px ) and (max-width: 993px) {
     :lang(ar).sponsorContainer {
-        margin: 20px 0 0 0;
-        align-self: center;
+        margin-right: 50px;
     }
 
     :lang(en).sponsorContainer {
-        margin: 20px 0 0 0;
-        align-self: center;
+        margin-left: 50px;
     }
+
 
     .introTitleContainer:lang(en) {
         padding: 0;
         margin: 0 auto;
-        width: 670px;    }
+        width: 670px;
+    }
 
     .introTitleContainer:lang(ar) {
         padding: 0;
@@ -188,8 +186,11 @@
 
 @media (min-width: 425px ) and (max-width: 767px) {
     :lang(ar).sponsorContainer {
-        margin: 20px 0 0 0;
-        align-self: center;
+        margin-right: 50px;
+    }
+
+    :lang(en).sponsorContainer {
+        margin-left: 50px;
     }
 
     :lang(ar).orgSectionLogos {
@@ -197,10 +198,6 @@
         height: 120px;
     }
 
-    :lang(en).sponsorContainer {
-        margin: 20px 0 0 0;
-        align-self: center;
-    }
 
     .introTitleContainer:lang(en) {
         width: 95%;
@@ -215,15 +212,11 @@
 
 @media (min-width: 375px ) and (max-width: 424px) {
     :lang(ar).sponsorContainer {
-        margin: 0;
-        align-self: center;
-        flex-direction: column;
+        margin-right: 50px;
     }
 
     :lang(en).sponsorContainer {
-        margin: 0;
-        align-self: center;
-        flex-direction: column;
+        margin-left: 50px;
     }
 
     .breakingLine {
@@ -244,15 +237,11 @@
 @media (min-width: 320px ) and (max-width: 374px) {
 
     :lang(ar).sponsorContainer {
-        margin: 0;
-        align-self: center;
-        flex-direction: column;
+        margin-right: 50px;
     }
 
     :lang(en).sponsorContainer {
-        margin: 0;
-        align-self: center;
-        flex-direction: column;
+        margin-left: 50px;
     }
 
     .breakingLine {

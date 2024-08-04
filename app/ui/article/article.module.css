@@ -45,7 +45,6 @@
 .headerArticleImage:lang(en) {
     border-radius: 16px;
     border: 7px solid var(--white);
-    border-radius: 16px;
     box-shadow: 0 0 16px 0 rgba(28, 114, 141, 0.102);
 }
 
@@ -74,7 +73,7 @@
     color: var(--secondary-7);
     font-family: "Font-Light";
     line-height: 1.5;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 1.125rem;
 }
 
@@ -147,6 +146,7 @@
 :lang(en).dateTo {
     display: flex;
     font-family: "Font-Light";
+    font-weight: 400;
     gap: 10px
 }
 
@@ -154,12 +154,14 @@
 :lang(ar).dateTo {
     display: flex;
     font-family: "Font-Light";
+    font-weight: 400;
 }
 
 .from,
 .to {
     text-align: start;
-    font-family: "Font-Regular";
+    font-family: "Font-Medium";
+    font-weight: 500;
     width: 2.1428571429rem;
 }
 
@@ -203,7 +205,8 @@
 
 .cityTitleText {
     font-size: 1.125rem;
-    font-family: "Font-Regular";
+    font-family: "Font-Medium";
+    font-weight: 500;
     color: #052976;
     opacity: .8;
     font-weight: 400;
@@ -214,6 +217,7 @@
     color: var(--font-black);
     display: flex;
     font-family: "Font-Light";
+    font-weight: 400;
     margin-right: 4em;
     margin-bottom: .5714285714rem;
     border-radius: .5714285714rem;
