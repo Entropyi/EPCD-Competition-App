@@ -38,8 +38,9 @@ export default function Sponsor() {
                             <p className={styles.orgiText}>{translations("Organizer")}</p>
                         </div>
                     </div>
-                    <div className={styles.breakingLine}></div>
 
+                    {/*
+                    <div className={styles.breakingLine}></div>
                     <div className={styles.sponserLogoConatiner}>
                         <Image alt={"Sponsor Logo"} src={"/Yasref.svg"}
                                className={styles.orgSectionLogos} width={150} height={120}></Image>
@@ -47,6 +48,8 @@ export default function Sponsor() {
                             <p className={styles.orgiText}>{translations("Sponsor")}</p>
                         </div>
                     </div>
+                    */}
+
                 </div>
             </div>
         </div>

@@ -35,8 +35,8 @@
 .detailsTitleText {
     font-size: 1.125rem;
     color: var(--font-black);
-    font-family: "Font-Regular";
-    font-weight: 400;
+    font-family: "Font-Medium";
+    font-weight: 500;
     line-height: 1.5;
 }
 

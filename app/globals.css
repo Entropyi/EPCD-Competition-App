@@ -102,14 +102,14 @@ time, mark, audio, video {
 @font-face {
     font-family: "Font-Regular";
     font-style: normal;
-    font-weight: 400;
+    font-weight: 500;
     src: url("/fonts/PingAR+LT-Regular.otf") format("opentype");
 }
 
 @font-face {
     font-family: "Font-Medium";
     font-style: normal;
-    font-weight: 500;
+    font-weight: 600;
     src: url("/fonts/PingAR_LT_Medium.otf") format("opentype");
 }
 
