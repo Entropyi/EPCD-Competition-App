@@ -71,5 +71,8 @@
   "SuccessPage": {
     "title": "Thank you for participating",
     "subText": "you will be contacted soon"
+  },
+  "LocaleLayout": {
+    "title": "Environmental Photography Competition"
   }
 }
