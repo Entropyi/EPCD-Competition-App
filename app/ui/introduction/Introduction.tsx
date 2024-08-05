@@ -61,6 +61,7 @@ export default function Introduction() {
                  <li className={styles.introductionText}>{translations('CompCategoriesTextSub1')}</li>
                  <li className={styles.introductionText}>{translations('CompCategoriesTextSub2')}</li>
                  <li className={styles.introductionText}>{translations('CompCategoriesTextSub3')}</li>
+                 <li className={styles.introductionText}>{translations('CompCategoriesTextSub4')}</li>
                 </ul>
 
                 <div className={styles.spacing}>
@@ -79,6 +80,7 @@ export default function Introduction() {
                     </div>
                     <ol className={styles.listStyle}>
                         <li className={styles.introductionText}>{translations('TermsAndConditionsText1')}</li>
+                        <li className={styles.introductionText}>{translations('TermsAndConditionsText2')}</li>
                         <li className={styles.introductionText}>{translations('TermsAndConditionsText3')}</li>
                         <li className={styles.introductionText}>{translations('TermsAndConditionsText4')}</li>
                         <li className={styles.introductionText}>{translations('TermsAndConditionsText5')}</li>

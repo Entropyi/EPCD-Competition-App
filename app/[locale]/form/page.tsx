@@ -83,7 +83,7 @@ export default function Form() {
             return errors.image ? styles.UploadWhileError : styles.formUpload;
         }
         else if (inputName === "photoLocation") {
-            return errors.image ? styles.inputWhileError : styles.formUpload;
+            return errors.image ? styles.inputWhileError : styles.formInput;
         }
     }
     return (
