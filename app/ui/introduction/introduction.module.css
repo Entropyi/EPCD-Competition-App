@@ -75,11 +75,11 @@
 }
 
 .listStyle:lang(ar) {
-    margin-right: 15px;
+    margin-right: 25px;
 }
 
 .listStyle:lang(en) {
-    margin-left: 15px;
+    margin-left: 25px;
 }
 
 @media (min-width: 320px ) and (max-width: 374px) {
