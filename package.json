@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@uppy/core": "^4.1.0",
+    "@uppy/dashboard": "^4.0.2",
     "next": "14.2.5",
     "next-intl": "^3.17.0",
     "react": "^18",

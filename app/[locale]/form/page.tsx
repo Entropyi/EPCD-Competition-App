@@ -159,7 +159,6 @@ export default function Form() {
                                     <label className={styles.formLabel} htmlFor="">{formTranslations("Image")}</label>
                                     <label className={styles.formSubLabel}
                                            htmlFor="">{formTranslations("ImageRequirements")}</label>
-
                                     <input className={changeInputStyleWhenError("image")} type="file" id="image"
                                            accept={".jpg, .jpeg, .png"}
                                            {...register("image", {
