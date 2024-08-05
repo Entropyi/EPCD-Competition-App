@@ -6,6 +6,7 @@ import Link from "next/link";
 
 export default function Introduction() {
     const translations = useTranslations("HomePage");
+    const formTranslations = useTranslations("FormPage");
 
     const locale = useLocale();
 
@@ -58,11 +59,11 @@ export default function Introduction() {
                 <br/>
 
                 <ul className={styles.listStyle}>
-                 <li className={styles.introductionText}>{translations('CompCategoriesTextSub1')}</li>
-                 <li className={styles.introductionText}>{translations('CompCategoriesTextSub2')}</li>
-                 <li className={styles.introductionText}>{translations('CompCategoriesTextSub3')}</li>
-                 <li className={styles.introductionText}>{translations('CompCategoriesTextSub4')}</li>
-                 <li className={styles.introductionText}>{translations('CompCategoriesTextSub5')}</li>
+                    <li className={styles.introductionText}>{translations('CompCategoriesTextSub1')}</li>
+                    <li className={styles.introductionText}>{translations('CompCategoriesTextSub2')}</li>
+                    <li className={styles.introductionText}>{translations('CompCategoriesTextSub3')}</li>
+                    <li className={styles.introductionText}>{translations('CompCategoriesTextSub4')}</li>
+                    <li className={styles.introductionText}>{translations('CompCategoriesTextSub5')}</li>
                 </ul>
 
                 <div className={styles.spacing}>
@@ -106,8 +107,14 @@ export default function Introduction() {
                     </div>
                     <p className={styles.detailsTitleText}>{translations('HowToParticipateTitle')}</p>
                 </div>
+
+
                 <p className={styles.introductionText}>
-                    {translations('HowToParticipateText')}<Link href={`/${locale}/form`}>{translations('HowToParticipateTextLink')}</Link>
+                    <Link
+                        href={`/${locale}/form`}>
+                        <input type="submit" className={styles.formButton}
+                               value={`${translations("HowToParticipateText")}${translations('HowToParticipateTextLink')}`}/>
+                    </Link>
                 </p>
             </div>
 

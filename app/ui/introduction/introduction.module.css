@@ -82,6 +82,26 @@
     margin-left: 25px;
 }
 
+.buttonContainer {
+    display: flex;
+
+}
+
+.formButton {
+    padding: .675rem 1.5rem;
+    background-color: var(--th-secondary);
+    border-radius: .8571428571rem;
+    color: var(--white);
+    font-size: 1em;
+    font-family: "Font-Regular";
+    cursor: pointer;
+    border: none;
+}
+
+.formButton:hover {
+    background: linear-gradient(240deg, var(--th-secondary), var(--th-Primary));
+}
+
 @media (min-width: 320px ) and (max-width: 374px) {
     :lang(ar).detailsTitleContainer {
         margin-right: 5px;

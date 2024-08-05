@@ -7,7 +7,6 @@ import {useState} from "react";
 
 export default function Form() {
     const formTranslations = useTranslations("FormPage");
-    const homeTranslation = useTranslations("HomePage");
     const errorTranslation = useTranslations("formErrorMessages");
 
     const [popUpDisplay, setPopUpDisplay] = useState<string>("none");
@@ -243,7 +242,7 @@ export default function Form() {
                 <div className={styles.popUpDev__logo}>
                     <Image
                         src={"/corro.svg"}
-                        alt={"footer_RCJY_logo"}
+                        alt={"error"}
                         width={160.14}
                         height={89.7}
                     ></Image>
