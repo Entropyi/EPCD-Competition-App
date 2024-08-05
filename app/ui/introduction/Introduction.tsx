@@ -62,6 +62,7 @@ export default function Introduction() {
                  <li className={styles.introductionText}>{translations('CompCategoriesTextSub2')}</li>
                  <li className={styles.introductionText}>{translations('CompCategoriesTextSub3')}</li>
                  <li className={styles.introductionText}>{translations('CompCategoriesTextSub4')}</li>
+                 <li className={styles.introductionText}>{translations('CompCategoriesTextSub5')}</li>
                 </ul>
 
                 <div className={styles.spacing}>
