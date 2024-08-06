@@ -1,21 +1,61 @@
 "use client"
+
 import styles from "./form.module.css";
 import {useTranslations} from 'next-intl';
 import {useForm, SubmitHandler} from "react-hook-form"
 import Image from "next/image";
-import {useState} from "react";
+
+import React, {useState} from "react";
+import Uppy from '@uppy/core'
+import Arabic from '@uppy/locales/lib/ar_SA';
+import {Dashboard, useUppyState} from '@uppy/react'
+import Tus from '@uppy/tus';
+
+import '@uppy/core/dist/style.css'
+import '@uppy/dashboard/dist/style.css'
+import '@uppy/drag-drop/dist/style.css'
+import '@uppy/file-input/dist/style.css'
+import '@uppy/progress-bar/dist/style.css'
+import {useRouter} from "next/navigation";
+import {useLocale} from "next-intl";
+
+function createUppy() {
+    return new Uppy({
+        locale: Arabic,
+        restrictions: {
+            maxNumberOfFiles: 4,
+            allowedFileTypes: ['image/png', 'image/jpeg', 'image/jpe'],
+        },
+        autoProceed: false,
+    })
+        .use(Tus, {endpoint: 'http://127.0.0.1:1080'});
+}
+
 
 export default function Form() {
     const formTranslations = useTranslations("FormPage");
     const errorTranslation = useTranslations("formErrorMessages");
 
+    const router = useRouter();
+    const locale = useLocale();
+
+    const [uppy] = React.useState(createUppy)
+    const fileCount = useUppyState(
+        uppy,
+        (state) => Object.keys(state.files).length,
+    )
+    const totalProgress = useUppyState(uppy, (state) => state.totalProgress)
+    const plugins = useUppyState(uppy, (state) => state.plugins)
+
+
     const [popUpDisplay, setPopUpDisplay] = useState<string>("none");
+    const [ErrorDisplay, setErrorDisplay] = useState<string>("none");
+
     type Inputs = {
         fullName: string,
         email: string,
         age: number,
         phoneNumber: number,
-        image: File,
         photoTitle: string,
         comments: string,
         photoLocation: string,
@@ -30,6 +70,35 @@ export default function Form() {
     } = useForm<Inputs>()
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
+
+        uppy.on("upload-success", (file, response) => {
+
+            if (typeof response.uploadURL === 'string') {
+
+                const imageUrl = response.uploadURL;
+                console.log(imageUrl);
+                const form = new FormData();
+
+                form.append('fullName', data.fullName)
+                form.append('email', data.email)
+                form.append('age', data.age.toString())
+                form.append('phoneNumber', data.phoneNumber.toString())
+
+                form.append('imageUrl', imageUrl);
+                form.append('photoTitle', data.photoTitle)
+                form.append('comments', data.comments)
+                form.append('photoLocation', data.photoLocation)
+                form.append('photoPurpose', data.photoPurpose)
+
+                console.log(form.getAll("imageUrl"))
+                router.push(`/${locale}/success`);
+
+            } else {
+                console.log("response is not valid");
+            }
+
+        })
+
         /* const form = new FormData();
          const imageArray: File[] = data.image as unknown as File[];
 
@@ -61,7 +130,12 @@ export default function Form() {
              console.log(e)
          }
          */
-        setPopUpDisplay("flex");
+        if (!fileCount) {
+            setErrorDisplay("flex");
+            console.log("error");
+            return;
+        }
+        await uppy.upload();
     }
 
     const popUpClose = () => {
@@ -71,23 +145,35 @@ export default function Form() {
     const changeInputStyleWhenError = (inputName: string) => {
         if (inputName === "fullName") {
             return errors.fullName ? styles.inputWhileError : styles.formInput;
-        }
-        else if (inputName === "email") {
+        } else if (inputName === "email") {
             return errors.email ? styles.inputWhileError : styles.formInput;
-        }
-        else if (inputName === "phoneNumber") {
+        } else if (inputName === "phoneNumber") {
             return errors.phoneNumber ? styles.inputWhileError : styles.formInput;
-        }
-        else if (inputName === "image") {
-            return errors.image ? styles.UploadWhileError : styles.formUpload;
-        }
-        else if (inputName === "photoLocation") {
-            return errors.image ? styles.inputWhileError : styles.formInput;
+        } else if (inputName === "photoLocation") {
+            return errors.photoLocation ? styles.inputWhileError : styles.formInput;
         }
     }
     return (
         <>
+
             <div className={styles.formSuperContainer}>
+                <div className={styles.alertSuperContainer}>
+                    <div className={styles.alertContainer} style={{display: ErrorDisplay}}>
+                        <div className={styles.alertSvgContainer}>
+                            <Image
+                                className={styles.alertSvg}
+                                src={"/alert.svg"}
+                                alt={"error"}
+                                width={30}
+                                height={30}>
+                            </Image>
+                        </div>
+                        <div className={styles.alertTextContainer}>
+                            <p className={styles.alertText}>{errorTranslation("imageRequired")}</p>
+                        </div>
+
+                    </div>
+                </div>
                 <div className={styles.formContainer}>
                     <div className={styles.formElementsContainer}>
                         <form className={styles.formElements} onSubmit={handleSubmit(onSubmit)} method={"POST"}>
@@ -97,7 +183,8 @@ export default function Form() {
                             </div>
 
                             <div className={styles.formSubElements}>
-                                <label className={styles.formLabel} htmlFor="">{formTranslations("FullName")} </label>
+                                <label className={styles.formLabel}
+                                       htmlFor="">{formTranslations("FullName")} </label>
                                 <input className={changeInputStyleWhenError("fullName")} type="text"
                                        id="full-name" {...register("fullName",
                                     {
@@ -128,8 +215,10 @@ export default function Form() {
                                     </div>
 
                                     <div className={styles.ageConatiner}>
-                                        <label className={styles.formLabel} htmlFor="">{formTranslations("Age")}</label>
-                                        <input className={styles.formInput} type="text" id="age" {...register("age")}/>
+                                        <label className={styles.formLabel}
+                                               htmlFor="">{formTranslations("Age")}</label>
+                                        <input className={styles.formInput} type="text"
+                                               id="age" {...register("age")}/>
                                         {errors.age && <p role="alert"
                                                           className={styles.formInlineErrorText}>{errors.age.message}</p>}
                                     </div>
@@ -143,7 +232,7 @@ export default function Form() {
                                            id="phone-number" {...register("phoneNumber", {
                                         required: `${errorTranslation("phoneNumberRequired")}`,
                                         minLength: {
-                                            value: 9,
+                                            value: 10,
                                             message: `${errorTranslation("phoneNumberLessThanMin")}`,
                                         },
                                         maxLength: {
@@ -155,29 +244,7 @@ export default function Form() {
                                                               className={styles.formInlineErrorText}>{errors.phoneNumber.message}</p>}
                                 </div>
 
-                                <div className={styles.formGroups}>
-                                    <label className={styles.formLabel} htmlFor="">{formTranslations("Image")}</label>
-                                    <label className={styles.formSubLabel}
-                                           htmlFor="">{formTranslations("ImageRequirements")}</label>
-                                    <input className={changeInputStyleWhenError("image")} type="file" id="image"
-                                           accept={".jpg, .jpeg, .png"}
-                                           {...register("image", {
-                                               required: `${errorTranslation("imageRequired")}`,
-                                               validate: (value) => {
-                                                   const acceptedFormats = ["png", "jpg", "jpeg"];
-                                                   // @ts-ignore
-                                                   const fileExtension = value[0]?.name.split(".").pop();
-                                                   if (!acceptedFormats.includes(fileExtension)) {
-                                                       console.log(fileExtension)
-                                                       return 'Invalid file format. Only jpg,jpeg,png files are allowed.';
-                                                   }
-                                                   return true;
-                                               }
-                                           })}
-                                    />
-                                    {errors.image && <p role="alert"
-                                                        className={styles.formInlineErrorText}>{errors.image.message}</p>}
-                                </div>
+                                <Dashboard uppy={uppy} hideUploadButton={true}/>
 
                                 <div className={styles.formGroups}>
                                     <label className={styles.formLabel}
@@ -212,13 +279,13 @@ export default function Form() {
                                            {...register("photoPurpose")}/>
                                 </div>
 
-
                                 <div className={styles.formTermsAgreement}>
                                     <input type="checkbox" className={styles.formCheckBox}
                                            {...register("termsAgreement", {
                                                required: `${errorTranslation("termsAgreementRequired")}`
                                            })}/>
-                                    <label className={styles.formLabel}>{formTranslations("TermsAgreement")} </label>
+                                    <label
+                                        className={styles.formLabel}>{formTranslations("TermsAgreement")} </label>
                                 </div>
 
                                 {errors.termsAgreement && <p role="alert"

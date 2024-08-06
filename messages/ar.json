@@ -64,9 +64,9 @@
     "ageLessThanMin": "عمرك يجب ان يكون 5 سنوات او اكبر",
     "ageLargerThanMax": "عمرك يجب ان يكون 99 سنوات او اصغر",
     "phoneNumberRequired": "رقم الجوال مطلوب",
-    "phoneNumberLessThanMin": "رقم الجوال اقل من 9 ارقام",
-    "phoneNumberLargerThanMax": "رقم الجوال اكثر من 10 ارقام",
-    "imageRequired": "الصورة مطلوبه",
+    "phoneNumberLessThanMin": "ررقم الجوال يجب ان يكون 10 ارقام مثال 0500000000",
+    "phoneNumberLargerThanMax": "رقم الجوال يجب ان يكون 10 ارقام مثال 0500000000",
+    "imageRequired": "الصورة مطلوبة",
     "locationRequired": "موقع التفاط الصورة مطلوب",
     "termsAgreementRequired": "قبول الشروط والاحكام مطلوب"
   },

@@ -64,8 +64,8 @@
     "ageLessThanMin": "Age must be at least 5",
     "ageLargerThanMax": "Age must be at most 99",
     "phoneNumberRequired": "Phone number is required",
-    "phoneNumberLessThanMin": "Phone number must be at least 9 digits",
-    "phoneNumberLargerThanMax": "Phone number must be at most 10 digits",
+    "phoneNumberLessThanMin": "Phone number must be 10 digits for example : 0500000000",
+    "phoneNumberLargerThanMax": "Phone number must be 10 digits for example : 0500000000",
     "imageRequired": "Image is required",
     "locationRequired": "The location of the image is required",
     "termsAgreementRequired": "Agreeing to the terms is required"
@@ -79,5 +79,11 @@
   },
   "HeaderSlogan": {
     "slogan": "Industry and Life"
+  },
+  "serverSideErrors": {
+    "emailType": "Email is not valid",
+    "nameType": "Full name is not valid",
+    "emailEmpty": "Email cannot be empty",
+    "nameEmpty": "Full name cannot be empty"
   }
 }
