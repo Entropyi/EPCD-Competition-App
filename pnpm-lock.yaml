@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@prisma/client':
+        specifier: ^5.18.0
+        version: 5.18.0
       '@tus/file-store':
         specifier: ^1.4.0
         version: 1.4.0
@@ -167,6 +170,15 @@ packages:
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
+
+  '@prisma/client@5.18.0':
+    resolution: {integrity: sha512-BWivkLh+af1kqC89zCJYkHsRcyWsM8/JHpsDMM76DjP3ZdEquJhXa4IeX+HkWPnwJ5FanxEJFZZDTWiDs/Kvyw==}
+    engines: {node: '>=16.13'}
+    peerDependencies:
+      prisma: '*'
+    peerDependenciesMeta:
+      prisma:
+        optional: true
 
   '@redis/client@1.6.0':
     resolution: {integrity: sha512-aR0uffYI700OEEH4gYnitAnv3vzVGXCFvYfdpu/CJKvk4pHfLPEy/JSZyrpQ+15WhXe1yJRXLtfQ84s4mEXnPg==}
@@ -947,6 +959,8 @@ snapshots:
 
   '@next/swc-win32-x64-msvc@14.2.5':
     optional: true
+
+  '@prisma/client@5.18.0': {}
 
   '@redis/client@1.6.0':
     dependencies:

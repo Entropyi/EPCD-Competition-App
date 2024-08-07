@@ -70,7 +70,7 @@ export default function Form() {
     } = useForm<Inputs>()
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
-
+/*
         uppy.on("upload-success", (file, response) => {
 
             if (typeof response.uploadURL === 'string') {
@@ -96,6 +96,7 @@ export default function Form() {
             } else {
                 console.log("response is not valid");
             }
+
 
         })
 
@@ -129,14 +130,20 @@ export default function Form() {
          } catch (e) {
              console.log(e)
          }
-         */
+
         if (!fileCount) {
             setErrorDisplay("flex");
             console.log("error");
             return;
         }
         await uppy.upload();
+
+ */
+
+        setPopUpDisplay("flex");
+
     }
+
 
     const popUpClose = () => {
         setPopUpDisplay("none");
