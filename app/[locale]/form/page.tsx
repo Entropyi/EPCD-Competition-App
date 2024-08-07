@@ -8,6 +8,7 @@ import Image from "next/image";
 import React, {useState} from "react";
 import Uppy from '@uppy/core'
 import Arabic from '@uppy/locales/lib/ar_SA';
+import English from '@uppy/locales/lib/en_US';
 import {Dashboard, useUppyState} from '@uppy/react'
 import Tus from '@uppy/tus';
 
@@ -18,10 +19,11 @@ import '@uppy/file-input/dist/style.css'
 import '@uppy/progress-bar/dist/style.css'
 import {useRouter} from "next/navigation";
 import {useLocale} from "next-intl";
+import locale from "@uppy/core/src/locale";
 
-function createUppy() {
+function createUppy(locale: any) {
     return new Uppy({
-        locale: Arabic,
+        locale: locale,
         restrictions: {
             maxNumberOfFiles: 4,
             allowedFileTypes: ['image/png', 'image/jpeg', 'image/jpe'],
@@ -31,15 +33,25 @@ function createUppy() {
         .use(Tus, {endpoint: 'http://127.0.0.1:1080'});
 }
 
+function getCurrentLocale() {
+    if(useLocale() == "ar") {
+        return Arabic;
+    }
+    else {
+        return English;
+    }
+}
 
 export default function Form() {
+
     const formTranslations = useTranslations("FormPage");
     const errorTranslation = useTranslations("formErrorMessages");
+    const [popUpDisplay, setPopUpDisplay] = useState<string>("none");
+    const [ErrorDisplay, setErrorDisplay] = useState<string>("none");
 
     const router = useRouter();
-    const locale = useLocale();
 
-    const [uppy] = React.useState(createUppy)
+    const [uppy] = React.useState(createUppy(getCurrentLocale()))
     const fileCount = useUppyState(
         uppy,
         (state) => Object.keys(state.files).length,
@@ -47,9 +59,6 @@ export default function Form() {
     const totalProgress = useUppyState(uppy, (state) => state.totalProgress)
     const plugins = useUppyState(uppy, (state) => state.plugins)
 
-
-    const [popUpDisplay, setPopUpDisplay] = useState<string>("none");
-    const [ErrorDisplay, setErrorDisplay] = useState<string>("none");
 
     type Inputs = {
         fullName: string,
@@ -70,75 +79,75 @@ export default function Form() {
     } = useForm<Inputs>()
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
-/*
-        uppy.on("upload-success", (file, response) => {
+        /*
+                uppy.on("upload-success", (file, response) => {
 
-            if (typeof response.uploadURL === 'string') {
+                    if (typeof response.uploadURL === 'string') {
 
-                const imageUrl = response.uploadURL;
-                console.log(imageUrl);
-                const form = new FormData();
+                        const imageUrl = response.uploadURL;
+                        console.log(imageUrl);
+                        const form = new FormData();
 
-                form.append('fullName', data.fullName)
-                form.append('email', data.email)
-                form.append('age', data.age.toString())
-                form.append('phoneNumber', data.phoneNumber.toString())
+                        form.append('fullName', data.fullName)
+                        form.append('email', data.email)
+                        form.append('age', data.age.toString())
+                        form.append('phoneNumber', data.phoneNumber.toString())
 
-                form.append('imageUrl', imageUrl);
-                form.append('photoTitle', data.photoTitle)
-                form.append('comments', data.comments)
-                form.append('photoLocation', data.photoLocation)
-                form.append('photoPurpose', data.photoPurpose)
+                        form.append('imageUrl', imageUrl);
+                        form.append('photoTitle', data.photoTitle)
+                        form.append('comments', data.comments)
+                        form.append('photoLocation', data.photoLocation)
+                        form.append('photoPurpose', data.photoPurpose)
 
-                console.log(form.getAll("imageUrl"))
-                router.push(`/${locale}/success`);
+                        console.log(form.getAll("imageUrl"))
+                        router.push(`/${locale}/success`);
 
-            } else {
-                console.log("response is not valid");
-            }
+                    } else {
+                        console.log("response is not valid");
+                    }
 
 
-        })
+                })
 
-        /* const form = new FormData();
-         const imageArray: File[] = data.image as unknown as File[];
+                /* const form = new FormData();
+                 const imageArray: File[] = data.image as unknown as File[];
 
-         form.append('fullName', data.fullName)
-         form.append('email', data.email)
-         form.append('age', data.age.toString())
-         form.append('phoneNumber', data.phoneNumber.toString())
+                 form.append('fullName', data.fullName)
+                 form.append('email', data.email)
+                 form.append('age', data.age.toString())
+                 form.append('phoneNumber', data.phoneNumber.toString())
 
-         form.append('file', imageArray[0]);
+                 form.append('file', imageArray[0]);
 
-         form.append('photoTitle', data.photoTitle)
-         form.append('comments', data.comments)
-         form.append('photoLocation', data.photoLocation)
-         form.append('photoPurpose', data.photoPurpose)
+                 form.append('photoTitle', data.photoTitle)
+                 form.append('comments', data.comments)
+                 form.append('photoLocation', data.photoLocation)
+                 form.append('photoPurpose', data.photoPurpose)
 
-         try {
+                 try {
 
-             const response = await fetch('../api/upload', {
-                 method: 'POST',
-                 body: form,
-             })
+                     const response = await fetch('../api/upload', {
+                         method: 'POST',
+                         body: form,
+                     })
 
-             if (!response.ok) {
-                 throw new Error(await response.text())
-             } else {
+                     if (!response.ok) {
+                         throw new Error(await response.text())
+                     } else {
 
-             }
-         } catch (e) {
-             console.log(e)
-         }
+                     }
+                 } catch (e) {
+                     console.log(e)
+                 }
 
-        if (!fileCount) {
-            setErrorDisplay("flex");
-            console.log("error");
-            return;
-        }
-        await uppy.upload();
+                if (!fileCount) {
+                    setErrorDisplay("flex");
+                    console.log("error");
+                    return;
+                }
+                await uppy.upload();
 
- */
+         */
 
         setPopUpDisplay("flex");
 
