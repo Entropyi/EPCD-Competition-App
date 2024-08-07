@@ -15,7 +15,7 @@ export default function Header() {
     const [slogan, setSlogan] = useState<string>("");
 
     useEffect(() => {
-        if (navigator.geolocation) {
+        /*if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(success, error);
         } else {
             console.log("Geolocation not supported");
@@ -30,7 +30,7 @@ export default function Header() {
         function error() {
             console.log("Unable to retrieve your location");
         }
-
+*/
         if (locale === 'ar') {
             setLang("En");
             setSlogan("صنـاعـــــــة وحيـــــــاة")

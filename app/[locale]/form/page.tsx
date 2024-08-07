@@ -19,7 +19,6 @@ import '@uppy/file-input/dist/style.css'
 import '@uppy/progress-bar/dist/style.css'
 import {useRouter} from "next/navigation";
 import {useLocale} from "next-intl";
-import locale from "@uppy/core/src/locale";
 
 function createUppy(locale: any) {
     return new Uppy({
@@ -27,6 +26,7 @@ function createUppy(locale: any) {
         restrictions: {
             maxNumberOfFiles: 4,
             allowedFileTypes: ['image/png', 'image/jpeg', 'image/jpe'],
+            maxTotalFileSize:4 * 1024 * 1024 * 1024,
         },
         autoProceed: false,
     })
@@ -34,10 +34,9 @@ function createUppy(locale: any) {
 }
 
 function getCurrentLocale() {
-    if(useLocale() == "ar") {
+    if (useLocale() == "ar") {
         return Arabic;
-    }
-    else {
+    } else {
         return English;
     }
 }
@@ -49,7 +48,9 @@ export default function Form() {
     const [popUpDisplay, setPopUpDisplay] = useState<string>("none");
     const [ErrorDisplay, setErrorDisplay] = useState<string>("none");
 
+
     const router = useRouter();
+    const locale = useLocale();
 
     const [uppy] = React.useState(createUppy(getCurrentLocale()))
     const fileCount = useUppyState(
@@ -79,77 +80,102 @@ export default function Form() {
     } = useForm<Inputs>()
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
-        /*
-                uppy.on("upload-success", (file, response) => {
 
-                    if (typeof response.uploadURL === 'string') {
+        uppy.on("complete", async (result) => {
+            const imageObject = result.successful;
+            const form = new FormData();
+            let imageUrl: string = "";
 
-                        const imageUrl = response.uploadURL;
-                        console.log(imageUrl);
-                        const form = new FormData();
+            imageObject?.forEach((file) => {
+                imageUrl += file.uploadURL;
+                imageUrl += ", ";
+            })
 
-                        form.append('fullName', data.fullName)
-                        form.append('email', data.email)
-                        form.append('age', data.age.toString())
-                        form.append('phoneNumber', data.phoneNumber.toString())
 
-                        form.append('imageUrl', imageUrl);
-                        form.append('photoTitle', data.photoTitle)
-                        form.append('comments', data.comments)
-                        form.append('photoLocation', data.photoLocation)
-                        form.append('photoPurpose', data.photoPurpose)
+            form.append('fullName', data.fullName)
+            form.append('email', data.email)
+            form.append('age', data.age.toString())
+            form.append('phoneNumber', data.phoneNumber.toString())
 
-                        console.log(form.getAll("imageUrl"))
-                        router.push(`/${locale}/success`);
+            form.append('imageUrl', String(imageUrl));
+            form.append('photoTitle', data.photoTitle)
+            form.append('comments', data.comments)
+            form.append('photoLocation', data.photoLocation)
+            form.append('photoPurpose', data.photoPurpose)
 
+
+            const response = await fetch('../api', {
+                method: 'POST',
+                body: form,
+            })
+
+            if (response.ok) {
+                console.log(await response.json())
+                router.replace(`/${locale}/success`);
+            } else {
+
+            }
+
+        });
+
+
+        /*= const form = new FormData();
+         const imageArray: File[] = data.image as unknown as File[];
+
+         form.append('fullName', data.fullName)
+         form.append('email', data.email)
+         form.append('age', data.age.toString())
+         form.append('phoneNumber', data.phoneNumber.toString())
+
+         form.append('file', imageArray[0]);
+
+         form.append('photoTitle', data.photoTitle)
+         form.append('comments', data.comments)
+         form.append('photoLocation', data.photoLocation)
+         form.append('photoPurpose', data.photoPurpose)
+
+         try {
+
+             const response = await fetch('../api/upload', {
+                 method: 'POST',
+                 body: form,
+             })
+
+             if (!response.ok) {
+                 throw new Error(await response.text())
+             } else {
+
+             }
+         } catch (e) {
+             console.log(e)
+         }
+
+        if (!fileCount) {
+            setErrorDisplay("flex");
+            console.log("error");
+            return;
+        }
+        await uppy.upload();
+
+try {
+
+                    const response = await fetch('../api/upload', {
+                        method: 'POST',
+                        body: form,
+                    })
+
+                    if (!response.ok) {
+                         new Error(await response.text())
                     } else {
-                        console.log("response is not valid");
+
                     }
-
-
-                })
-
-                /* const form = new FormData();
-                 const imageArray: File[] = data.image as unknown as File[];
-
-                 form.append('fullName', data.fullName)
-                 form.append('email', data.email)
-                 form.append('age', data.age.toString())
-                 form.append('phoneNumber', data.phoneNumber.toString())
-
-                 form.append('file', imageArray[0]);
-
-                 form.append('photoTitle', data.photoTitle)
-                 form.append('comments', data.comments)
-                 form.append('photoLocation', data.photoLocation)
-                 form.append('photoPurpose', data.photoPurpose)
-
-                 try {
-
-                     const response = await fetch('../api/upload', {
-                         method: 'POST',
-                         body: form,
-                     })
-
-                     if (!response.ok) {
-                         throw new Error(await response.text())
-                     } else {
-
-                     }
-                 } catch (e) {
-                     console.log(e)
-                 }
-
-                if (!fileCount) {
-                    setErrorDisplay("flex");
-                    console.log("error");
-                    return;
+                } catch (e) {
+                    console.log(e)
                 }
-                await uppy.upload();
+ */
 
-         */
-
-        setPopUpDisplay("flex");
+        //setPopUpDisplay("flex");
+        await uppy.upload();
 
     }
 
@@ -171,7 +197,6 @@ export default function Form() {
     }
     return (
         <>
-
             <div className={styles.formSuperContainer}>
                 <div className={styles.alertSuperContainer}>
                     <div className={styles.alertContainer} style={{display: ErrorDisplay}}>
