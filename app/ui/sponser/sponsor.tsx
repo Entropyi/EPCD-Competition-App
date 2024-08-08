@@ -6,6 +6,7 @@ import {useLocale, useTranslations} from "next-intl";
 
 export default function Sponsor() {
     const translations = useTranslations("HomePage");
+    const stripeTranslations = useTranslations("stripe");
 
     return (
         <div className={styles.root}>
@@ -42,15 +43,16 @@ export default function Sponsor() {
                     <div className={styles.prizeContainer}>
                         <div className={styles.stripeEffectContainer}>
                             <div className={styles.squareContainer}>
-                                <p className={styles.squareText}>The competition is due by 15 September</p>
+                                <p className={`${styles.squareText} ${styles.textSepreator}`}>{stripeTranslations("startsAt")}</p>
+                                <p className={styles.squareText}>{stripeTranslations("endsAt")}</p>
                             </div>
                             <div className={styles.sideTextContianer}>
                                 <div className={styles.prizeTextContianer}>
-                                    <p className={styles.prizeText}>15 thousand</p>
-                                    <p className={styles.currencyText}>Saudi Riyal</p>
+                                    <p className={styles.prizeText}>{stripeTranslations("prizeAmount")}</p>
+                                    <p className={styles.currencyText}>{stripeTranslations("currency")}</p>
                                 </div>
                                 <div className={styles.subTextContianer}>
-                                    <p className={styles.subText}>Total competition prizes</p>
+                                    <p className={styles.subText}>{stripeTranslations("prizeSubText")}</p>
                                 </div>
                             </div>
                         </div>

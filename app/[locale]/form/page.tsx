@@ -25,7 +25,7 @@ function createUppy(locale: any) {
         locale: locale,
         restrictions: {
             maxNumberOfFiles: 4,
-            allowedFileTypes: ['image/png', 'image/jpeg', 'image/jpe'],
+            //allowedFileTypes: ['image/png', 'image/jpeg', 'image/jpe'],
             maxTotalFileSize:4 * 1024 * 1024 * 1024,
         },
         autoProceed: false,

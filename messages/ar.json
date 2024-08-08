@@ -2,12 +2,12 @@
   "HomePage": {
     "pageTitle": "مسابقة التصوير البيئي",
     "title": "مسابقة التصوير البيئي لعام 2024",
-    "day": "11",
+    "day": "28",
     "month": "صفر",
     "from": "من",
-    "starting": " 11 صفر 1446",
+    "starting": " 28 صفر 1446",
     "to": "الى",
-    "ending": " 12 ربيع الأول 1446",
+    "ending": " 27 ربيع الأول 1446",
     "citiesCoveredTitle": "في المدن التالية",
     "city": "ينبُع الصناعية",
     "CompDetailsTitle": "تفاصيل المسابقة",
@@ -21,7 +21,7 @@
     "CompCategoriesTextSub4": "المحافظة على البيئة",
     "CompCategoriesTextSub5": "جميع الحقول المرتبطه بالبيئة",
     "TermsAndConditionsTitle": "الضوابط والشروط",
-    "TermsAndConditionsText1": "آخر موعد لتلقي المشاركات سيكون يوم 11 صفر 1446هـ الموافق 15 اغسطس 2024م.",
+    "TermsAndConditionsText1": "آخر موعد لتلقي المشاركات سيكون يوم 27 ربيع الأول 1446هـ الموافق 30 سبتمبر 2024م.",
     "TermsAndConditionsText2": "تقدم جميع المشاركات في صيغة ملفات الكترونية رقمية (PNG) او (JPG) او (JPEG).",
     "TermsAndConditionsText3": "يسمح المشاركة بعدد 4 صور كحد أعلى لكل مشترك.",
     "TermsAndConditionsText4": "يمكن إدخال مؤثرات على الصور المشاركة على ان لا تتجاوز 20%.",
@@ -79,5 +79,12 @@
   },
   "HeaderSlogan": {
     "slogan": "صنـاعـــــــة وحيـــــــاة"
+  },
+  "stripe": {
+    "startsAt": "تبدا المسابقة بتاريخ 28 صفر ",
+    "endsAt": "اخر موعد لاستقبال المشاركات 27 ربيع الأول",
+    "currency": "ر.س",
+    "prizeAmount": "45000",
+    "prizeSubText": "إجمالي جوائز المسابقة"
   }
 }

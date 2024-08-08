@@ -2,12 +2,12 @@
   "HomePage": {
     "pageTitle": "Environmental Photography Competition",
     "title": "Environmental Photography Competition 2024",
-    "day": "15",
-    "month": "Aug",
+    "day": "1",
+    "month": "Sep",
     "from": "From",
-    "starting": "2024 August 15",
+    "starting": "2024 September 1",
     "to": "To",
-    "ending": "2024 September 15",
+    "ending": "2024 September 30",
     "citiesCoveredTitle": "In These Cites",
     "city": "Yanbu Industrial",
     "CompDetailsTitle": "Competition Details",
@@ -21,7 +21,7 @@
     "CompCategoriesTextSub4": "Environmental Conservation",
     "CompCategoriesTextSub5": "All areas associated with the environment",
     "TermsAndConditionsTitle": "Terms and Conditions",
-    "TermsAndConditionsText1": "The competition will start on 15 of August 2024 and end on 15 September 2024.",
+    "TermsAndConditionsText1": "The competition will start on 1 of September 2024 and end on 30 September 2024.",
     "TermsAndConditionsText2": "All contribution must be submitted in (JEPG) or (JPG) or (PNG) format.",
     "TermsAndConditionsText3": "Total contribution is not exceeding 4 photos.",
     "TermsAndConditionsText4": "Editing, Photoshop and tuning is permitted, on the condition it doesn't exceed 20%.",
@@ -85,5 +85,12 @@
     "nameType": "Full name is not valid",
     "emailEmpty": "Email cannot be empty",
     "nameEmpty": "Full name cannot be empty"
+  },
+  "stripe": {
+    "startsAt": "The competition starts by 1 Sep",
+    "endsAt": "The last day for the competition is 30 Sep",
+    "currency": "SAR",
+    "prizeAmount": "45000",
+    "prizeSubText": "Total competition prizes"
   }
 }
