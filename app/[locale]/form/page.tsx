@@ -80,7 +80,7 @@ export default function Form() {
     } = useForm<Inputs>()
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
-
+/*
         uppy.on("complete", async (result) => {
             const imageObject = result.successful;
             const form = new FormData();
@@ -174,8 +174,8 @@ try {
                 }
  */
 
-        //setPopUpDisplay("flex");
-        await uppy.upload();
+        setPopUpDisplay("flex");
+       //await uppy.upload();
 
     }
 

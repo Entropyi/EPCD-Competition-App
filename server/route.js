@@ -1,3 +1,4 @@
+/*
 const {Server} = require("@tus/server")
 const {FileStore} = require("@tus/file-store")
 
@@ -15,3 +16,5 @@ const server = new Server({
 
 
 server.listen({host, port})
+
+*/

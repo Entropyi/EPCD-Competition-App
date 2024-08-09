@@ -33,7 +33,7 @@ export default function Sponsor() {
                     <div className={styles.rcLogoContainer}>
                         <Image alt={"Rcyc logo"} src={"/RCJY Vertical Lockup.svg"}
                                className={styles.rcycLogoOrg} width={150} height={120}></Image>
-                        <div className={styles.orgiTextContainer}>
+                        <div className={styles.orgTextContainer}>
                             <p className={styles.orgiText}>{translations("Organizer")}</p>
                         </div>
                     </div>
@@ -43,15 +43,15 @@ export default function Sponsor() {
                     <div className={styles.prizeContainer}>
                         <div className={styles.stripeEffectContainer}>
                             <div className={styles.squareContainer}>
-                                <p className={`${styles.squareText} ${styles.textSepreator}`}>{stripeTranslations("startsAt")}</p>
-                                <p className={styles.squareText}>{stripeTranslations("endsAt")}</p>
+                                <p className={`${styles.squareText} ${styles.textSeparator} ${styles.mobileBoxStyle}`}>{stripeTranslations("startsAt")}</p>
+                                <p className={`${styles.squareText} ${styles.mobileBoxStyle}`}>{stripeTranslations("endsAt")}</p>
                             </div>
-                            <div className={styles.sideTextContianer}>
-                                <div className={styles.prizeTextContianer}>
+                            <div className={styles.sideTextContainer}>
+                                <div className={styles.prizeTextContainer}>
                                     <p className={styles.prizeText}>{stripeTranslations("prizeAmount")}</p>
                                     <p className={styles.currencyText}>{stripeTranslations("currency")}</p>
                                 </div>
-                                <div className={styles.subTextContianer}>
+                                <div className={styles.subTextContainer}>
                                     <p className={styles.subText}>{stripeTranslations("prizeSubText")}</p>
                                 </div>
                             </div>

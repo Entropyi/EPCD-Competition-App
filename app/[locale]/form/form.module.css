@@ -270,6 +270,10 @@
         height: 100%;
         font-size: 1rem;
     }
+
+    .formSubLabel{
+        font-size: 0.7em;
+    }
 }
 
 @media (min-width: 375px ) and (max-width: 424px) {

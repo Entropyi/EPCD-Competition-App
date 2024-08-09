@@ -7,7 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Form {
+model Request {
   id            Int     @id @default(autoincrement())
   fullName      String
   email         String  @unique

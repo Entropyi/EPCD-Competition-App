@@ -19,6 +19,10 @@ time, mark, audio, video {
     vertical-align: baseline;
     user-select: none;
 }
+
+.html{
+    overflow: hidden;
+}
 :root {
     --th-Primary: #052976;
     --th-secondary: #8142ff;
