@@ -6,8 +6,6 @@ import Link from "next/link";
 
 export default function Introduction() {
     const translations = useTranslations("HomePage");
-    const formTranslations = useTranslations("FormPage");
-
     const locale = useLocale();
 
     return (
@@ -27,7 +25,6 @@ export default function Introduction() {
                     </div>
                     <p className={styles.detailsTitleText}>{translations('CompDetailsTitle')}</p>
                 </div>
-
                 <div className={styles.introTitleContainer}>
                     <div className={styles.detailsSvgContainer}>
                         <Image
@@ -117,8 +114,6 @@ export default function Introduction() {
                     </Link>
                 </p>
             </div>
-
-
         </div>
     )
 }

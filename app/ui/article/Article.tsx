@@ -1,6 +1,9 @@
+"use client"
+
 import styles from "@/app/ui/article/article.module.css";
 import Image from "next/image";
 import {useTranslations} from 'next-intl';
+import MyComponent from "@/app/ui/confetti/script";
 
 export default function Article() {
     const translations = useTranslations("HomePage");
@@ -95,6 +98,9 @@ export default function Article() {
                 </div>
 
             </div>
+
+            <MyComponent  // @ts-ignore
+                particleCount={1000} force={0.3}/>
 
         </>
     )

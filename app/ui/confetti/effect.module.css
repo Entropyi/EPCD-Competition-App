@@ -1,0 +1,25 @@
+.button {
+    background-color: transparent;
+    padding: 5px;
+    margin-top: 10px;
+    color: var(--secondary-6);
+    border-color: 1px solid var(--secondary-6);
+    border-radius: 5px;
+    font-family: Font-Medium;
+}
+
+.buttonRoot {
+    background-color: var(--white);
+    display: flex;
+    justify-content: center;
+}
+
+@media (min-width: 0 ) and (max-width: 765px) {
+    .button {
+        display: none;
+    }
+
+    .buttonRoot {
+        display: none;
+    }
+}
