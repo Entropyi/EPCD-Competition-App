@@ -5,41 +5,11 @@ import {useTranslations} from 'next-intl';
 import {useForm, SubmitHandler} from "react-hook-form"
 import Image from "next/image";
 
-import React, {useState} from "react";
-import Uppy from '@uppy/core'
-import Arabic from '@uppy/locales/lib/ar_SA';
-import English from '@uppy/locales/lib/en_US';
-import {Dashboard, useUppyState} from '@uppy/react'
-import Tus from '@uppy/tus';
-
-import '@uppy/core/dist/style.css'
-import '@uppy/dashboard/dist/style.css'
-import '@uppy/drag-drop/dist/style.css'
-import '@uppy/file-input/dist/style.css'
-import '@uppy/progress-bar/dist/style.css'
+import {useState} from "react";
 import {useRouter} from "next/navigation";
 import {useLocale} from "next-intl";
 
-function createUppy(locale: any) {
-    return new Uppy({
-        locale: locale,
-        restrictions: {
-            maxNumberOfFiles: 4,
-            //allowedFileTypes: ['image/png', 'image/jpeg', 'image/jpe'],
-            maxTotalFileSize: 4 * 1024 * 1024 * 1024,
-        },
-        autoProceed: false,
-    })
-        .use(Tus, {endpoint: 'http://127.0.0.1:1080'});
-}
 
-function getCurrentLocale() {
-    if (useLocale() == "ar") {
-        return Arabic;
-    } else {
-        return English;
-    }
-}
 
 export default function Form() {
 
@@ -52,15 +22,6 @@ export default function Form() {
 
     const router = useRouter();
     const locale = useLocale();
-
-    const [uppy] = React.useState(createUppy(getCurrentLocale()))
-    const fileCount = useUppyState(
-        uppy,
-        (state) => Object.keys(state.files).length,
-    )
-    const totalProgress = useUppyState(uppy, (state) => state.totalProgress)
-    const plugins = useUppyState(uppy, (state) => state.plugins)
-
 
     type Inputs = {
         fullName: string,
@@ -82,47 +43,12 @@ export default function Form() {
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
 
+        const response = await fetch(`http://localhost:3000/api/verification?email=${data.email}&number=${data.phoneNumber}`, {
+            method: 'GET',
+        })
 
-        uppy.on("complete", async (result) => {
-            const imageObject = result.successful;
-            const form = new FormData();
-            let imageUrl: string = "";
-
-            imageObject?.forEach((file) => {
-                imageUrl += file.uploadURL;
-                imageUrl += ", ";
-            })
-
-            form.append('fullName', data.fullName)
-            form.append('email', data.email)
-            form.append('age', data.age.toString())
-            form.append('phoneNumber', data.phoneNumber.toString())
-
-            form.append('imageUrl', String(imageUrl));
-            form.append('photoTitle', data.photoTitle)
-            form.append('comments', data.comments)
-            form.append('photoLocation', data.photoLocation)
-            form.append('photoPurpose', data.photoPurpose)
-
-
-            const response = await fetch('../api', {
-                method: 'POST',
-                body: form,
-            })
-
-            if (response.ok) {
-                console.log(await response.json())
-                router.replace(`/${locale}/success`);
-            } else {
-                setErrorDisplay("flex");
-                const data  = await response.json();
-
-                setErrorValue(data.msg)
-            }
-
-        });
-
-        await uppy.upload();
+        const responseData = await response.json();
+        console.log(responseData);
 
     }
 
@@ -167,22 +93,10 @@ export default function Form() {
                         <form className={styles.formElements} onSubmit={handleSubmit(onSubmit)} method={"POST"}>
 
                             <div className={styles.formTitleContainer}>
-                                <div className={styles.formTitleText}>{formTranslations("title")}</div>
+                                <div className={styles.formTitleText}>{formTranslations("loginTitle")}</div>
                             </div>
 
                             <div className={styles.formSubElements}>
-                                <label className={styles.formLabel}
-                                       htmlFor="">{formTranslations("FullName")} </label>
-                                <input className={changeInputStyleWhenError("fullName")} type="text"
-                                       id="full-name" {...register("fullName",
-                                    {
-                                        required: `${errorTranslation("fullNameRequired")}`
-                                    })}
-                                       aria-invalid={errors.fullName ? "true" : "false"}
-                                />
-                                {errors.fullName && <p role="alert"
-                                                       className={styles.formInlineErrorText}>{errors.fullName.message}</p>}
-
 
                                 <div className={styles.formGroupOne}>
 
@@ -202,14 +116,6 @@ export default function Form() {
                                                             className={styles.formInlineErrorText}>{errors.email.message}</p>}
                                     </div>
 
-                                    <div className={styles.ageConatiner}>
-                                        <label className={styles.formLabel}
-                                               htmlFor="">{formTranslations("Age")}</label>
-                                        <input className={styles.formInput} type="text"
-                                               id="age" {...register("age")}/>
-                                        {errors.age && <p role="alert"
-                                                          className={styles.formInlineErrorText}>{errors.age.message}</p>}
-                                    </div>
 
                                 </div>
 
@@ -232,40 +138,7 @@ export default function Form() {
                                                               className={styles.formInlineErrorText}>{errors.phoneNumber.message}</p>}
                                 </div>
 
-                                <Dashboard uppy={uppy} hideUploadButton={true}/>
 
-                                <div className={styles.formGroups}>
-                                    <label className={styles.formLabel}
-                                           htmlFor="">{formTranslations("PhotoTitle")}</label>
-                                    <input className={styles.formInput} type="text"
-                                           id="photo-title" {...register("photoTitle")}/>
-                                </div>
-
-                                <div className={styles.formGroups}>
-                                    <label className={styles.formLabel}
-                                           htmlFor="">{formTranslations("Comments")}</label>
-                                    <textarea className={styles.formInput} id="comments" {...register("comments")}/>
-                                </div>
-
-                                <div className={styles.formGroups}>
-                                    <label className={styles.formLabel}
-                                           htmlFor="">{formTranslations("PhotoLocation")}</label>
-                                    <label className={styles.formSubLabel}
-                                           htmlFor="">{formTranslations("PhotoLocationRequirements")}</label>
-
-                                    <input className={changeInputStyleWhenError("photoLocation")} type="text"
-                                           id="photo-location" {...register("photoLocation", {required: `${errorTranslation("locationRequired")}`})} />
-                                    {errors.photoLocation && <p role="alert"
-                                                                className={styles.formInlineErrorText}>{errors.photoLocation.message}</p>}
-
-                                </div>
-
-                                <div className={styles.formGroups}>
-                                    <label className={styles.formLabel}
-                                           htmlFor="">{formTranslations("Photo Purpose")}</label>
-                                    <input className={styles.formInput} type="text" id="photo-purpose"
-                                           {...register("photoPurpose")}/>
-                                </div>
 
                                 <div className={styles.formTermsAgreement}>
                                     <input type="checkbox" className={styles.formCheckBox}

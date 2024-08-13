@@ -54,7 +54,8 @@
     "Photo Purpose": "Photo Purpose",
     "TermsAgreement": "Checking the box is an acknowledgment that you have read the terms of the competition and acknowledges your acceptance of them*",
     "Submit": "Submit",
-    "popUpMessage": "Sorry this application is under development"
+    "popUpMessage": "Sorry this application is under development",
+    "loginTitle": "Register"
   },
   "formErrorMessages": {
     "fullNameRequired": "Full name is required",

@@ -22,6 +22,7 @@
     "@uppy/react": "^4.0.1",
     "@uppy/tus": "^4.0.0",
     "clsx": "^2.1.1",
+    "express": "^4.19.2",
     "fastify": "^4.28.1",
     "framer-motion": "^11.3.24",
     "mime": "^4.0.4",
