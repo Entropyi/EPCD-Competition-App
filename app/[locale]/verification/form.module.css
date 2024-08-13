@@ -3,13 +3,13 @@
     height: 100%;
     background: var(--white);
     padding-top: 50px;
-    padding-bottom: 120px;
+    padding-bottom: 190px;
 }
 
 .formContainer {
     background: var(--white);
     box-shadow: 0 4px 16px rgba(121, 125, 129, 0.25);
-    width: 30%;
+    width: 28%;
     padding: 30px;
     margin-inline: auto;
     border-radius: 1rem;
