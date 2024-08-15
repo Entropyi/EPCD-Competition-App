@@ -1,36 +1,40 @@
 "use client"
 
 import styles from "./form.module.css";
-import {useTranslations} from 'next-intl';
+import {useTranslations} from "next-intl";
 import {useForm, SubmitHandler} from "react-hook-form"
 import Image from "next/image";
 
 import React, {useState} from "react";
-import Uppy from '@uppy/core'
-import Arabic from '@uppy/locales/lib/ar_SA';
-import English from '@uppy/locales/lib/en_US';
-import {Dashboard, useUppyState} from '@uppy/react'
-import Tus from '@uppy/tus';
+import Uppy from "@uppy/core"
+import Arabic from "@uppy/locales/lib/ar_SA";
+import English from "@uppy/locales/lib/en_US";
+import {Dashboard, useUppyState} from "@uppy/react"
+import Tus from "@uppy/tus";
 
-import '@uppy/core/dist/style.css'
-import '@uppy/dashboard/dist/style.css'
-import '@uppy/drag-drop/dist/style.css'
-import '@uppy/file-input/dist/style.css'
-import '@uppy/progress-bar/dist/style.css'
+import "@uppy/core/dist/style.css"
+import "@uppy/dashboard/dist/style.css"
+import "@uppy/drag-drop/dist/style.css"
+import "@uppy/file-input/dist/style.css"
+import "@uppy/progress-bar/dist/style.css"
 import {useRouter} from "next/navigation";
 import {useLocale} from "next-intl";
+import {useCookies} from "next-client-cookies";
 
 function createUppy(locale: any) {
     return new Uppy({
         locale: locale,
         restrictions: {
             maxNumberOfFiles: 4,
-            //allowedFileTypes: ['image/png', 'image/jpeg', 'image/jpe'],
+            allowedFileTypes: ["image/png", "image/jpeg", "image/jpe"],
             maxTotalFileSize: 4 * 1024 * 1024 * 1024,
         },
         autoProceed: false,
     })
-        .use(Tus, {endpoint: 'http://127.0.0.1:1080'});
+        .use(Tus, {
+            endpoint: "http://127.0.0.1:1080",
+            chunkSize: 1024 * 1024
+        });
 }
 
 function getCurrentLocale() {
@@ -52,14 +56,20 @@ export default function Form() {
 
     const router = useRouter();
     const locale = useLocale();
+    const cookieStore = useCookies();
+
+    const authorization = cookieStore.get("authorized");
+
+    if (!authorization) {
+        router.back();
+    }
+
 
     const [uppy] = React.useState(createUppy(getCurrentLocale()))
     const fileCount = useUppyState(
         uppy,
         (state) => Object.keys(state.files).length,
     )
-    const totalProgress = useUppyState(uppy, (state) => state.totalProgress)
-    const plugins = useUppyState(uppy, (state) => state.plugins)
 
 
     type Inputs = {
@@ -82,48 +92,70 @@ export default function Form() {
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
 
+        if (fileCount < 1) {
+            setErrorDisplay("flex");
+            setErrorValue(errorTranslation("imageRequired"));
+            window.scrollTo({top: 0, behavior: "smooth"});
 
-        uppy.on("complete", async (result) => {
-            const imageObject = result.successful;
-            const form = new FormData();
-            let imageUrl: string = "";
+        } else {
 
-            imageObject?.forEach((file) => {
-                imageUrl += file.uploadURL;
-                imageUrl += ", ";
+
+            const response = await fetch(`../api/validations?email=${data.email}&number=${data.phoneNumber}`, {
+                method: "GET",
             })
 
-            form.append('fullName', data.fullName)
-            form.append('email', data.email)
-            form.append('age', data.age.toString())
-            form.append('phoneNumber', data.phoneNumber.toString())
+            const responseData = await response.json();
 
-            form.append('imageUrl', String(imageUrl));
-            form.append('photoTitle', data.photoTitle)
-            form.append('comments', data.comments)
-            form.append('photoLocation', data.photoLocation)
-            form.append('photoPurpose', data.photoPurpose)
+            if (responseData.message == "user is new") {
+                uppy.on("complete", async (result) => {
+                    const imageObject = result.successful;
+                    const form = new FormData();
+                    let imageUrl: string = "";
+
+                    imageObject?.forEach((file) => {
+                        imageUrl += file.uploadURL;
+                        console.log(`hey ${file.uploadURL}`)
+                        imageUrl += ",";
+                    })
+
+                    form.append("fullName", data.fullName)
+                    form.append("email", data.email)
+                    form.append("age", data.age.toString())
+                    form.append("phoneNumber", data.phoneNumber.toString())
+
+                    form.append("imageUrl", String(imageUrl));
+                    form.append("photoTitle", data.photoTitle)
+                    form.append("comments", data.comments)
+                    form.append("photoLocation", data.photoLocation)
+                    form.append("photoPurpose", data.photoPurpose)
 
 
-            const response = await fetch('../api', {
-                method: 'POST',
-                body: form,
-            })
+                    const response = await fetch("../api", {
+                        method: "POST",
+                        body: form,
+                    })
 
-            if (response.ok) {
-                console.log(await response.json())
-                router.replace(`/${locale}/success`);
+                    if (response.ok) {
+                        console.log(await response.json())
+                        router.replace(`/${locale}/success`);
+                    } else {
+                        setErrorDisplay("flex");
+                        const data = await response.json();
+                        setErrorValue(data.msg);
+                        window.scrollTo({top: 0, behavior: "smooth"});
+
+
+                    }
+
+                });
+                await uppy.upload();
             } else {
                 setErrorDisplay("flex");
-                const data  = await response.json();
+                setErrorValue(errorTranslation("duplicate"));
+                window.scrollTo({top: 0, behavior: "smooth"});
 
-                setErrorValue(data.msg)
             }
-
-        });
-
-        await uppy.upload();
-
+        }
     }
 
 
@@ -145,27 +177,26 @@ export default function Form() {
     return (
         <>
             <div className={styles.formSuperContainer}>
-                <div className={styles.alertSuperContainer}>
-                    <div className={styles.alertContainer} style={{display: ErrorDisplay}}>
-                        <div className={styles.alertSvgContainer}>
-                            <Image
-                                className={styles.alertSvg}
-                                src={"/alert.svg"}
-                                alt={"error"}
-                                width={30}
-                                height={30}>
-                            </Image>
-                        </div>
-                        <div className={styles.alertTextContainer}>
-                            <p className={styles.alertText}>{ErrorValue}</p>
-                        </div>
-
-                    </div>
-                </div>
                 <div className={styles.formContainer}>
                     <div className={styles.formElementsContainer}>
                         <form className={styles.formElements} onSubmit={handleSubmit(onSubmit)} method={"POST"}>
+                            <div className={styles.alertSuperContainer}>
+                                <div className={styles.alertContainer} style={{display: ErrorDisplay}}>
+                                    <div className={styles.alertSvgContainer}>
+                                        <Image
+                                            className={styles.alertSvg}
+                                            src={"/alert.svg"}
+                                            alt={"error"}
+                                            width={30}
+                                            height={30}>
+                                        </Image>
+                                    </div>
+                                    <div className={styles.alertTextContainer}>
+                                        <p className={styles.alertText}>{ErrorValue}</p>
+                                    </div>
 
+                                </div>
+                            </div>
                             <div className={styles.formTitleContainer}>
                                 <div className={styles.formTitleText}>{formTranslations("title")}</div>
                             </div>
@@ -226,6 +257,10 @@ export default function Form() {
                                         maxLength: {
                                             value: 10,
                                             message: `${errorTranslation("phoneNumberLargerThanMax")}`,
+                                        },
+                                        pattern: {
+                                            value: /^(05)[0-9]{8}$/,
+                                            message: `${errorTranslation("phoneNumberInvalid")}`,
                                         }
                                     })}/>
                                     {errors.phoneNumber && <p role="alert"
@@ -254,7 +289,15 @@ export default function Form() {
                                            htmlFor="">{formTranslations("PhotoLocationRequirements")}</label>
 
                                     <input className={changeInputStyleWhenError("photoLocation")} type="text"
-                                           id="photo-location" {...register("photoLocation", {required: `${errorTranslation("locationRequired")}`})} />
+                                           id="photo-location" {...register("photoLocation",
+                                        {
+                                            required: `${errorTranslation("locationRequired")}`,
+                                            pattern: {
+                                                value: /^(https:\/\/)?(www\.)?(maps\.app\.goo\.gl\/[a-zA-Z0-9_-]+)(\?[a-zA-Z0-9_=&#]*)?$/,
+                                                message: `${errorTranslation("locationInvalid")}`,
+                                            }
+                                        })}
+                                    />
                                     {errors.photoLocation && <p role="alert"
                                                                 className={styles.formInlineErrorText}>{errors.photoLocation.message}</p>}
 

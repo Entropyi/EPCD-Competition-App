@@ -1,7 +1,7 @@
 "use client"
 import styles from "@/app/ui/sponser/sponsor.module.css";
 import Image from "next/image";
-import {useLocale, useTranslations} from "next-intl";
+import {useTranslations} from "next-intl";
 
 
 export default function Sponsor() {

@@ -1,10 +1,10 @@
-import type {Metadata} from "next";
 import {Inter} from "next/font/google";
 import {getMessages, getTranslations, unstable_setRequestLocale} from 'next-intl/server';
 import {NextIntlClientProvider} from 'next-intl';
 import "../globals.css";
 import Header from "@/app/ui/header/Header";
 import Footer from "@/app/ui/footer/Footer";
+import { CookiesProvider } from 'next-client-cookies/server';
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -13,8 +13,8 @@ type Props = {
 }
 
 export async function generateMetadata({
-                                           params: {locale}
-                                       }: Omit<Props, 'children'>) {
+    params: {locale}
+    }: Omit<Props, 'children'>) {
     const t = await getTranslations({locale, namespace: 'LocaleLayout'});
 
     return {
@@ -23,9 +23,9 @@ export async function generateMetadata({
 }
 
 export default async function LocaleLayout({
-                                               children,
-                                               params: {locale}
-                                           }: {
+   children,
+   params: {locale}
+    }: {
     children: React.ReactNode;
     params: { locale: string };
 }) {
@@ -36,9 +36,11 @@ export default async function LocaleLayout({
         <html lang={locale}>
         <body>
         <Header/>
+        <CookiesProvider>
         <NextIntlClientProvider messages={messages}>
             {children}
         </NextIntlClientProvider>
+        </CookiesProvider>
         <Footer/>
         </body>
         </html>

@@ -8,14 +8,25 @@ datasource db {
 }
 
 model Request {
-  id            Int     @id @default(autoincrement())
-  fullName      String
-  email         String  @unique
-  age           Int     @default(0)
-  phoneNumber   Int     @unique
-  imageUrl      String
-  photoTitle    String? @default("nill")
-  comment       String? @default("nill")
-  photoLocation String
-  photoPurpose  String? @default("nill")
+  id                  Int                   @id @default(autoincrement())
+  fullName            String
+  email               String                @unique
+  age                 Int                   @default(0)
+  phoneNumber         Int                   @unique
+  imageUrl            String
+  photoTitle          String?               @default("nill")
+  comment             String?               @default("nill")
+  photoLocation       String
+  photoPurpose        String?               @default("nill")
+  AttachmetnsMetaData AttachmetnsMetaData[]
+}
+
+model AttachmetnsMetaData {
+  id            Int      @id @default(autoincrement())
+  fileId        Int      @unique
+  Request       Request  @relation(fields: [requestEmail], references: [email])
+  requestEmail  String
+  fileType      String
+  size          Int
+  creation_date DateTime
 }

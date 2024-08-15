@@ -82,18 +82,20 @@ export async function POST(req: NextRequest, res: NextResponse) {
                 }
             })
         } catch (e) {
+            // @ts-ignore
             if (e?.code == "P2002") {
-                return NextResponse.json({success: false, msg: "unique"}, {status: 409});
+                return NextResponse.json({ success: false, msg: "unique" }, { status: 409 });
 
             } else {
-                return NextResponse.json({success: false, msg: e?.code}, {status: 409});
+                // @ts-ignore
+                return NextResponse.json({ success: false, msg: e.code }, { status: 409 });
             }
         }
 
-        return NextResponse.json({success: true, msg: "Successfully uploaded"})
+        return NextResponse.json({ success: true, msg: "Successfully uploaded" });
 
     } catch (e) {
-        return NextResponse.json({success: false, msg: e}) , {status:500};
+        return NextResponse.json({ success: false, msg: e?.toString() }, { status: 500 });
     }
 
 

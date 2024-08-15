@@ -108,7 +108,7 @@ export default function Introduction() {
 
                 <p className={styles.introductionText}>
                     <Link
-                        href={`/${locale}/form`}>
+                        href={`/${locale}/verification`}>
                         <input type="submit" className={styles.formButton}
                                value={`${translations("HowToParticipateText")}${translations('HowToParticipateTextLink')}`}/>
                     </Link>

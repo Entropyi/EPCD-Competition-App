@@ -23,7 +23,7 @@
     "TermsAndConditionsTitle": "Terms and Conditions",
     "TermsAndConditionsText1": "The competition will start on 1 of September 2024 and end on 30 September 2024.",
     "TermsAndConditionsText2": "All contribution must be submitted in (JEPG) or (JPG) or (PNG) format.",
-    "TermsAndConditionsText3": "Total contribution is not exceeding 4 photos.",
+    "TermsAndConditionsText3": "Total contribution is not exceeding 4 photos max size for all images shall not exceed 4GB",
     "TermsAndConditionsText4": "Editing, Photoshop and tuning is permitted, on the condition it doesn't exceed 20%.",
     "TermsAndConditionsText5": "Photos must be from Yanbu Industrial city.",
     "TermsAndConditionsText6": "Photos can have a title and a description to to clarify the purpose/the message that you want pass of your photo.",
@@ -69,7 +69,10 @@
     "phoneNumberLargerThanMax": "Phone number must be 10 digits for example : 0500000000",
     "imageRequired": "Image is required",
     "locationRequired": "The location of the image is required",
-    "termsAgreementRequired": "Agreeing to the terms is required"
+    "locationInvalid": "Google's map link is not valid",
+    "phoneNumberInvalid": "Phone number is not valid",
+    "termsAgreementRequired": "Agreeing to the terms is required",
+    "duplicate": "You already participated"
   },
   "SuccessPage": {
     "title": "Thank you for participating",

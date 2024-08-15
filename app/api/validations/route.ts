@@ -2,6 +2,7 @@ import {NextRequest, NextResponse} from "next/server";
 import {PrismaClient} from '@prisma/client'
 import * as v from "valibot";
 
+const prisma = new PrismaClient()
 
 export async function GET(req: NextRequest, res: NextResponse) {
     const reqUrl = new URL(req.url);
@@ -11,8 +12,8 @@ export async function GET(req: NextRequest, res: NextResponse) {
         phoneNumber: v.pipe(v.string(), v.maxLength(10), v.minLength(10), v.nonEmpty())
     })
 
-    try{
-        const paramsDara = v.parse(
+    try {
+        const paramsData = v.parse(
             paramsSchema,
             {
                 email: reqUrl.searchParams.get("email"),
@@ -20,10 +21,35 @@ export async function GET(req: NextRequest, res: NextResponse) {
             }
         )
 
-        return NextResponse.json({success: true, email: paramsDara.email});
+        const email = await prisma.form.count({
+            where: {email: paramsData.email},
+        })
 
-    } catch (e){
-        return NextResponse.json({success: false, err:e.[0].kind} , {status:500});
+
+        const number = await prisma.form.count({
+            where: {email: paramsData.phoneNumber},
+        })
+
+
+        if (email == 0 && number == 0) {
+            const response = NextResponse.json({message: "user is new"})
+            response.cookies.set("authorized", "true")
+            return response
+        } else {
+            return NextResponse.json({error: "used error"}, {status: 500});
+        }
+
+
+    } catch (e) {
+        // @ts-ignore
+        if (e.issues[0].type == "email") {
+            return NextResponse.json({err: "email invalid"}, {status: 500});
+            // @ts-ignore
+        } else if (e.issues[0].path[0].key == "phoneNumber") {
+            return NextResponse.json({err: "phoneNumber invalid"}, {status: 500});
+        } else {
+            return NextResponse.json({err: e}, {status: 500});
+        }
 
     }
 

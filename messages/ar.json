@@ -23,7 +23,7 @@
     "TermsAndConditionsTitle": "الضوابط والشروط",
     "TermsAndConditionsText1": "آخر موعد لتلقي المشاركات سيكون يوم 27 ربيع الأول 1446هـ الموافق 30 سبتمبر 2024م.",
     "TermsAndConditionsText2": "تقدم جميع المشاركات في صيغة ملفات الكترونية رقمية (PNG) او (JPG) او (JPEG).",
-    "TermsAndConditionsText3": "يسمح المشاركة بعدد 4 صور كحد أعلى لكل مشترك.",
+    "TermsAndConditionsText3": "يسمح المشاركة بعدد 4 صور كحد أعلى لكل مشترك بشرط أن لا يتجاوز مجموع حجم الصور 4GB.",
     "TermsAndConditionsText4": "يمكن إدخال مؤثرات على الصور المشاركة على ان لا تتجاوز 20%.",
     "TermsAndConditionsText5": "يجب أن تكون الصور من بيئة مدينة ينبع الصناعية.",
     "TermsAndConditionsText6": "المشاركة تعني إقرار المتسابق بملكيته للصورة أو الصور المشترك بها ويقر بالسماح للهيئة الملكية بالجبيل وينبع باستخدامها.",
@@ -69,7 +69,10 @@
     "phoneNumberLargerThanMax": "رقم الجوال يجب ان يكون 10 ارقام مثال 0500000000",
     "imageRequired": "الصورة مطلوبة",
     "locationRequired": "موقع التفاط الصورة مطلوب",
-    "termsAgreementRequired": "قبول الشروط والاحكام مطلوب"
+    "locationInvalid": "رابط خرائط قوقل غير صالح تأكد من صحه الرابط ",
+    "phoneNumberInvalid": "رقم الجوال غير صحيح ",
+    "termsAgreementRequired": "قبول الشروط والاحكام مطلوب",
+    "duplicate": "لا يمكنك المشاركة أكثر من مره"
   },
   "SuccessPage": {
     "title": "شكرا لك على المشاركة",

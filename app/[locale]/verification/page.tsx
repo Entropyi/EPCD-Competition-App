@@ -8,9 +8,7 @@ import Image from "next/image";
 import {useState} from "react";
 import {useRouter} from "next/navigation";
 import {useLocale} from "next-intl";
-
-
-
+import { useCookies } from 'next-client-cookies';
 export default function Form() {
 
     const formTranslations = useTranslations("FormPage");
@@ -19,9 +17,9 @@ export default function Form() {
     const [ErrorDisplay, setErrorDisplay] = useState<string>("none");
     const [ErrorValue, setErrorValue] = useState<string>();
 
-
     const router = useRouter();
     const locale = useLocale();
+
 
     type Inputs = {
         fullName: string,
@@ -43,13 +41,18 @@ export default function Form() {
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
 
-        const response = await fetch(`http://localhost:3000/api/verification?email=${data.email}&number=${data.phoneNumber}`, {
+        const response = await fetch(`../api/validations?email=${data.email}&number=${data.phoneNumber}`, {
             method: 'GET',
         })
 
         const responseData = await response.json();
-        console.log(responseData);
 
+        if (responseData.message == "user is new") {
+            router.replace(`/${locale}/form`);
+        } else {
+            setErrorDisplay("flex");
+            setErrorValue(errorTranslation("duplicate"));
+        }
     }
 
 
@@ -71,27 +74,26 @@ export default function Form() {
     return (
         <>
             <div className={styles.formSuperContainer}>
-                <div className={styles.alertSuperContainer}>
-                    <div className={styles.alertContainer} style={{display: ErrorDisplay}}>
-                        <div className={styles.alertSvgContainer}>
-                            <Image
-                                className={styles.alertSvg}
-                                src={"/alert.svg"}
-                                alt={"error"}
-                                width={30}
-                                height={30}>
-                            </Image>
-                        </div>
-                        <div className={styles.alertTextContainer}>
-                            <p className={styles.alertText}>{ErrorValue}</p>
-                        </div>
-
-                    </div>
-                </div>
                 <div className={styles.formContainer}>
                     <div className={styles.formElementsContainer}>
                         <form className={styles.formElements} onSubmit={handleSubmit(onSubmit)} method={"POST"}>
+                            <div className={styles.alertSuperContainer}>
+                                <div className={styles.alertContainer} style={{display: ErrorDisplay}}>
+                                    <div className={styles.alertSvgContainer}>
+                                        <Image
+                                            className={styles.alertSvg}
+                                            src={"/alert.svg"}
+                                            alt={"error"}
+                                            width={30}
+                                            height={30}>
+                                        </Image>
+                                    </div>
+                                    <div className={styles.alertTextContainer}>
+                                        <p className={styles.alertText}>{ErrorValue}</p>
+                                    </div>
 
+                                </div>
+                            </div>
                             <div className={styles.formTitleContainer}>
                                 <div className={styles.formTitleText}>{formTranslations("loginTitle")}</div>
                             </div>
@@ -137,7 +139,6 @@ export default function Form() {
                                     {errors.phoneNumber && <p role="alert"
                                                               className={styles.formInlineErrorText}>{errors.phoneNumber.message}</p>}
                                 </div>
-
 
 
                                 <div className={styles.formTermsAgreement}>
