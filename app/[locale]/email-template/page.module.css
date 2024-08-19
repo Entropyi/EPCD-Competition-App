@@ -3,24 +3,16 @@
     height: 100%;
     background: var(--white);
     padding-top: 50px;
-    padding-bottom: 130px;
-}
-
-.formSuperContainer:lang(ar) {
-    width: 100%;
-    height: 100%;
-    background: var(--white);
-    padding-top: 50px;
+    padding-bottom: 50px;
 }
 
 .formContainer {
     background: var(--white);
     box-shadow: 0 4px 16px rgba(121, 125, 129, 0.25);
-    width: 28%;
+    width: 30%;
     padding: 30px;
     margin-inline: auto;
     border-radius: 1rem;
-    margin-top: 5%;
 }
 
 .formGroupOne {
@@ -76,13 +68,12 @@
 }
 
 .formTitleText {
-    text-align: center;
     color: var(--font-black);
     font-size: 1.5em;
     line-height: 1.875rem;
     margin-bottom: 1.5rem;
     font-family: "Font-Bold";
-    font-weight: 800;
+
 }
 
 .formLabel {
@@ -248,7 +239,7 @@
     width: 100%;
     background-color: rgba(240,0,0, 0.40);
     color: white;
-    font-family: "Font-Light";
+    font-family: "font-light";
     font-weight: 600;
     border-radius: 5px;
 
@@ -322,13 +313,11 @@
 @media (min-width: 1024px ) and (max-width: 1438px) {
     .formContainer {
         width: 50%;
-
     }
 }
 
 @media (min-width: 1440px ) and (max-width: 1900px) {
     .formContainer {
-        width: 28%;
-
+        width: 40%;
     }
 }

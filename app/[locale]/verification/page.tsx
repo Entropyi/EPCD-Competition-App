@@ -41,7 +41,7 @@ export default function Form() {
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
 
-        const response = await fetch(`../api/validations?email=${data.email}&number=${data.phoneNumber}`, {
+        const response = await fetch(`../api/validations?email=${data.email}&number=${"0590000000"}`, {
             method: 'GET',
         })
 
@@ -121,24 +121,6 @@ export default function Form() {
 
                                 </div>
 
-                                <div className={styles.formGroups}>
-                                    <label className={styles.formLabel}
-                                           htmlFor="">{formTranslations("PhoneNumber")}</label>
-                                    <input className={changeInputStyleWhenError("phoneNumber")} type="text"
-                                           id="phone-number" {...register("phoneNumber", {
-                                        required: `${errorTranslation("phoneNumberRequired")}`,
-                                        minLength: {
-                                            value: 10,
-                                            message: `${errorTranslation("phoneNumberLessThanMin")}`,
-                                        },
-                                        maxLength: {
-                                            value: 10,
-                                            message: `${errorTranslation("phoneNumberLargerThanMax")}`,
-                                        }
-                                    })}/>
-                                    {errors.phoneNumber && <p role="alert"
-                                                              className={styles.formInlineErrorText}>{errors.phoneNumber.message}</p>}
-                                </div>
 
 
                                 <div className={styles.formTermsAgreement}>
