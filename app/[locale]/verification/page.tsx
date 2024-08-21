@@ -40,7 +40,7 @@ export default function Form() {
     } = useForm<Inputs>()
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
-
+/*
         const response = await fetch(`../api/validations?email=${data.email}&number=${"0590000000"}`, {
             method: 'GET',
         })
@@ -53,6 +53,8 @@ export default function Form() {
             setErrorDisplay("flex");
             setErrorValue(errorTranslation("duplicate"));
         }
+
+ */
     }
 
 

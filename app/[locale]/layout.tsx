@@ -38,11 +38,9 @@ export default async function LocaleLayout({
         <body>
         <Header/>
         <CookiesProvider>
-            <SessionProvider session={session}>
                 <NextIntlClientProvider messages={messages}>
                     {children}
                 </NextIntlClientProvider>
-            </SessionProvider>
         </CookiesProvider>
         <Footer/>
         </body>
