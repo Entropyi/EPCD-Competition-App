@@ -55,7 +55,8 @@
     "TermsAgreement": "الضغط على المربع اقرار بقراءة وقبول شروط المسابقة*",
     "Submit": "إرسال",
     "popUpMessage": "نأسف التطبيق قيد التطوير لايمكن ارسال البيانات الان",
-    "loginTitle": "التسجيل"
+    "loginTitle": "التسجيل",
+    "loginWait": "الرجاء الإنتظار"
   },
   "formErrorMessages": {
     "fullNameRequired": "الاسم الرباعي مطلوب",

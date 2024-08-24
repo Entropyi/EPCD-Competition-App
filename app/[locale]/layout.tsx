@@ -5,7 +5,7 @@ import "../globals.css";
 import Header from "@/app/ui/header/Header";
 import Footer from "@/app/ui/footer/Footer";
 import {CookiesProvider} from 'next-client-cookies/server';
-import {SessionProvider} from "next-auth/react"
+import {NextAuthProvider} from "@/app/lib/providers/authProvider";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -14,7 +14,8 @@ type Props = {
 }
 
 export async function generateMetadata(
-    {params: {locale}
+    {
+        params: {locale}
     }: Omit<Props, 'children'>) {
     const t = await getTranslations({locale, namespace: 'LocaleLayout'});
 
@@ -24,7 +25,7 @@ export async function generateMetadata(
 }
 
 export default async function LocaleLayout({
-   children,
+                                               children,
                                                params: {locale},
                                            }: {
     children: React.ReactNode;
@@ -37,12 +38,14 @@ export default async function LocaleLayout({
         <html lang={locale}>
         <body>
         <Header/>
-        <CookiesProvider>
+        <NextAuthProvider>
+            <CookiesProvider>
                 <NextIntlClientProvider messages={messages}>
                     {children}
                 </NextIntlClientProvider>
-        </CookiesProvider>
-        <Footer/>
+            </CookiesProvider>
+            <Footer/>
+        </NextAuthProvider>
         </body>
         </html>
     );

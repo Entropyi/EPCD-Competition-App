@@ -55,7 +55,8 @@
     "TermsAgreement": "Checking the box is an acknowledgment that you have read the terms of the competition and acknowledges your acceptance of them*",
     "Submit": "Submit",
     "popUpMessage": "Sorry this application is under development",
-    "loginTitle": "Register"
+    "loginTitle": "Register",
+    "loginWait": "Please wait"
   },
   "formErrorMessages": {
     "fullNameRequired": "Full name is required",
@@ -76,7 +77,9 @@
   },
   "SuccessPage": {
     "title": "Thank you for participating",
-    "subText": "you will be contacted soon"
+    "subText": "you will be contacted soon",
+    "titleEmail": "Please check your email",
+    "subTextEmail": "Check your email to login in order for you to participate"
   },
   "LocaleLayout": {
     "title": "Environmental Photography Competition"

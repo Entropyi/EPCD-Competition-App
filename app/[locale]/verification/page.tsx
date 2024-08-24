@@ -8,19 +8,27 @@ import Image from "next/image";
 import {useState} from "react";
 import {useRouter} from "next/navigation";
 import {useLocale} from "next-intl";
-import { useCookies } from 'next-client-cookies';
+import {useCookies} from 'next-client-cookies';
+import {signIn} from "@/app/auth"
+import formAction from "@/app/lib/formAction/action";
+import {RotatingLines} from "react-loader-spinner";
+import { useSession} from "next-auth/react"
+
 export default function Form() {
 
     const formTranslations = useTranslations("FormPage");
     const errorTranslation = useTranslations("formErrorMessages");
     const [popUpDisplay, setPopUpDisplay] = useState<string>("none");
     const [ErrorDisplay, setErrorDisplay] = useState<string>("none");
+    const [spinnerDisplay, setSpinnerDisplay] = useState<string>("none");
+    const [formElementsDisplay, setFormElementsDisplay] = useState<string>("block");
     const [ErrorValue, setErrorValue] = useState<string>();
-
     const router = useRouter();
     const locale = useLocale();
 
+    const session = useSession();
 
+   console.log(session)
     type Inputs = {
         fullName: string,
         email: string,
@@ -40,21 +48,27 @@ export default function Form() {
     } = useForm<Inputs>()
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
-/*
-        const response = await fetch(`../api/validations?email=${data.email}&number=${"0590000000"}`, {
-            method: 'GET',
-        })
+        setSpinnerDisplay("flex");
+        setFormElementsDisplay("none");
 
-        const responseData = await response.json();
+        await formAction(data.email);
 
-        if (responseData.message == "user is new") {
-            router.replace(`/${locale}/form`);
-        } else {
-            setErrorDisplay("flex");
-            setErrorValue(errorTranslation("duplicate"));
-        }
 
- */
+        /*
+                const response = await fetch(`../api/validations?email=${data.email}&number=${"0590000000"}`, {
+                    method: 'GET',
+                })
+
+                const responseData = await response.json();
+
+                if (responseData.message == "user is new") {
+                    router.replace(`/${locale}/form`);
+                } else {
+                    setErrorDisplay("flex");
+                    setErrorValue(errorTranslation("duplicate"));
+                }
+
+         */
     }
 
 
@@ -78,7 +92,21 @@ export default function Form() {
             <div className={styles.formSuperContainer}>
                 <div className={styles.formContainer}>
                     <div className={styles.formElementsContainer}>
-                        <form className={styles.formElements} onSubmit={handleSubmit(onSubmit)} method={"POST"}>
+                        <div className={styles.emailWaitContainer}  style={{display: spinnerDisplay}}>
+                            <div className={styles.formTitleText}>{formTranslations("loginWait")}</div>
+                            <div className={styles.spinner}>
+                                <RotatingLines
+                                    strokeColor="grey"
+                                    strokeWidth="5"
+                                    animationDuration="0.75"
+                                    width="96"
+                                    visible={true}
+                                />
+                            </div>
+                        </div>
+
+                        <form className={styles.formElements} onSubmit={handleSubmit(onSubmit)} method={"POST"}
+                              style={{display: formElementsDisplay}}>
                             <div className={styles.alertSuperContainer}>
                                 <div className={styles.alertContainer} style={{display: ErrorDisplay}}>
                                     <div className={styles.alertSvgContainer}>
@@ -122,7 +150,6 @@ export default function Form() {
 
 
                                 </div>
-
 
 
                                 <div className={styles.formTermsAgreement}>
