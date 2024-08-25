@@ -4,13 +4,13 @@ import fs from "fs";
 import {resolve} from "path";
 import {readFileSync} from "fs";
 import {fileTypeFromFile} from "file-type";
+import path from "node:path";
 
 const host = "127.0.0.1";
 const port = 1080;
 
 const maxSizeInBytes = 4 * 1024 * 1024 * 1024;
 const allowedMimeTypes = ["image/jpeg", "image/png", "image/jpg"];
-
 
 const server = new Server({
     path: "/uploads",
@@ -29,21 +29,25 @@ const server = new Server({
 
             const mime = await fileTypeFromFile(`../../temp/${upload.id}`);
 
+            console.log(mime.mime);
+
             if (allowedMimeTypes.includes(mime.mime)) {
+                console.log("if is true")
                 if (!fs.existsSync("../../uploads")) {
                     fs.mkdirSync("../../uploads");
+                    console.log("file created")
                 }
 
-                const originalFilePath = path.join("../../temp", upload.id);
+                const originalFilePath = resolve("../../temp", upload.id);
+                console.log(` First path = ${originalFilePath}`)
+
+                const newFilePath = resolve("../../uploads", `${upload.id}`);
+                console.log(` Second path = ${newFilePath}`)
+
+                const originalJsonFilePath = resolve("../../temp", `${upload.id}.json`);
                 console.log(originalFilePath)
 
-                const newFilePath = path.join("../../uploads", `${upload.id}`);
-                console.log(newFilePath)
-
-                const originalJsonFilePath = path.join("../../temp", `${upload.id}.json`);
-                console.log(originalFilePath)
-
-                const newJsonFilePath = path.join("../../uploads", `${upload.id}.json`);
+                const newJsonFilePath = resolve("../../uploads", `${upload.id}.json`);
                 console.log(newJsonFilePath)
 
                 fs.rename(originalFilePath, newFilePath, (err) => {
@@ -62,7 +66,6 @@ const server = new Server({
                 throw {status_code: 400, body: "Upload failed due to validation error."};
 
             }
-
 
         } catch (error) {
             throw {status_code: 400, body: "Upload failed due to validation error."};

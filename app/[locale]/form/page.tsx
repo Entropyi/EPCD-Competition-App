@@ -19,7 +19,6 @@ import "@uppy/file-input/dist/style.css"
 import "@uppy/progress-bar/dist/style.css"
 import {useRouter} from "next/navigation";
 import {useLocale} from "next-intl";
-import {useCookies} from "next-client-cookies";
 
 function createUppy(locale: any) {
     return new Uppy({
@@ -53,16 +52,8 @@ export default function Form() {
     const [ErrorDisplay, setErrorDisplay] = useState<string>("none");
     const [ErrorValue, setErrorValue] = useState<string>();
 
-
     const router = useRouter();
     const locale = useLocale();
-    const cookieStore = useCookies();
-
-    const authorization = cookieStore.get("authorized");
-
-    if (!authorization) {
-        router.back();
-    }
 
 
     const [uppy] = React.useState(createUppy(getCurrentLocale()))
@@ -70,7 +61,6 @@ export default function Form() {
         uppy,
         (state) => Object.keys(state.files).length,
     )
-
 
     type Inputs = {
         fullName: string,
@@ -114,7 +104,6 @@ export default function Form() {
 
                     imageObject?.forEach((file) => {
                         imageUrl += file.uploadURL;
-                        console.log(`hey ${file.uploadURL}`)
                         imageUrl += ",";
                     })
 
@@ -136,7 +125,6 @@ export default function Form() {
                     })
 
                     if (response.ok) {
-                        console.log(await response.json())
                         router.replace(`/${locale}/success`);
                     } else {
                         setErrorDisplay("flex");
