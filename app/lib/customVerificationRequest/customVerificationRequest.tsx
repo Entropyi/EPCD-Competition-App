@@ -13,6 +13,7 @@ async function customVerificationRequest(params: { identifier: any; url: any; pr
         subject: `Sign in to ${host}`,
         text: text({url, host}),
         html: html({url, host, theme}),
+        
     })
     const failed = result.rejected.concat(result.pending).filter(Boolean)
     if (failed.length) {
@@ -69,7 +70,7 @@ function html(params: { url: string, host: string, theme: Theme }) {
     <tr>
       <td align="center"
         style="padding: 0px 0px 10px 0px; font-size: 16px; line-height: 22px; font-family: Helvetica, Arial, sans-serif; color: ${color.text};">
-        If you did not request this email you can safely ignore it yay.
+        If you did not request this email you can safely ignore it.
       </td>
     </tr>
   </table>

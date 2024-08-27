@@ -12,7 +12,7 @@ import {useCookies} from 'next-client-cookies';
 import {signIn} from "@/app/auth"
 import formAction from "@/app/lib/formAction/action";
 import {RotatingLines} from "react-loader-spinner";
-import { useSession} from "next-auth/react"
+import { useSession } from "next-auth/react"
 
 export default function Form() {
 
@@ -99,7 +99,7 @@ export default function Form() {
                                     strokeColor="grey"
                                     strokeWidth="5"
                                     animationDuration="0.75"
-                                    width="96"
+                                    width="50"
                                     visible={true}
                                 />
                             </div>

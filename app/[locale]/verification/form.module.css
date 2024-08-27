@@ -17,7 +17,7 @@
     background: var(--white);
     box-shadow: 0 4px 16px rgba(121, 125, 129, 0.25);
     width: 28%;
-    height: 270px;
+    height: fit-content;
     padding: 30px;
     margin-inline: auto;
     border-radius: 1rem;
@@ -28,7 +28,7 @@
     background: var(--white);
     box-shadow: 0 4px 16px rgba(121, 125, 129, 0.25);
     width: 28%;
-    height: 300px;
+    height: fit-content;
     padding: 30px;
     margin-inline: auto;
     border-radius: 1rem;
@@ -279,12 +279,14 @@
 .spinner{
     margin-inline: auto;
     justify-content: center;
-    width: 50px;
-    height: 50px;
-    margin-top: 22%;
+    width: fit-content;
+    height: fit-content;
+    margin-top: 10%;
 }
 
 .emailWaitContainer{
+    display: flex;
+    flex-direction: column;
     padding: 20px;
 }
 @media (min-width: 320px ) and (max-width: 374px) {
