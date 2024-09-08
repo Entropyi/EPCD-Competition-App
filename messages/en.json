@@ -37,7 +37,8 @@
     "CompetitionOrganizers": "Competition Organizers",
     "Organizer": "Organizer",
     "Sponsor": "Sponsor",
-    "rights": "All Rights Reserved to the Royal Commission for Jubail and Yanbu 2024"
+    "rights": "All Rights Reserved to the Royal Commission for Jubail and Yanbu 2024",
+    "Unauthorized": "Unauthorized"
   },
   "FormPage": {
     "title": "Environmental Photography Competition 2024",
@@ -54,6 +55,7 @@
     "Photo Purpose": "Photo Purpose",
     "TermsAgreement": "Checking the box is an acknowledgment that you have read the terms of the competition and acknowledges your acceptance of them*",
     "Submit": "Submit",
+    "authGoogle": "Sign up with Google",
     "popUpMessage": "Sorry this application is under development",
     "loginTitle": "Register",
     "loginWait": "Please wait"
@@ -78,8 +80,8 @@
   "SuccessPage": {
     "title": "Thank you for participating",
     "subText": "you will be contacted soon",
-    "titleEmail": "Please check your email",
-    "subTextEmail": "Check your email to login in order for you to participate"
+    "titleEmail": "Successful",
+    "subTextEmail": "Please wait a few seconds, you will be redirected"
   },
   "LocaleLayout": {
     "title": "Environmental Photography Competition"

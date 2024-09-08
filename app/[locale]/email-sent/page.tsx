@@ -4,11 +4,28 @@ import Image from "next/image";
 import {useTranslations} from "next-intl";
 import {useCookies} from "next-client-cookies";
 import { RotatingLines } from "react-loader-spinner";
+import {useSession} from "next-auth/react";
 
 
-export default function Footer() {
+export default function Success() {
     const successTranslation = useTranslations("SuccessPage");
     const cookieStore = useCookies();
+    const session = useSession();
+
+    if(session){
+        const data = new FormData();
+
+        if(typeof session.data?.user?.email === "string"){
+            const email = session.data?.user?.email;
+            data.append("email",email);
+        }
+    }
+
+    /*
+    const response = await fetch("../api", {
+        method: "POST",
+    })
+*/
 
     return (
         <>

@@ -9,12 +9,17 @@ import {useState} from "react";
 import {useRouter} from "next/navigation";
 import {useLocale} from "next-intl";
 import {useCookies} from 'next-client-cookies';
-import {signIn} from "@/app/auth"
+import Success from "@/app/[locale]/email-sent/page"
 import formAction from "@/app/lib/formAction/action";
 import {RotatingLines} from "react-loader-spinner";
 import { useSession } from "next-auth/react"
 
+
 export default function Form() {
+    const session = useSession();
+    if(session) return <Success/>
+    console.log(session)
+
 
     const formTranslations = useTranslations("FormPage");
     const errorTranslation = useTranslations("formErrorMessages");
@@ -23,12 +28,8 @@ export default function Form() {
     const [spinnerDisplay, setSpinnerDisplay] = useState<string>("none");
     const [formElementsDisplay, setFormElementsDisplay] = useState<string>("block");
     const [ErrorValue, setErrorValue] = useState<string>();
-    const router = useRouter();
-    const locale = useLocale();
 
-    const session = useSession();
 
-   console.log(session)
     type Inputs = {
         fullName: string,
         email: string,
@@ -42,7 +43,6 @@ export default function Form() {
     }
 
     const {
-        register,
         handleSubmit,
         formState: {errors},
     } = useForm<Inputs>()
@@ -51,24 +51,8 @@ export default function Form() {
         setSpinnerDisplay("flex");
         setFormElementsDisplay("none");
 
-        await formAction(data.email);
+        await formAction();
 
-
-        /*
-                const response = await fetch(`../api/validations?email=${data.email}&number=${"0590000000"}`, {
-                    method: 'GET',
-                })
-
-                const responseData = await response.json();
-
-                if (responseData.message == "user is new") {
-                    router.replace(`/${locale}/form`);
-                } else {
-                    setErrorDisplay("flex");
-                    setErrorValue(errorTranslation("duplicate"));
-                }
-
-         */
     }
 
 
@@ -129,44 +113,16 @@ export default function Form() {
                             </div>
 
                             <div className={styles.formSubElements}>
-
-                                <div className={styles.formGroupOne}>
-
-                                    <div className={styles.emailConatiner}>
-                                        <label className={styles.formLabel}
-                                               htmlFor="">{formTranslations("Email")} </label>
-                                        <input className={changeInputStyleWhenError("email")} type="text"
-                                               id="email" {...register("email",
-                                            {
-                                                required: `${errorTranslation("emailRequired")}`,
-                                                pattern: {
-                                                    value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
-                                                    message: `${errorTranslation("emailInvalid")}`,
-                                                }
-                                            })}/>
-                                        {errors.email && <p role="alert"
-                                                            className={styles.formInlineErrorText}>{errors.email.message}</p>}
-                                    </div>
-
-
-                                </div>
-
-
-                                <div className={styles.formTermsAgreement}>
-                                    <input type="checkbox" className={styles.formCheckBox}
-                                           {...register("termsAgreement", {
-                                               required: `${errorTranslation("termsAgreementRequired")}`
-                                           })}/>
-                                    <label
-                                        className={styles.formLabel}>{formTranslations("TermsAgreement")} </label>
-                                </div>
-
-                                {errors.termsAgreement && <p role="alert"
-                                                             className={styles.formInlineErrorText}>{errors.termsAgreement.message}</p>}
-
                                 <div className={styles.buttonContainer}>
-                                    <input type="submit" className={styles.formButton}
-                                           value={formTranslations("Submit")}/>
+
+                                    <button type="submit" className={styles.formButtonGoogle}>
+                                        <Image
+                                            src={"/googleSvg.svg"}
+                                            width={30}
+                                            height={30}
+                                            alt={"google icon"}/>
+                                        {formTranslations("authGoogle")}
+                                    </button>
                                 </div>
                             </div>
                         </form>

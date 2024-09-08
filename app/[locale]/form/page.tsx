@@ -88,8 +88,6 @@ export default function Form() {
             window.scrollTo({top: 0, behavior: "smooth"});
 
         } else {
-
-
             const response = await fetch(`../api/validations?email=${data.email}&number=${data.phoneNumber}`, {
                 method: "GET",
             })
