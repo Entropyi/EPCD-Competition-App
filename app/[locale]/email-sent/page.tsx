@@ -3,29 +3,38 @@ import styles from "./success.module.css";
 import Image from "next/image";
 import {useTranslations} from "next-intl";
 import {useCookies} from "next-client-cookies";
-import { RotatingLines } from "react-loader-spinner";
+import {RotatingLines} from "react-loader-spinner";
 import {useSession} from "next-auth/react";
 
 
 export default function Success() {
     const successTranslation = useTranslations("SuccessPage");
-    const cookieStore = useCookies();
+    const cookies = useCookies();
     const session = useSession();
 
-    if(session){
+    const verifyUser = async () => {
+
         const data = new FormData();
 
-        if(typeof session.data?.user?.email === "string"){
+        if (typeof session.data?.user?.email === "string") {
             const email = session.data?.user?.email;
-            data.append("email",email);
+            data.append("email", email);
+
+            const response = await fetch("../api/validateUser", {
+                method: "POST",
+                body: data,
+            })
+
+            console.log(cookies.get("newUser"));
         }
+
     }
 
-    /*
-    const response = await fetch("../api", {
-        method: "POST",
-    })
-*/
+    if (session) {
+        verifyUser().then(r =>
+            console.log(JSON.stringify("done"))
+        );
+    }
 
     return (
         <>

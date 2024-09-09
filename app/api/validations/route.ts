@@ -1,8 +1,6 @@
 import {NextRequest, NextResponse} from "next/server";
-import {PrismaClient} from '@prisma/client'
 import * as v from "valibot";
-
-const prisma = new PrismaClient()
+import {prisma} from "@/prisma/prisma"
 
 export async function GET(req: NextRequest, res: NextResponse) {
     const reqUrl = new URL(req.url);

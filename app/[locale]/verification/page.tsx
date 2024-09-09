@@ -17,7 +17,7 @@ import { useSession } from "next-auth/react"
 
 export default function Form() {
     const session = useSession();
-    if(session) return <Success/>
+    if(session.data) return <Success/>
     console.log(session)
 
 
