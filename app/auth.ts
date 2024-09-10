@@ -6,6 +6,7 @@ import {prisma} from  "@/prisma/prisma"
 import {createId} from '@paralleldrive/cuid2';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+    trustHost:true,
     adapter: PrismaAdapter(prisma),
     providers: [
         Nodemailer({
@@ -29,4 +30,5 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         strategy: "jwt",
         maxAge: 60* 60,
     },
+
 })
