@@ -4,12 +4,9 @@ import {prisma} from "@/prisma/prisma"
 import EmailProvider from "next-auth/providers/email";
 import customVerificationRequest from "@/app/lib/customVerificationRequest/customVerificationRequest"
 import type {Provider} from "next-auth/providers"
-import {getLocale} from 'next-intl/server';
 import {createId} from '@paralleldrive/cuid2';
+import '@/envConfig'
 
-const getLocalea = async (): Promise<string> => {
-    return await getLocale();
-}
 
 const providers: Provider[] = [
     EmailProvider({
@@ -33,15 +30,13 @@ export const {handlers, auth, signIn, signOut} = NextAuth({
     adapter: PrismaAdapter(prisma),
     trustHost: true,
     pages: {
-        signIn: `../../en/verification`,
-        verifyRequest: "../../en/email-sent",
+        signIn: `../../ar/verification`,
+        verifyRequest: "../../ar/email-sent",
     },
 
     session: {
         generateSessionToken: () => {
-            let id = createId();
-            console.log(id);
-            return id;
+            return createId();
         },
         strategy: "jwt",
 

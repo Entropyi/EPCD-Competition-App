@@ -1,11 +1,11 @@
 import {createTransport} from "nodemailer"
 import {Theme} from "@auth/core/types";
 import Header from "@/app/ui/header/header.module.css";
+import {prisma} from "@/prisma/prisma";
 
 async function customVerificationRequest(params: { identifier: any; url: any; provider: any; theme: any }) {
     const {identifier, url, provider, theme} = params
     const {host} = new URL(url)
-    // NOTE: You are not required to use `nodemailer`, use whatever you want.
     const transport = createTransport(provider.server)
     const result = await transport.sendMail({
         to: identifier,
@@ -13,8 +13,18 @@ async function customVerificationRequest(params: { identifier: any; url: any; pr
         subject: `Sign in to ${host}`,
         text: text({url, host}),
         html: html({url, host, theme}),
-        
+
     })
+
+    const numberOfEmailsSent = await prisma.verificationToken.count({
+        where: {identifier: identifier},
+    })
+
+    if (numberOfEmailsSent > 3) {
+        throw new Error(`Email(s) could not be sent`)
+    }
+
+
     const failed = result.rejected.concat(result.pending).filter(Boolean)
     if (failed.length) {
         throw new Error(`Email(s) (${failed.join(", ")}) could not be sent`)

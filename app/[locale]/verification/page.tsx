@@ -8,11 +8,10 @@ import Image from "next/image";
 import {useState} from "react";
 import {useRouter} from "next/navigation";
 import {useLocale} from "next-intl";
-import {useCookies} from 'next-client-cookies';
-import {signIn} from "@/app/auth"
 import formAction from "@/app/lib/formAction/action";
 import {RotatingLines} from "react-loader-spinner";
-import { useSession } from "next-auth/react"
+import {useSession} from "next-auth/react"
+import SuccessPage from "@/app/[locale]/success/page";
 
 export default function Form() {
 
@@ -23,12 +22,9 @@ export default function Form() {
     const [spinnerDisplay, setSpinnerDisplay] = useState<string>("none");
     const [formElementsDisplay, setFormElementsDisplay] = useState<string>("block");
     const [ErrorValue, setErrorValue] = useState<string>();
-    const router = useRouter();
-    const locale = useLocale();
-
     const session = useSession();
+    const user = session.data?.user?.email;
 
-   console.log(session)
     type Inputs = {
         fullName: string,
         email: string,
@@ -54,21 +50,6 @@ export default function Form() {
         await formAction(data.email);
 
 
-        /*
-                const response = await fetch(`../api/validations?email=${data.email}&number=${"0590000000"}`, {
-                    method: 'GET',
-                })
-
-                const responseData = await response.json();
-
-                if (responseData.message == "user is new") {
-                    router.replace(`/${locale}/form`);
-                } else {
-                    setErrorDisplay("flex");
-                    setErrorValue(errorTranslation("duplicate"));
-                }
-
-         */
     }
 
 
@@ -87,12 +68,16 @@ export default function Form() {
             return errors.photoLocation ? styles.inputWhileError : styles.formInput;
         }
     }
+
+
+    if (typeof user === "string") return <SuccessPage/>
+
     return (
         <>
             <div className={styles.formSuperContainer}>
                 <div className={styles.formContainer}>
                     <div className={styles.formElementsContainer}>
-                        <div className={styles.emailWaitContainer}  style={{display: spinnerDisplay}}>
+                        <div className={styles.emailWaitContainer} style={{display: spinnerDisplay}}>
                             <div className={styles.formTitleText}>{formTranslations("loginWait")}</div>
                             <div className={styles.spinner}>
                                 <RotatingLines

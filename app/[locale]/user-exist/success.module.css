@@ -1,3 +1,42 @@
+.successContainer{
+    display: flex;
+    flex-direction: column;
+    height: 660px;
+    justify-content: center;
+    align-items: center;
+}
+
+.successSubContainer{
+    display: flex;
+    padding: 100px;
+    border-radius: 10px;
+    background-color: var(--secondary-5);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.successTextContainer{
+    text-align: center;
+}
+
+.formSuccessLabel{
+    gap: 5px;
+    height: 1.5714285714rem;
+    color: var(--dark-grey-1);
+    font-family: "Font-Light";
+    font-size: 1em;
+}
+
+.formTitleText {
+    color: var(--font-black);
+    font-size: 1.5em;
+    line-height: 1.875rem;
+    margin-bottom: 1.5rem;
+    font-family: "Font-Bold";
+
+}
+
 .formSuperContainer {
     width: 100%;
     height: 100%;
@@ -47,6 +86,7 @@
     gap: 5px;
 }
 
+
 .buttonContainer {
     display: flex;
     justify-content: end;
@@ -60,26 +100,21 @@
     font-size: 1em;
     font-family: "Font-Regular";
     cursor: pointer;
-    border: none;
 }
 
-.formButton:hover {
-    background: linear-gradient(240deg, var(--th-secondary), var(--th-Primary));
+.formButton:hover{
+    background: linear-gradient(240deg,var(--th-secondary),var(--th-Primary));
 }
 
-.formTitleText {
-    color: var(--font-black);
-    font-size: 1.5em;
-    line-height: 1.875rem;
-    margin-bottom: 1.5rem;
-    font-family: "Font-Bold";
-
+.langSvg{
+    margin-bottom: 20px;
 }
+
 
 .formLabel {
     display: flex;
     gap: 5px;
-    height: fit-content;
+    height: 1.5714285714rem;
     color: var(--dark-grey-2);
     font-family: "Font-Light";
     font-size: 1em;
@@ -88,11 +123,10 @@
 .formSubLabel {
     display: flex;
     gap: 5px;
+    height: 1.5714285714rem;
     color: var(--dark-grey-3);
     font-family: "Font-Light";
     font-size: 0.8em;
-    width: fit-content;
-    height: fit-content;
 }
 
 .redTag {
@@ -105,20 +139,6 @@
     padding: .6875rem 2.5rem;
     border: 1px solid var(--dark-grey-5);
     background-color: #fff;
-    font-family: "Font-Light";
-    color: var(--dark-grey-1);
-    font-size: 0.85em;
-    resize: vertical;
-    outline: none;
-}
-
-.formInput:disabled {
-    border-radius: .75rem;
-    font-size: 1rem;
-    padding: .6875rem 2.5rem;
-    border: 1px solid var(--dark-grey-5);
-    background-color: var(--dark-grey-3);
-
     font-family: "Font-Light";
     color: var(--dark-grey-1);
     font-size: 0.85em;
@@ -153,29 +173,47 @@
     display: flex;
     gap: 10px;
     font-size: 0.92em;
-    margin: 0;
+    margin: 20px 0;
     color: var(--black);
     font-family: "Font-Light";
 }
 
-:lang(en).formTermsAgreement {
+.footer {
     display: flex;
-    gap: 10px;
-    font-size: 0.92em;
-    color: var(--black);
-    font-family: "Font-Light";
-    width: fit-content;
-    height: fit-content;
+    flex-direction: column;
+    width: 100%;
 }
 
-.formInlineErrorText {
+.outerfooter {
+    display: flex;
+    background-color: var(--dark-grey-8);
+    height: 70px;
+    width: 100%;
+    color: var(--white);
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1428571429rem;
+    font-family: "Font-Light";
+
+}
+
+.innerfooter {
+    display: flex;
+    background: var(--th-Primary);
+    width: 100%;
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.formInlineErrorText{
     color: var(--error);
     font-size: 14px;
     font-weight: 300;
     font-family: "Font-Light";
 }
 
-.inputWhileError {
+.inputWhileError{
     border-radius: .75rem;
     font-size: 1rem;
     padding: .6875rem 2.5rem;
@@ -188,150 +226,54 @@
     outline: none;
 }
 
-.UploadWhileError{
-    text-align: center;
-    font-family: Font-Light;
-    padding: .6875rem 2.5rem;
-    border: 1px solid var(--error);
-    color: white;
-    background-color: var(--th-Primary-3);
-    border-radius: .75rem;
+@font-face {
+    font-family: "Font-Light";
+    font-style: normal;
+    font-weight: 300;
+    src: url("/fonts/PingAR_LT_Light.otf") format("opentype");
 }
 
-.popUpDevContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    color: var(--th-Primary);
-    background: var(--white);
-    border-radius: 4px;
+@font-face {
+    font-family: "Font-Regular";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/PingAR_LT_Medium.otf") format("opentype");
+}
+
+@font-face {
     font-family: "Font-Bold";
-    position: absolute;
-    top: 80%;
-    z-index: 999;
-    right: 560px;
+    font-style: normal;
+    font-weight: 500;
+    src: url("/fonts/PingAR+LT-Bold.otf") format("opentype");
 }
 
-.closePopUpContainer {
-    display: flex;
-    justify-content: end;
-    width: 100%;
-}
-
-.closePopUp {
-    background: #ffffff;
-    border-radius: 100%;
-    padding: 2% 5%;
-    text-align: center;
-}
-
-.closePopUp:hover {
-    background-color: red;
-    color: #ffffff;
-    transition: 600ms ease;
-}
-
-.alertSuperContainer{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-    width: 100%;
-    height: fit-content;
-}
-
-.alertSvgContainer{
-    width: 50px;
-    height: 50px;
-}
-.alertContainer{
-    display: flex;
-    align-items: center;
-    border: 1px solid red;
-    width: 100%;
-    background-color: rgba(240,0,0, 0.40);
-    color: white;
-    font-family: "font-light";
-    font-weight: 600;
-    border-radius: 5px;
-
-}
-
-.alertSvgContainer{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.alertTextContainer{
-    text-align: start;
-    width: 70%;
-}
 
 @media (min-width: 320px ) and (max-width: 374px) {
-    .formContainer {
-        width: 70%;
-    }
 
-    .formGroupOne {
-        flex-direction: column;
-    }
-
-    .formTermsAgreement {
-
-    }
-
-    .outerfooter {
-        height: 100%;
-        font-size: 1rem;
-    }
-
-    .formSubLabel{
-        font-size: 0.7em;
-    }
 }
 
 @media (min-width: 375px ) and (max-width: 424px) {
-    .formContainer {
-        width: 70%;
-    }
 
-    .formGroupOne {
-        flex-direction: column;
-    }
-
-    .formTermsAgreement {
-    }
 }
 
 @media (min-width: 425px ) and (max-width: 767px) {
-    .formContainer {
-        width: 80%;
-    }
 
-    .formGroupOne {
-        flex-direction: column;
-    }
-
-    .formTermsAgreement {
-    }
 }
 
 @media (min-width: 768px ) and (max-width: 1023px) {
-    .formContainer {
+    .formContainer{
         width: 80%;
     }
 }
 
 @media (min-width: 1024px ) and (max-width: 1438px) {
-    .formContainer {
+    .formContainer{
         width: 50%;
     }
 }
 
 @media (min-width: 1440px ) and (max-width: 1900px) {
-    .formContainer {
+    .formContainer{
         width: 40%;
     }
 }

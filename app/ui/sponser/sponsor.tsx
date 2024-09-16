@@ -39,6 +39,15 @@ export default function Sponsor() {
                     </div>
                 </div>
 
+                <div className={styles.breakingLine}></div>
+                <div className={styles.rcLogoContainer}>
+                    <Image alt={"Sponsor Logo"} src={"/Yasref.svg"}
+                           className={styles.rcycLogoOrg} width={150} height={120}></Image>
+                    <div className={styles.orgTextContainer}>
+                        <p className={styles.orgiText}>{translations("Sponsor")}</p>
+                    </div>
+                </div>
+
                 <div className={styles.prizeRootContainer}>
                     <div className={styles.prizeContainer}>
                         <div className={styles.stripeEffectContainer}>

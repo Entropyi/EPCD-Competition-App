@@ -7,6 +7,7 @@ const prisma = new PrismaClient()
 export async function GET(req: NextRequest, res: NextResponse) {
     const reqUrl = new URL(req.url);
 
+    console.log(reqUrl)
     const paramsSchema = v.object({
         email: v.pipe(v.string(), v.email(), v.nonEmpty()),
         phoneNumber: v.pipe(v.string(), v.maxLength(10), v.minLength(10), v.nonEmpty())

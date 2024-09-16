@@ -12,7 +12,7 @@ export default function Footer() {
                 <div className={styles.successSubContainer}>
                     <div className={styles.successImageContainer}>
                         <Image
-                            src={"/success.svg"}
+                            src={"/info.svg"}
                             alt={"Success Logo"}
                             width={120}
                             height={120}
@@ -20,8 +20,8 @@ export default function Footer() {
                         />
                     </div>
                     <div className={styles.successTextContainer}>
-                        <h3 className={styles.formTitleText}>{successTranslation("titleEmail")}</h3>
-                        <p className={styles.formSuccessLabel}>{successTranslation("subTextEmail")}</p>
+                        <h3 className={styles.formTitleText}>{successTranslation("alreadyParticipatedTitle")}</h3>
+                        <p className={styles.formSuccessLabel}>{successTranslation("alreadyParticipatedSubText")}</p>
                     </div>
                 </div>
             </div>

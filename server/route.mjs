@@ -2,9 +2,8 @@ import {Server} from "@tus/server";
 import {FileStore} from "@tus/file-store";
 import fs from "fs";
 import {resolve} from "path";
-import {readFileSync} from "fs";
 import {fileTypeFromFile} from "file-type";
-import path from "node:path";
+import { PrismaClient } from "@prisma/client"
 
 const host = "127.0.0.1";
 const port = 1080;
@@ -12,16 +11,26 @@ const port = 1080;
 const maxSizeInBytes = 4 * 1024 * 1024 * 1024;
 const allowedMimeTypes = ["image/jpeg", "image/png", "image/jpg"];
 
+const prisma = new PrismaClient();
+
 const server = new Server({
     path: "/uploads",
     datastore: new FileStore({directory: "../../temp"}),
     maxSize: maxSizeInBytes,
-    onUploadCreate: (req, res, upload) => {
+    onUploadCreate: async (req, res, upload) => {
+        const FormEntriesCount = await prisma.form.count({
+            where: {email: upload.metadata.userId},
+        })
+
         if (!allowedMimeTypes.includes(upload.metadata.filetype)) {
             return;
         }
-        res.statusCode = 200;
-        return {res};
+
+        else if(FormEntriesCount === 0){
+            res.statusCode = 200;
+            return {res};
+        }
+        return;
     },
 
     onUploadFinish: async (req, res, upload) => {
@@ -95,6 +104,8 @@ async function cleanUpExpiredUploads() {
         console.error("Error cleaning up expired uploads:", error);
     }
 }
+
+
 
 setInterval(cleanUpExpiredUploads, 3600000);
 server.listen({host, port});

@@ -12,6 +12,7 @@
     "@auth/core": "^0.34.2",
     "@auth/prisma-adapter": "^2.4.2",
     "@neoconfetti/react": "^0.1.1",
+    "@next/env": "^14.2.9",
     "@paralleldrive/cuid2": "^2.2.2",
     "@prisma/client": "^5.18.0",
     "@tus/file-store": "^1.4.0",

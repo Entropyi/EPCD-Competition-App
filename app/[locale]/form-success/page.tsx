@@ -12,7 +12,7 @@ export default function SuccessPage() {
     const router = useRouter();
     const locale = useLocale();
 
-    const successTranslation = useTranslations("SuccessPage");
+    const SuccessPage = useTranslations("SuccessPage");
 
     const verifyUser = async () => {
 
@@ -30,13 +30,10 @@ export default function SuccessPage() {
             const responseJson = await response.json();
             const cookieValue = cookies.get("newUser");
 
-            console.log(responseJson)
-            if (responseJson.newUser) {
-                if (cookieValue == "true" && responseJson.newUser == true) {
-                    router.replace(`/${locale}/form`);
+            if(responseJson.newUser){
+                if(cookieValue == "true"){
+
                 }
-            } else {
-                router.replace(`/${locale}/user-exist`);
             }
 
         }
@@ -63,8 +60,8 @@ export default function SuccessPage() {
                         />
                     </div>
                     <div className={styles.successTextContainer}>
-                        <h3 className={styles.formTitleText}>{successTranslation("titleSuccess")}</h3>
-                        <p className={styles.formSuccessLabel}>{successTranslation("subTextSuccess")}</p>
+                        <h3 className={styles.formTitleText}>{SuccessPage("title")}</h3>
+                        <p className={styles.formSuccessLabel}>{SuccessPage("subText")}</p>
                     </div>
                 </div>
             </div>

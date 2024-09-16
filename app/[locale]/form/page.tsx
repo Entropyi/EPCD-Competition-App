@@ -19,8 +19,10 @@ import "@uppy/file-input/dist/style.css"
 import "@uppy/progress-bar/dist/style.css"
 import {useRouter} from "next/navigation";
 import {useLocale} from "next-intl";
+import {useSession} from "next-auth/react";
 
-function createUppy(locale: any) {
+
+function createUppy(locale: any, userEmail:string) {
     return new Uppy({
         locale: locale,
         restrictions: {
@@ -32,8 +34,12 @@ function createUppy(locale: any) {
     })
         .use(Tus, {
             endpoint: "http://127.0.0.1:1080",
-            chunkSize: 1024 * 1024
-        });
+            chunkSize: 1024 * 1024,
+            metadata:{
+                email: userEmail,
+            },
+        })
+
 }
 
 function getCurrentLocale() {
@@ -54,9 +60,10 @@ export default function Form() {
 
     const router = useRouter();
     const locale = useLocale();
+    const session = useSession();
+    const userEmail = session.data?.user?.email;
 
-
-    const [uppy] = React.useState(createUppy(getCurrentLocale()))
+    const [uppy] = React.useState(createUppy(getCurrentLocale(),"jehad503@gmail.com"))
     const fileCount = useUppyState(
         uppy,
         (state) => Object.keys(state.files).length,
@@ -81,6 +88,9 @@ export default function Form() {
     } = useForm<Inputs>()
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
+        const userStatusResponse = await fetch(`/api/validations?email=${userEmail}&number=${data.phoneNumber}`, {
+            method: "GET",
+        })
 
         if (fileCount < 1) {
             setErrorDisplay("flex");
@@ -89,15 +99,16 @@ export default function Form() {
 
         } else {
 
+            uppy.setMeta({ userId: userEmail })
 
-            const response = await fetch(`../api/validations?email=${data.email}&number=${data.phoneNumber}`, {
-                method: "GET",
-            })
+            uppy.on("complete", async (result) => {
 
-            const responseData = await response.json();
+                const response = await fetch(`/api/validations?email=${userEmail}&number=${data.phoneNumber}`, {
+                    method: "GET",
+                })
 
-            if (responseData.message == "user is new") {
-                uppy.on("complete", async (result) => {
+                const responseData = await response.json();
+                if (responseData.message == "user is new") {
                     const imageObject = result.successful;
                     const form = new FormData();
                     let imageUrl: string = "";
@@ -108,7 +119,7 @@ export default function Form() {
                     })
 
                     form.append("fullName", data.fullName)
-                    form.append("email", data.email)
+                    form.append("email", session.data?.user?.email as string)
                     form.append("age", data.age.toString())
                     form.append("phoneNumber", data.phoneNumber.toString())
 
@@ -125,7 +136,7 @@ export default function Form() {
                     })
 
                     if (response.ok) {
-                        router.replace(`/${locale}/success`);
+                        router.replace(`/${locale}/form-success`);
                     } else {
                         setErrorDisplay("flex");
                         const data = await response.json();
@@ -134,15 +145,24 @@ export default function Form() {
 
 
                     }
+                } else {
+                    setErrorDisplay("flex");
+                    setErrorValue(errorTranslation("duplicate"));
+                    window.scrollTo({top: 0, behavior: "smooth"});
 
-                });
+                }
+            });
+
+            const userStatus = await userStatusResponse.json();
+
+            if(userStatus.message == "user is new"){
                 await uppy.upload();
             } else {
                 setErrorDisplay("flex");
                 setErrorValue(errorTranslation("duplicate"));
                 window.scrollTo({top: 0, behavior: "smooth"});
-
             }
+
         }
     }
 
@@ -161,6 +181,12 @@ export default function Form() {
         } else if (inputName === "photoLocation") {
             return errors.photoLocation ? styles.inputWhileError : styles.formInput;
         }
+    }
+
+    let email = "";
+
+    if (typeof session.data?.user?.email === "string") {
+        email = session.data?.user?.email;
     }
     return (
         <>
@@ -208,15 +234,8 @@ export default function Form() {
                                     <div className={styles.emailConatiner}>
                                         <label className={styles.formLabel}
                                                htmlFor="">{formTranslations("Email")} </label>
-                                        <input className={changeInputStyleWhenError("email")} type="text"
-                                               id="email" {...register("email",
-                                            {
-                                                required: `${errorTranslation("emailRequired")}`,
-                                                pattern: {
-                                                    value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
-                                                    message: `${errorTranslation("emailInvalid")}`,
-                                                }
-                                            })}/>
+                                        <input className={changeInputStyleWhenError("email")} type="text" value={email}
+                                               disabled={true} readOnly={true} id="email"/>
                                         {errors.email && <p role="alert"
                                                             className={styles.formInlineErrorText}>{errors.email.message}</p>}
                                     </div>

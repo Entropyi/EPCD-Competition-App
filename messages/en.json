@@ -79,7 +79,11 @@
     "title": "Thank you for participating",
     "subText": "you will be contacted soon",
     "titleEmail": "Please check your email",
-    "subTextEmail": "Check your email to login in order for you to participate"
+    "subTextEmail": "Check your email to login in order for you to participate",
+    "alreadyParticipatedTitle": "Participation Exists",
+    "alreadyParticipatedSubText":"You cannot participate in this competition more than one time",
+    "titleSuccess": "Successful",
+    "subTextSuccess": "Please wait a few seconds, you will be redirected"
   },
   "LocaleLayout": {
     "title": "Environmental Photography Competition"
