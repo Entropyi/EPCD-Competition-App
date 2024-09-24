@@ -3,7 +3,7 @@
     height: 100%;
     background: var(--white);
     padding-top: 50px;
-    padding-bottom: 130px;
+    padding-bottom: 200px;
 }
 
 .formSuperContainer:lang(ar) {
@@ -13,7 +13,7 @@
     padding-top: 50px;
 }
 
-.formContainer:lang(ar){
+.formContainer:lang(ar) {
     background: var(--white);
     box-shadow: 0 4px 16px rgba(121, 125, 129, 0.25);
     width: 28%;
@@ -24,7 +24,7 @@
     margin-top: 5%;
 }
 
-.formContainer:lang(en){
+.formContainer:lang(en) {
     background: var(--white);
     box-shadow: 0 4px 16px rgba(121, 125, 129, 0.25);
     width: 28%;
@@ -195,7 +195,7 @@
     outline: none;
 }
 
-.UploadWhileError{
+.UploadWhileError {
     text-align: center;
     font-family: Font-Light;
     padding: .6875rem 2.5rem;
@@ -240,7 +240,7 @@
     transition: 600ms ease;
 }
 
-.alertSuperContainer{
+.alertSuperContainer {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -249,16 +249,17 @@
     height: fit-content;
 }
 
-.alertSvgContainer{
+.alertSvgContainer {
     width: 50px;
     height: 50px;
 }
-.alertContainer{
+
+.alertContainer {
     display: flex;
     align-items: center;
     border: 1px solid red;
     width: 100%;
-    background-color: rgba(240,0,0, 0.40);
+    background-color: rgba(240, 0, 0, 0.40);
     color: white;
     font-family: "Font-Light";
     font-weight: 600;
@@ -266,17 +267,18 @@
 
 }
 
-.alertSvgContainer{
+.alertSvgContainer {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.alertTextContainer{
+
+.alertTextContainer {
     text-align: start;
     width: 70%;
 }
 
-.spinner{
+.spinner {
     margin-inline: auto;
     justify-content: center;
     width: fit-content;
@@ -284,11 +286,12 @@
     margin-top: 10%;
 }
 
-.emailWaitContainer{
+.emailWaitContainer {
     display: flex;
     flex-direction: column;
     padding: 20px;
 }
+
 @media (min-width: 320px ) and (max-width: 374px) {
     .formContainer {
         width: 70%;
@@ -307,7 +310,7 @@
         font-size: 1rem;
     }
 
-    .formSubLabel{
+    .formSubLabel {
         font-size: 0.7em;
     }
 }

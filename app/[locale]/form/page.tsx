@@ -20,9 +20,9 @@ import "@uppy/progress-bar/dist/style.css"
 import {useRouter} from "next/navigation";
 import {useLocale} from "next-intl";
 import {useSession} from "next-auth/react";
+import Validation from "@/app/[locale]/verification/page"
 
-
-function createUppy(locale: any, userEmail:string) {
+function createUppy(locale: any, userEmail: string) {
     return new Uppy({
         locale: locale,
         restrictions: {
@@ -35,7 +35,7 @@ function createUppy(locale: any, userEmail:string) {
         .use(Tus, {
             endpoint: "http://127.0.0.1:1080",
             chunkSize: 1024 * 1024,
-            metadata:{
+            metadata: {
                 email: userEmail,
             },
         })
@@ -63,7 +63,7 @@ export default function Form() {
     const session = useSession();
     const userEmail = session.data?.user?.email;
 
-    const [uppy] = React.useState(createUppy(getCurrentLocale(),"jehad503@gmail.com"))
+    const [uppy] = React.useState(createUppy(getCurrentLocale(), "jehad503@gmail.com"))
     const fileCount = useUppyState(
         uppy,
         (state) => Object.keys(state.files).length,
@@ -73,7 +73,7 @@ export default function Form() {
         fullName: string,
         email: string,
         age: number,
-        phoneNumber: number,
+        phoneNumber: string,
         photoTitle: string,
         comments: string,
         photoLocation: string,
@@ -88,9 +88,17 @@ export default function Form() {
     } = useForm<Inputs>()
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
-        const userStatusResponse = await fetch(`/api/validations?email=${userEmail}&number=${data.phoneNumber}`, {
-            method: "GET",
+        const userData = new FormData();
+        userData.set("email", session.data?.user?.email as string);
+        userData.set("number", data.phoneNumber);
+
+        const userStatusResponse = await fetch(`/api/validations`, {
+            method: "POST",
+            body: userData,
         })
+
+        const userStatus = await userStatusResponse.json();
+
 
         if (fileCount < 1) {
             setErrorDisplay("flex");
@@ -99,31 +107,17 @@ export default function Form() {
 
         } else {
 
-            uppy.setMeta({ userId: userEmail })
+            uppy.setMeta({userId: userEmail})
 
             uppy.on("complete", async (result) => {
 
-                const response = await fetch(`/api/validations?email=${userEmail}&number=${data.phoneNumber}`, {
-                    method: "GET",
-                })
-
-                const responseData = await response.json();
-                if (responseData.message == "user is new") {
-                    const imageObject = result.successful;
+                if (userStatus.message == "user is new") {
                     const form = new FormData();
-                    let imageUrl: string = "";
-
-                    imageObject?.forEach((file) => {
-                        imageUrl += file.uploadURL;
-                        imageUrl += ",";
-                    })
 
                     form.append("fullName", data.fullName)
                     form.append("email", session.data?.user?.email as string)
                     form.append("age", data.age.toString())
-                    form.append("phoneNumber", data.phoneNumber.toString())
-
-                    form.append("imageUrl", String(imageUrl));
+                    form.append("phoneNumber", data.phoneNumber)
                     form.append("photoTitle", data.photoTitle)
                     form.append("comments", data.comments)
                     form.append("photoLocation", data.photoLocation)
@@ -153,9 +147,7 @@ export default function Form() {
                 }
             });
 
-            const userStatus = await userStatusResponse.json();
-
-            if(userStatus.message == "user is new"){
+            if (userStatus.message == "user is new") {
                 await uppy.upload();
             } else {
                 setErrorDisplay("flex");
@@ -187,7 +179,10 @@ export default function Form() {
 
     if (typeof session.data?.user?.email === "string") {
         email = session.data?.user?.email;
+    } else {
+        return <Validation/>
     }
+
     return (
         <>
             <div className={styles.formSuperContainer}>

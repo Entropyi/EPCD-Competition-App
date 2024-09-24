@@ -1,23 +1,19 @@
 "use client";
-import React, { createContext, useContext, ReactNode, useState } from "react";
+import React, {createContext, useContext, ReactNode, useState} from "react";
 import Uppy from "@uppy/core";
 
 
-// Define the shape of your context
 interface AppContextProps {
-    // Add your global state properties here
     uppy: Uppy;
 }
 
-// Create the initial context with default values
 const AppContext = createContext<AppContextProps | undefined>(undefined);
 
-// Create a context provider component
 interface AppProviderProps {
     children: ReactNode;
 }
 
-export const UppyProvider: React.FC<AppProviderProps> = ({ children }) => {
+export const UppyProvider: React.FC<AppProviderProps> = ({children}) => {
     const [uppy] = useState(() =>
         new Uppy()
     );
@@ -30,13 +26,11 @@ export const UppyProvider: React.FC<AppProviderProps> = ({ children }) => {
         };
     });
 
-    // Provide the context value to the components
     return (
-        <AppContext.Provider value={{ uppy }}>{children}</AppContext.Provider>
+        <AppContext.Provider value={{uppy}}>{children}</AppContext.Provider>
     );
 };
 
-// Custom hook for using the context
 export const useUppy = () => {
     const context = useContext(AppContext);
 

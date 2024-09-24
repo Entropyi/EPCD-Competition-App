@@ -1,20 +1,21 @@
 "use client"
 
 import styles from "./form.module.css";
-import {useTranslations} from 'next-intl';
+import {useLocale, useTranslations} from 'next-intl';
 import {useForm, SubmitHandler} from "react-hook-form"
 import Image from "next/image";
 
 import {useState} from "react";
-import {useRouter} from "next/navigation";
-import {useLocale} from "next-intl";
 import formAction from "@/app/lib/formAction/action";
 import {RotatingLines} from "react-loader-spinner";
 import {useSession} from "next-auth/react"
 import SuccessPage from "@/app/[locale]/success/page";
+import Limit from "@/app/[locale]/exceeded-daily-limit/page";
+import {useRouter} from "next/navigation";
 
-export default function Form() {
+export default function Validation() {
 
+    const router = useRouter();
     const formTranslations = useTranslations("FormPage");
     const errorTranslation = useTranslations("formErrorMessages");
     const [popUpDisplay, setPopUpDisplay] = useState<string>("none");
@@ -24,16 +25,10 @@ export default function Form() {
     const [ErrorValue, setErrorValue] = useState<string>();
     const session = useSession();
     const user = session.data?.user?.email;
+    const locale = useLocale();
 
     type Inputs = {
-        fullName: string,
         email: string,
-        age: number,
-        phoneNumber: number,
-        photoTitle: string,
-        comments: string,
-        photoLocation: string,
-        photoPurpose: string,
         termsAgreement: boolean
     }
 
@@ -47,9 +42,11 @@ export default function Form() {
         setSpinnerDisplay("flex");
         setFormElementsDisplay("none");
 
-        await formAction(data.email);
-
-
+        try {
+            await formAction(data.email);
+        } catch (error) {
+            router.replace(`/${locale}/exceeded-daily-limit`);
+        }
     }
 
 
@@ -58,17 +55,10 @@ export default function Form() {
     }
 
     const changeInputStyleWhenError = (inputName: string) => {
-        if (inputName === "fullName") {
-            return errors.fullName ? styles.inputWhileError : styles.formInput;
-        } else if (inputName === "email") {
+        if (inputName === "email") {
             return errors.email ? styles.inputWhileError : styles.formInput;
-        } else if (inputName === "phoneNumber") {
-            return errors.phoneNumber ? styles.inputWhileError : styles.formInput;
-        } else if (inputName === "photoLocation") {
-            return errors.photoLocation ? styles.inputWhileError : styles.formInput;
         }
     }
-
 
     if (typeof user === "string") return <SuccessPage/>
 
@@ -132,10 +122,7 @@ export default function Form() {
                                         {errors.email && <p role="alert"
                                                             className={styles.formInlineErrorText}>{errors.email.message}</p>}
                                     </div>
-
-
                                 </div>
-
 
                                 <div className={styles.formTermsAgreement}>
                                     <input type="checkbox" className={styles.formCheckBox}

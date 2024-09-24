@@ -14,7 +14,7 @@ to run tus server
 cd server 
 ```
 ```bash
-node route.mjs
+node route.js
 ```
 The server is running at http://127.0.0.1:1080
 

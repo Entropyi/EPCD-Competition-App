@@ -1,7 +1,7 @@
 import {prisma} from "@/prisma/prisma"
 import {NextRequest, NextResponse} from "next/server";
 import * as v from "valibot";
-import { cookies } from 'next/headers'
+import {cookies} from 'next/headers'
 
 export async function GET(req: NextRequest, res: NextResponse) {
     return NextResponse.json({success: true, msg: "GET works"})
@@ -30,7 +30,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
             where: {email: email.email},
         })
 
-        const FormEntriesCount = await prisma.form.count({
+        const FormEntriesCount = await prisma.request.count({
             where: {email: email.email},
         })
 

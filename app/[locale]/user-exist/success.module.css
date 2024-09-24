@@ -1,4 +1,4 @@
-.successContainer{
+.successContainer {
     display: flex;
     flex-direction: column;
     height: 660px;
@@ -6,9 +6,9 @@
     align-items: center;
 }
 
-.successSubContainer{
+.successSubContainer {
     display: flex;
-    padding: 100px;
+    padding: 60px;
     border-radius: 10px;
     background-color: var(--secondary-5);
     flex-direction: column;
@@ -16,11 +16,11 @@
     align-items: center;
 }
 
-.successTextContainer{
+.successTextContainer {
     text-align: center;
 }
 
-.formSuccessLabel{
+.formSuccessLabel {
     gap: 5px;
     height: 1.5714285714rem;
     color: var(--dark-grey-1);
@@ -102,11 +102,11 @@
     cursor: pointer;
 }
 
-.formButton:hover{
-    background: linear-gradient(240deg,var(--th-secondary),var(--th-Primary));
+.formButton:hover {
+    background: linear-gradient(240deg, var(--th-secondary), var(--th-Primary));
 }
 
-.langSvg{
+.langSvg {
     margin-bottom: 20px;
 }
 
@@ -206,14 +206,15 @@
     justify-content: center;
     gap: 20px;
 }
-.formInlineErrorText{
+
+.formInlineErrorText {
     color: var(--error);
     font-size: 14px;
     font-weight: 300;
     font-family: "Font-Light";
 }
 
-.inputWhileError{
+.inputWhileError {
     border-radius: .75rem;
     font-size: 1rem;
     padding: .6875rem 2.5rem;
@@ -226,54 +227,20 @@
     outline: none;
 }
 
-@font-face {
-    font-family: "Font-Light";
-    font-style: normal;
-    font-weight: 300;
-    src: url("/fonts/PingAR_LT_Light.otf") format("opentype");
-}
-
-@font-face {
-    font-family: "Font-Regular";
-    font-style: normal;
-    font-weight: 400;
-    src: url("/fonts/PingAR_LT_Medium.otf") format("opentype");
-}
-
-@font-face {
-    font-family: "Font-Bold";
-    font-style: normal;
-    font-weight: 500;
-    src: url("/fonts/PingAR+LT-Bold.otf") format("opentype");
-}
-
-
-@media (min-width: 320px ) and (max-width: 374px) {
-
-}
-
-@media (min-width: 375px ) and (max-width: 424px) {
-
-}
-
-@media (min-width: 425px ) and (max-width: 767px) {
-
-}
-
 @media (min-width: 768px ) and (max-width: 1023px) {
-    .formContainer{
+    .formContainer {
         width: 80%;
     }
 }
 
 @media (min-width: 1024px ) and (max-width: 1438px) {
-    .formContainer{
+    .formContainer {
         width: 50%;
     }
 }
 
 @media (min-width: 1440px ) and (max-width: 1900px) {
-    .formContainer{
+    .formContainer {
         width: 40%;
     }
 }

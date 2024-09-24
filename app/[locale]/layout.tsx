@@ -1,13 +1,10 @@
-import {Inter} from "next/font/google";
 import {getMessages, getTranslations, unstable_setRequestLocale} from 'next-intl/server';
 import {NextIntlClientProvider} from 'next-intl';
 import "../globals.css";
 import Header from "@/app/ui/header/Header";
 import Footer from "@/app/ui/footer/Footer";
 import {CookiesProvider} from 'next-client-cookies/server';
-import {NextAuthProvider} from "@/app/lib/providers/authProvider";
-
-const inter = Inter({subsets: ["latin"]});
+import {NextAuthProvider} from "@/app/lib/providers/sessionProvider";
 
 type Props = {
     params: { locale: string };

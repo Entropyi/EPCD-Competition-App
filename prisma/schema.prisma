@@ -7,36 +7,39 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Form {
-  id                  Int                   @id @default(autoincrement())
-  fullName            String
-  email               String                @unique
-  age                 Int                   @default(0)
-  phoneNumber         Int                   @unique
-  imageUrl            String
-  photoTitle          String?               @default("nill")
-  comment             String?               @default("nill")
-  photoLocation       String
-  photoPurpose        String?               @default("nill")
-  AttachmetnsMetaData AttachmetnsMetaData[]
+model Request {
+  id            Int      @id @default(autoincrement())
+  fullName      String
+  email         String   @unique
+  User          User     @relation(fields: [email], references: [email])
+  age           Int      @default(0)
+  phoneNumber   String   @unique
+  photoTitle    String?  @default("nill")
+  comment       String?  @default("nill")
+  photoLocation String
+  photoPurpose  String?  @default("nill")
+  creationDate  DateTime
 }
 
 model AttachmetnsMetaData {
   id            Int      @id @default(autoincrement())
-  fileId        Int      @unique
-  Form          Form     @relation(fields: [requestEmail], references: [email])
+  fileId        String   @unique
+  User          User     @relation(fields: [requestEmail], references: [email])
   requestEmail  String
   fileType      String
   size          Int
+  relativePath  String
   creation_date DateTime
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime? @map("email_verified")
-  image         String?
+  id                  String                @id @default(cuid())
+  name                String?
+  email               String?               @unique
+  emailVerified       DateTime?             @map("email_verified")
+  image               String?
+  AttachmetnsMetaData AttachmetnsMetaData[]
+  Request             Request[]
 
   @@map("users")
 }

@@ -115,9 +115,6 @@ export default function Introduction() {
                 </p>
             </div>
 
-
-
-
         </div>
     )
 }

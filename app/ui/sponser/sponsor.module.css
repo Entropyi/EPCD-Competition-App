@@ -7,9 +7,10 @@
     width: 100%;
     height: fit-content;
     display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
     margin-bottom: 20px;
-    gap: 70px;
     padding-bottom: 20px;
 }
 
@@ -73,8 +74,8 @@
 .detailsTitleText {
     font-size: 1.125rem;
     color: var(--font-black);
-    font-family: "Font-Medium";
-    font-weight: 500;
+    font-family: "Font-Regular";
+    font-weight: 400;
     line-height: 1.5;
 }
 
@@ -96,16 +97,21 @@
     margin-inline: auto;
 }
 
-.orgTextContainer {
+.orgiTextContainer {
     text-align: center;
     font-family: "Font-Regular";
     color: var(--th-Primary-1);
 }
 
-.prizeRootContainer {
-    width: 100%;
+.prizeRootContainer:lang(ar) {
+    margin-right: 15%;
+    margin-top: 20px;
 }
 
+.prizeRootContainer:lang(en) {
+    margin-left: 15%;
+    margin-top: 20px;
+}
 
 :lang(en).stripeEffectContainer {
     padding: 10px;
@@ -127,26 +133,6 @@
     gap: 30px;
 }
 
-/*
-.squareContainer {
-    padding: 30px;
-    font-size: 1em;
-    text-align: center;
-    font-family: "Font-Medium";
-    border-radius: 22px;
-    max-width: 20ch;
-    background-color: rgba(var(--th-Primary-1-rgb), 0.1);
-
-}
-*/
-
-/*
-.textSeparator {
-    margin-bottom: 5px;
-    border-bottom: 4px solid var(--secondary-1);
-    border-radius: 20px;
-}
-*/
 
 .prizeTextContainer {
     display: flex;
@@ -200,7 +186,8 @@
     font-size: 1.1em;
     font-family: "Font-Medium";
 }
-.mobileBoxStyle{
+
+.mobileBoxStyle {
     padding: 17px;
     margin-bottom: 15px;
     font-size: 1em;
@@ -210,9 +197,11 @@
     max-width: 20ch;
     background-color: rgba(var(--th-Primary-1-rgb), 0.1);
     border-bottom: 15px solid var(--secondary-1);
-    border-bottom-right-radius:50px;
-    border-bottom-left-radius:50px;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
 }
+
+
 
 @media (min-width: 2560px ) {
     .introTitleContainer:lang(en) {
@@ -224,23 +213,26 @@
     }
 
     :lang(ar).sponsorContainer {
-        margin-right: 25%;
+        margin: 20px 0 0 0;
+        align-self: center;
     }
 
     :lang(en).sponsorContainer {
-        margin-left: 25%;
+        margin: 20px 0 0 0;
+        align-self: center;
     }
 }
 
-@media (min-width: 994px ) and (max-width: 1404px) {
+@media (min-width: 994px ) and (max-width: 1439px) {
     :lang(ar).sponsorContainer {
-        margin-right: 150px;
+        margin: 20px 0 0 0;
+        align-self: center;
     }
 
     :lang(en).sponsorContainer {
-        margin-left: 150px;
+        margin: 20px 0 0 0;
+        align-self: center;
     }
-
 
     .introTitleContainer:lang(en) {
         padding-left: 108px;
@@ -266,13 +258,14 @@
 
 @media (min-width: 768px ) and (max-width: 993px) {
     :lang(ar).sponsorContainer {
-        margin-right: 50px;
+        margin: 20px 0 0 0;
+        align-self: center;
     }
 
     :lang(en).sponsorContainer {
-        margin-left: 50px;
+        margin: 20px 0 0 0;
+        align-self: center;
     }
-
 
     .introTitleContainer:lang(en) {
         padding: 0;
@@ -293,15 +286,15 @@
     .introTitleContainer:lang(ar) {
         width: 85%;
     }
+
 }
+
+
 
 @media (min-width: 425px ) and (max-width: 767px) {
     :lang(ar).sponsorContainer {
-        margin-right: 50px;
-    }
-
-    :lang(en).sponsorContainer {
-        margin-left: 50px;
+        margin: 20px 0 0 0;
+        align-self: center;
     }
 
     :lang(ar).orgSectionLogos {
@@ -309,6 +302,10 @@
         height: 120px;
     }
 
+    :lang(en).sponsorContainer {
+        margin: 20px 0 0 0;
+        align-self: center;
+    }
 
     .introTitleContainer:lang(en) {
         width: 95%;
@@ -317,12 +314,11 @@
     .introTitleContainer:lang(ar) {
         width: 85%;
     }
-    .sponsorRootContainer {
-        flex-direction: column;
-    }
 
     .prizeRootContainer {
         width: 100%;
+        margin-right: 0;
+        margin-top: 0;
     }
 
 
@@ -377,7 +373,7 @@
         font-size: 0.93em;
     }
 
-    .mobileBoxStyle{
+    .mobileBoxStyle {
         padding: 15px;
         font-size: 1em;
         text-align: center;
@@ -386,8 +382,8 @@
         max-width: 20ch;
         background-color: rgba(var(--th-Primary-1-rgb), 0.1);
         border-bottom: 15px solid var(--secondary-1);
-        border-bottom-right-radius:20px;
-        border-bottom-left-radius:20px;
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
         margin-bottom: 10px;
     }
 
@@ -395,11 +391,15 @@
 
 @media (min-width: 375px ) and (max-width: 424px) {
     :lang(ar).sponsorContainer {
-        margin-right: 50px;
+        margin: 0;
+        align-self: center;
+        flex-direction: column;
     }
 
     :lang(en).sponsorContainer {
-        margin-left: 50px;
+        margin: 0;
+        align-self: center;
+        flex-direction: column;
     }
 
     .breakingLine {
@@ -416,14 +416,11 @@
         width: 85%;
     }
 
-    .sponsorRootContainer {
-        flex-direction: column;
-    }
-
     .prizeRootContainer {
         width: 100%;
+        margin-right: 0;
+        margin-top: 0;
     }
-
 
     :lang(en).stripeEffectContainer {
         padding: 10px;
@@ -476,7 +473,7 @@
         font-size: 0.93em;
     }
 
-    .mobileBoxStyle{
+    .mobileBoxStyle {
         padding: 15px;
         font-size: 1em;
         text-align: center;
@@ -485,8 +482,8 @@
         max-width: 20ch;
         background-color: rgba(var(--th-Primary-1-rgb), 0.1);
         border-bottom: 15px solid var(--secondary-1);
-        border-bottom-right-radius:20px;
-        border-bottom-left-radius:20px;
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
         margin-bottom: 10px;
     }
 }
@@ -494,11 +491,15 @@
 @media (min-width: 320px ) and (max-width: 374px) {
 
     :lang(ar).sponsorContainer {
-        margin-right: 50px;
+        margin: 0;
+        align-self: center;
+        flex-direction: column;
     }
 
     :lang(en).sponsorContainer {
-        margin-left: 50px;
+        margin: 0;
+        align-self: center;
+        flex-direction: column;
     }
 
     .breakingLine {
@@ -515,14 +516,11 @@
         width: 85%;
     }
 
-    .sponsorRootContainer {
-        flex-direction: column;
-    }
-
     .prizeRootContainer {
         width: 100%;
+        margin-right: 0;
+        margin-top: 0;
     }
-
 
     :lang(en).stripeEffectContainer {
         padding: 10px;
@@ -574,7 +572,7 @@
         font-size: 0.93em;
     }
 
-    .mobileBoxStyle{
+    .mobileBoxStyle {
         padding: 15px;
         font-size: 1em;
         text-align: center;
@@ -583,8 +581,9 @@
         max-width: 20ch;
         background-color: rgba(var(--th-Primary-1-rgb), 0.1);
         border-bottom: 15px solid var(--secondary-1);
-        border-bottom-right-radius:20px;
-        border-bottom-left-radius:20px;
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
         margin-bottom: 10px;
     }
+
 }

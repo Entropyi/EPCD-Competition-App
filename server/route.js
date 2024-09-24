@@ -17,7 +17,7 @@ const server = new Server({
     datastore: new FileStore({directory: "../../temp"}),
     maxSize: maxSizeInBytes,
     onUploadCreate: async (req, res, upload) => {
-        const FormEntriesCount = await prisma.form.count({
+        const FormEntriesCount = await prisma.request.count({
             where: {email: upload.metadata.userId},
         })
 

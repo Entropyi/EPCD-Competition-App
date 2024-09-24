@@ -25,7 +25,7 @@ const providers: Provider[] = [
     }),
 ]
 
-export const {handlers, auth, signIn, signOut} = NextAuth({
+export const {handlers, auth, signIn} = NextAuth({
     providers,
     adapter: PrismaAdapter(prisma),
     trustHost: true,
@@ -48,7 +48,7 @@ export const {handlers, auth, signIn, signOut} = NextAuth({
             if (account) {
                 token.accessToken = account.access_token
                 token.id = profile?.id
-            }   
+            }
             return token
         },
 

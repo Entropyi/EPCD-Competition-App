@@ -1,10 +1,6 @@
 import {NextRequest, NextResponse} from "next/server";
-import {PrismaClient} from '@prisma/client'
 import * as v from "valibot";
-import {useTranslations} from "next-intl";
-
-
-const prisma = new PrismaClient()
+import {prisma} from "@/prisma/prisma";
 
 
 export async function POST(req: NextRequest, res: NextResponse) {
@@ -23,7 +19,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
         ),
 
         age: v.optional(
-                v.number(),
+            v.number(),
             0
         ),
 
@@ -32,11 +28,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
             v.nonEmpty(),
             v.maxLength(10),
             v.minLength(10),
-        ),
-
-        imageUrl: v.pipe(
-            v.string(),
-            v.nonEmpty(),
         ),
 
         photoTitle: v.optional(v.string(), ""),
@@ -52,6 +43,9 @@ export async function POST(req: NextRequest, res: NextResponse) {
     });
 
     try {
+        let utcDate = new Date();
+        let formattedUtcDate = utcDate.toISOString();
+
         const formData = v.parse(
             FormSchema,
             {
@@ -59,7 +53,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
                 email: data.get("email"),
                 age: Number(data.get("age")),
                 phoneNumber: data.get("phoneNumber"),
-                imageUrl: data.get("imageUrl"),
                 photoTitle: data.get("photoTitle"),
                 comment: data.get("comments"),
                 photoLocation: data.get("photoLocation"),
@@ -68,46 +61,37 @@ export async function POST(req: NextRequest, res: NextResponse) {
         )
 
         try {
-            await prisma.form.create({
+            await prisma.request.create({
                 data: {
                     fullName: formData.fullName,
                     email: formData.email,
                     age: formData.age,
-                    phoneNumber: Number(formData.phoneNumber),
-                    imageUrl: formData.imageUrl,
+                    phoneNumber: formData.phoneNumber,
                     photoTitle: formData.photoTitle,
                     comment: formData.comment,
                     photoLocation: formData.photoLocation,
                     photoPurpose: formData.photoPurpose,
+                    creationDate: formattedUtcDate,
                 }
             })
+
+
         } catch (e) {
             // @ts-ignore
             if (e?.code == "P2002") {
-                return NextResponse.json({ success: false, msg: "unique" }, { status: 409 });
+                return NextResponse.json({success: false, msg: "unique"}, {status: 409});
 
             } else {
                 // @ts-ignore
-                return NextResponse.json({ success: false, msg: e.code }, { status: 409 });
+                return NextResponse.json({success: false, msg: e.code}, {status: 409});
             }
         }
 
-        return NextResponse.json({ success: true, msg: "Successfully uploaded" });
+        return NextResponse.json({success: true, msg: "Successfully uploaded"});
 
     } catch (e) {
-        return NextResponse.json({ success: false, msg: e?.toString() }, { status: 500 });
+        return NextResponse.json({success: false, msg: e}, {status: 500});
     }
 
 
-}
-
-export async function GET(req: NextRequest, res: NextResponse) {
-
-    const result = await prisma.form.findMany();
-    return NextResponse.json({success: true, msg: result})
-}
-
-export async function DELETE(req: NextRequest, res: NextResponse) {
-    const deleteUsers = await prisma.form.deleteMany({})
-    return NextResponse.json({success: true, msg: deleteUsers})
 }

@@ -83,7 +83,9 @@
     "alreadyParticipatedTitle": "Participation Exists",
     "alreadyParticipatedSubText":"You cannot participate in this competition more than one time",
     "titleSuccess": "Successful",
-    "subTextSuccess": "Please wait a few seconds, you will be redirected"
+    "subTextSuccess": "Please wait a few seconds, you will be redirected",
+    "dailyLimitTitle": "Limit Exceeded",
+    "dailyLimitText": "You have reached the maximum limit of email sent today please try again after 24 hours"
   },
   "LocaleLayout": {
     "title": "Environmental Photography Competition"

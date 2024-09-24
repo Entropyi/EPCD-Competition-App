@@ -30,7 +30,6 @@ export default function SuccessPage() {
             const responseJson = await response.json();
             const cookieValue = cookies.get("newUser");
 
-            console.log(responseJson)
             if (responseJson.newUser) {
                 if (cookieValue == "true" && responseJson.newUser == true) {
                     router.replace(`/${locale}/form`);
